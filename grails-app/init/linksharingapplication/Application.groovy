@@ -8,3 +8,5 @@ class Application extends GrailsAutoConfiguration {
         GrailsApp.run(Application, args)
     }
 }
+
+
