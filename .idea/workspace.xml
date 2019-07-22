@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/Downloads/grails-taglib-views-sample-master" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../ControlDemo" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../Demo" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../LinkSharing" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../LinkSharingApp" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../LinkSharing_App" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../LinksharingApp" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../Lsharing" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../employedetails" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../mapping" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../rx-bootcamp" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="59" />
+    <option name="y" value="25" />
+    <option name="width" value="654" />
+    <option name="height" value="741" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+</project>
