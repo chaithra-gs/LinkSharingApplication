@@ -1,0 +1,6 @@
+#Mon, 22 Jul 2019 18:41:44 +0530
+
+info.app.version=0.1
+info.app.name=LinkSharingApplication
+grails.env=development
+info.app.grailsVersion=3.2.11
