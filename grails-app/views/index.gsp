@@ -1,3 +1,4 @@
+<%@page import="grails.util.Holders"%>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +10,7 @@
       <div class="panel-body">
         <div class="container">
           <div class="col-md-8">
-            <h4><a href="#"><strong> <u>Link Sharing</u></strong></a></h4>
+            <h4><a href="${Holders.config.server.host}"><strong> <u>Link Sharing</u></strong></a></h4>
           </div>
           <div class="col-md-3">
             <div class="input-group">
@@ -105,7 +106,7 @@
               </div>
               <div class="form-group">
                 <div class=" col-md-10">
-                  <a href="#" class="control-label col-md-8" style="text-align: left;">Forget Password</a>
+%{--                  <g:link action="reset" class="control-label col-md-8" style="text-align: left;">Forget Password</g:link>--}%
                 </div>
                 <div class=" offset-md-1">
                   <button type="submit" class="btn btn-basic">Login</button>
@@ -121,7 +122,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Register</div>
           <div class="panel-body">
-            <g:form class="form-horizontal" url="[controller:'signup',action:'index']" >
+            <g:uploadForm class="form-horizontal" controller='signup' action='index'>
               <div class="form-group">
                 <text class="control-label col-md-4" for="firstName" style="text-align: left;">First Name *</text>
                 <div class="col-md-8">
@@ -150,34 +151,35 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="password" style="text-align: left;">Password *</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+                  <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" >
                 </div>
               </div>
               <div class="form-group">
                 <text class="control-label col-md-4" for="password" style="text-align: left;">ConfirmPassword*</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="confirmpassword" placeholder="Enter password again" name="confirmpassword">
+                  <input type="password" class="form-control" id="confirmpassword" placeholder="Enter password again" name="confirmpassword" onkeyup='Matchpassword()'>
                 </div>
+              </div>
+
+              <div>
+                <span id="matching"></span>
               </div>
 
               <div class="form-group">
                 <text class="control-label col-md-4 " for="photo" style="text-align: left;">Photo</text>
                 <div class="col-md-8">
-                  <input type="file" class="form-control" id="photo" placeholder="choose" name="pic">
+                  <input type="file" class="form-control" id="photo" placeholder="choose" name="inputphoto">
                 </div>
               </div>
-
-
-
 
               <div class="form-group">
                 <div class=" col-md-8">
                 </div>
                 <div class=" col-md-4">
-                  <button type="submit" class="btn btn-basic btn-block" width=100%>Register</button>
+                  <button type="submit" class="btn btn-basic btn-block"  width=100%>Register</button>
                 </div>
               </div>
-            </g:form>
+            </g:uploadForm>
           </div>
         </div>
       </div>

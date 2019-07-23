@@ -4,8 +4,12 @@ class SignupController {
 
     def signupService
     def index(){
-        //print "inside cont"
-        signupService.register(params)
+//        print "inside cont"
+//        def file = params.get("pic")
+//        println "pic ==================================" + file.class
+        signupService.register(params,request)
         render(text: "Success")
     }
 }
+
+

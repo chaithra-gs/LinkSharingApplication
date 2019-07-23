@@ -7,7 +7,7 @@ class User {
     String password
     String firstName
     String lastName
-    byte [] photo
+    String  photo
     Boolean admin
     Boolean active
     Date dateCreated
@@ -20,10 +20,14 @@ class User {
         email(unique:true,email:true)
         username(unique:true)
         password(size:4..15, matches:"[a-zA-Z0-9]+")
-        photo(nullable:true)
+        photo (blank:true,nullable:true)
         admin nullable:true
-
+        password(validator:{val,obj->
+            if(val.equals(obj.firstName)){ return false }
+        })
     }
+
+
 
     static mapping={
         table 'Users'

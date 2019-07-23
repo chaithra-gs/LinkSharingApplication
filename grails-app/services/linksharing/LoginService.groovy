@@ -5,31 +5,29 @@ import grails.transaction.Transactional
 @Transactional
 class LoginService {
 
-    def loginMethod(Map params) {
-
-        String email=params.email
-        String password=params.pwd
-
-        if(email == null || password == null)
+    Boolean loginMethod(String userEmail, String enteredPassword) {
+        Boolean flag = false
+/*        if(userEmail || enteredPassword)
         {
-            return false
-        }
-        else
+            flag = false
+        }*/
+        if(userEmail && enteredPassword)
         {
-            def userdetail=User.findByEmail(email)
-            def userpass=userdetail.getPassword()
-            if(userpass==password)
+            String storedPassword = User.findByEmail(userEmail)?.password
+            flag  = storedPassword == enteredPassword
+           /* if (storedPassword == enteredPassword)
             {
-                return true
-                //render(text: "Success")
+                flag = true
+//                redirect(controller: "dashboard",action:"index")
             }
             else
             {
-                return false
+                //render(text: "password mismath")
+                flag = false
 
-            }
-
+            }*/
         }
+        return flag
 
     }
 }
