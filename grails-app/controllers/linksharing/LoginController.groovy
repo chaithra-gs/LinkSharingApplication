@@ -4,22 +4,32 @@ class LoginController {
     def loginService
 
     def index() {
-        String email = params.email
-        String enteredPassword = params.pwd
-        Boolean isLogin =  loginService.loginMethod(email, enteredPassword)
+
 
         //get boolean value from service
-
         //compare value to true and false
         //if true -- render dashboard
         //if flase -- render error/login again
 
+        String email = params.email
+        String enteredPassword = params.pwd
+        Boolean isLogin =  loginService.loginMethod(email, enteredPassword)
+
+        //for getting session object
+        //def values = loginService.loginMethod(email, enteredPassword)
+
+
+
         if(isLogin)
+
         {
-            render view: "/user/dashboard", model: [:]
+            //render view: "/dashboard", model: [:]
+
+            session.name = params.email
+            redirect(controller: "dashboard", action: "index")
         }
         else {
-            render view: "/error", model: [:]
+            redirect(view: "/error", model: [:])
         }
 
     }

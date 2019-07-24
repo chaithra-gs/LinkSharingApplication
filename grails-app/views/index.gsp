@@ -30,6 +30,7 @@
         <div class="panel-heading">Recent Searches</div>
         <div class="panel-body">
           <table  style="width:100%">
+            <tr>
             <td rowspan="3" width=25%> <img src="https://i.stack.imgur.com/l60Hf.png" height=120px width=125px></td>
             <td width=275px class="text">chaithra</td>
             <td width=150px class="text-muted">@chaithra</td>
@@ -37,16 +38,16 @@
             <td width=150px></td>
             <td width=150px>
               <a href="#">
-                Grails
+                Grails</a>
               </td>
             </tr>
-            <td colspan="5" </td>
+            <td colspan="5" ></td>
           </tr>
           <td>Links</td>
           <td></td>
           <td></td>
           <td></td>
-          <td><a href="#">View Post</td>
+            <td><a href="#">View Post</a></td>
           </table>
         </div>
       </div>
@@ -75,7 +76,7 @@
             <td width=150px class="text-muted">@chaithra</td>
             <td width=150px></td>
             <td width=150px></td>
-            <td width=150px><a href="#">Grails</td>
+            <td width=150px><a href="#">Grails</a></td>
             </tr>
             <td colspan="5" height=100px> </td>
           </tr>
@@ -83,7 +84,7 @@
           <td></td>
           <td></td>
           <td></td>
-          <td><a href="#">View Post</td>
+            <td><a href="#">View Post</a></td>
           </table></div>
         </div>
       </div>

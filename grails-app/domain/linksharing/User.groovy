@@ -20,7 +20,7 @@ class User {
         email(unique:true,email:true)
         username(unique:true)
         password(size:4..15, matches:"[a-zA-Z0-9]+")
-        photo (blank:true,nullable:true)
+        photo (blank:true)
         admin nullable:true
         password(validator:{val,obj->
             if(val.equals(obj.firstName)){ return false }

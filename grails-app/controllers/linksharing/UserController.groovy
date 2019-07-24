@@ -7,10 +7,23 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class UserController {
     static defaultAction = "myaction"
+    def showAllUserListService
 
 def myaction(){
-    render(view:"dashboard")
+    render(view:"/EditProfile")
 }
+    def showlist() {
+        List<User> list1 = showAllUserListService.listMethod()
+        render(view: "showUserList", model: [userList: list1])
+    }
+
+
+
+    def logout(){
+        session.invalidate()
+        redirect(url:'/')
+    }
+
 
 
 

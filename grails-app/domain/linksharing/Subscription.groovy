@@ -1,17 +1,14 @@
 package linksharing
 
+import Enums.Seriousness
 import org.hibernate.mapping.Table
 
 class Subscription {
 
     Topic topic
     User user
-    /*enum SERIOUSNESS{
-        CASUAL,
-        SERIOUS,
-        VERY_SERIOUS
-    }*/
     Date dateCreated
+    Seriousness seriousness
 
     static belongsTo = [user:User, topic:Topic]
 

@@ -30,11 +30,18 @@ class SignupService {
                     Boolean active = 1
 
                 def f= request.getFile('inputphoto')
-                String loc='/home/chaithra/grailsproject/git/LinkSharingApplication/src/photo/' + username
-                File des=new File(loc)
+                String fName=f.getOriginalFilename()
+                //String loc='/home/chaithra/grailsproject/git/LinkSharingApplication/src/photo/' + username
+                //File des=new File(loc)
+                //f.transferTo(des)
+
+
+                String path='/home/chaithra/grailsproject/grailsPictures/'+username+fName
+                File des=new File(path)
                 f.transferTo(des)
 
-                    User user2 = new User(firstName: firstname,lastName: lastname,email:email,username:username,password:password,admin:admin,active:active,photo: loc)
+
+                    User user2 = new User(firstName: firstname,lastName: lastname,email:email,username:username,password:password,admin:admin,active:active,photo:path)
                     user2.save(flush:true,failOnError:true,validate:true)
 
 
