@@ -41,8 +41,8 @@ class SignupService {
                 f.transferTo(des)
 
 
-                    User user2 = new User(firstName: firstname,lastName: lastname,email:email,username:username,password:password,admin:admin,active:active,photo:path)
-                    user2.save(flush:true,failOnError:true,validate:true)
+                    User userr = new User(firstName: firstname,lastName: lastname,email:email,username:username,password:password,admin:admin,active:active,photo:path)
+                    userr.save(flush:true,failOnError:true,validate:true)
 
 
             }

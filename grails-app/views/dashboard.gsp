@@ -85,10 +85,10 @@
                                 <td rowspan="4" colspan="3" width="10%">
                                     <img src="https://i.stack.imgur.com/l60Hf.png" height="100px" width="90px" style="margin-right: 10px;">
                                 </td>
-                                <td width=200px class="text" colspan="3">Uday Pratap Singh</td>
+                                <td width=200px class="text" colspan="3">${userdata.firstName} ${userdata.lastName}</td>
                             </tr>
                             <tr>
-                                <td width=150px class="text-muted" colspan="3">@uday</td>
+                                <td width=150px class="text-muted" colspan="3">@${userdata.username}</td>
                             </tr>
                             <tr>
                                 <td width=150px>Subscriptions</td>
@@ -185,7 +185,9 @@
                 </div>
             </div>
 
-            %{--top post--}%
+%{--            top post--}%
+
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="container">
@@ -227,6 +229,8 @@
                     </table>
                 </div>
             </div>
+
+
 
             %{--send invitation--}%
             <div class="panel panel-default">
@@ -300,6 +304,8 @@
                     </table>
                 </div>
             </div>
+
+
             %{--Share link--}%
             <div class="panel panel-default">
                 <div class="panel-heading">Share Link (  Pop up)</div>
@@ -407,7 +413,7 @@
                     <h4 class="modal-title">Create Topic</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="topic/enterTopics" class="topicForm">
+                    <g:form  controller="topic" action="save" class="topicForm">
                         Name *:
                         <input class="form-control" type="text" name="topicName" id="topicName"/>
                         Visibility *:
@@ -416,7 +422,7 @@
                             <option>PRIVATE</option>
                         </select>
                         <input type="submit" class="btn btn-success" style="float: right; margin-top: 5px;"/>
-                    </form>
+                    </g:form>
                 </div>
                 <div class="modal-footer" style=" margin-top: 15px;">
                     <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>

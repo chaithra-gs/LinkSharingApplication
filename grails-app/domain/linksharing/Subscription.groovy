@@ -1,19 +1,21 @@
-package linksharing
+    package linksharing
 
-import Enums.Seriousness
-import org.hibernate.mapping.Table
+    import Enums.Seriousness
+    import org.hibernate.mapping.Table
 
-class Subscription {
+    class Subscription {
 
-    Topic topic
-    User user
-    Date dateCreated
-    Seriousness seriousness
+        Topic topic
+        User user
+        Date dateCreated
+        Seriousness seriousness
 
-    static belongsTo = [user:User, topic:Topic]
+        static belongsTo = [user:User, topic:Topic]
 
-    static constraints = {
+        static constraints = {
+
+            //int countUbs = Subscription.countByUser(user)
 
 
+        }
     }
-}
