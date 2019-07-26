@@ -6,6 +6,25 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class ResourceController {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -20,6 +39,8 @@ class ResourceController {
     def create() {
         respond new Resource(params)
     }
+
+
 
     @Transactional
     def save(Resource resource) {

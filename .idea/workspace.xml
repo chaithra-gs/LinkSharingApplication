@@ -9,19 +9,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/assets/javascripts/Matchpassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/assets/javascripts/Matchpassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/conf/spring/resources.groovy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/DashboardController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/DashboardController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/LoginController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/LoginController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SignupController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SignupController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SubscriptionController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SubscriptionController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/UserController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/UserController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/domain/linksharing/Resource.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/linksharing/Resource.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/domain/linksharing/Subscription.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/linksharing/Subscription.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/domain/linksharing/Topic.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/linksharing/Topic.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/domain/linksharing/ResourceRating.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/linksharing/ResourceRating.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/domain/linksharing/User.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/linksharing/User.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/init/linksharingapplication/BootStrap.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/init/linksharingapplication/BootStrap.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/SignupService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/SignupService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/TopicService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/TopicService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/views/dashboard.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/dashboard.gsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/Enums/Seriousness.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/Enums/Seriousness.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/groovy/Enums/Visibility.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/Enums/Visibility.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/UserService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/UserService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/dashboard.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/index.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/index.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/user/Reset.gsp" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,8 +90,13 @@
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/grails-app/views/dashboard" />
       <recent name="$PROJECT_DIR$/grails-app/views" />
+      <recent name="$PROJECT_DIR$/grails-app/views/login" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -199,7 +210,13 @@
       <updated>1563974775704</updated>
       <workItem from="1563974783189" duration="12622000" />
       <workItem from="1564030267407" duration="12422000" />
-      <workItem from="1564044672392" duration="14237000" />
+      <workItem from="1564044672392" duration="24456000" />
+      <workItem from="1564079034386" duration="4553000" />
+      <workItem from="1564083601826" duration="6624000" />
+      <workItem from="1564090253274" duration="422000" />
+      <workItem from="1564090688206" duration="12133000" />
+      <workItem from="1564122587106" duration="9992000" />
+      <workItem from="1564134474562" duration="13072000" />
     </task>
     <servers />
   </component>

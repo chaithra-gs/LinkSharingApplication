@@ -27,8 +27,6 @@
             })
         }
 
-
-
         static mapping={
             table 'Users'
         }

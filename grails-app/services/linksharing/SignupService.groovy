@@ -29,8 +29,8 @@ class SignupService {
                     Boolean admin = 0
                     Boolean active = 1
 
-                def f= request.getFile('inputphoto')
-                String fName=f.getOriginalFilename()
+                def f = request.getFile('inputphoto')
+                String fName = f.getOriginalFilename()
                 //String loc='/home/chaithra/grailsproject/git/LinkSharingApplication/src/photo/' + username
                 //File des=new File(loc)
                 //f.transferTo(des)

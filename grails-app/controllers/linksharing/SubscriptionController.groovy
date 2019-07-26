@@ -1,10 +1,52 @@
 package linksharing
 
+import Enums.Visibility
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class SubscriptionController {
+    def subscriptionService
+
+
+    def updateSerious(){
+        subscriptionService.updateSerious(params)
+        redirect(controller: "dashboard" ,action: "index")
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 

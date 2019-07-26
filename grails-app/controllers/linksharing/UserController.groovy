@@ -9,24 +9,55 @@ class UserController {
     static defaultAction = "myaction"
     def showAllUserListService
     def UserService
+    def forgetPasswordService
 
-def myaction(){
-    render(view:"/EditProfile")
-}
+
+    def myaction(){
+        render(view:"/EditProfile")
+    }
     def showlist() {
         List<User> list1 = showAllUserListService.listMethod()
         render(view: "showUserList", model: [userList: list1])
     }
-
-
 
     def logout(){
         session.invalidate()
         redirect(url:'/')
     }
 
+    // To display the number of subscription and trending topics  done by particular user
 
-       // To display the number of subscriptions done by particular user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

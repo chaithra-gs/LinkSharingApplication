@@ -11,4 +11,23 @@ class TopicController {
 
     }
 
+
+    def saveDoc(){
+        topicService.saveDoc(params,request,session.name)
+        redirect(controller: "dashboard", action: "index")
+    }
+    def saveLink(){
+        topicService.saveLink(params,request,session.name)
+        redirect(controller: "dashboard", action: "index")
+    }
+
+    def updateVisibility(){
+        topicService.updateVisibility(params)
+        redirect(controller: "dashboard" ,action: "index")
+
+    }
+
+
+
+
 }

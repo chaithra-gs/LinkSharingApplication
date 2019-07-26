@@ -2,7 +2,28 @@
 <!doctype html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="4nonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+%{--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="4nonymous">--}%
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery-3.3.1.js"></script>
+  <script type = "text/javascript">
+    var Matchpassword=function () {
+      var password = document.getElementById("password").value;
+      var confirmPassword =document.getElementById("confirmpassword").value;
+
+      if(password!=confirmPassword){
+        document.getElementById("matching").innerHTML="Not Match!!!"
+
+      }
+      else
+      {
+        document.getElementById("matching").innerHTML="Match!!!"
+      }
+
+    }
+</script>
 </head>
 <body>
   <div class="container"><br>
@@ -107,7 +128,7 @@
               </div>
               <div class="form-group">
                 <div class=" col-md-10">
-%{--                  <g:link action="reset" class="control-label col-md-8" style="text-align: left;">Forget Password</g:link>--}%
+                 <g:link class="control-label col-md-8" controller="forgetPassword" action="forgetPassword" style="text-align: left;">Forget Password</g:link>
                 </div>
                 <div class=" offset-md-1">
                   <button type="submit" class="btn btn-basic">Login</button>
@@ -158,14 +179,14 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="password" style="text-align: left;">ConfirmPassword*</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="confirmpassword" placeholder="Enter password again" name="confirmpassword" onkeyup='Matchpassword()'>
+                  <input type="password" class="form-control" id="confirmpassword" placeholder="Enter password again" name="confirmpassword" onkeyup="Matchpassword()">
                 </div>
-              </div>
+
 
               <div>
-                <span id="matching"></span>
+                <span id="matching" style="color: #761c19" ></span>
               </div>
-
+              </div>
               <div class="form-group">
                 <text class="control-label col-md-4 " for="photo" style="text-align: left;">Photo</text>
                 <div class="col-md-8">

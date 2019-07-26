@@ -1,4 +1,5 @@
-// Place your Spring DSL code here
+// place your beans here
+
 beans = {
 
 }
