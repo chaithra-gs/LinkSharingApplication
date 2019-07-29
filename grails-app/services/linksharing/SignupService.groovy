@@ -23,6 +23,7 @@ class SignupService {
                     String lastname = params.lastname
                     String email = params.signup_email
                     String username = params.username
+                println "<<<<<<<<<<<<<<<<<<<<< username :"+params.username
 
                     //getBytes(UTF_8)
                     // byte [] userphoto=params.pic.bytes
@@ -31,18 +32,14 @@ class SignupService {
 
                 def f = request.getFile('inputphoto')
                 String fName = f.getOriginalFilename()
-                //String loc='/home/chaithra/grailsproject/git/LinkSharingApplication/src/photo/' + username
-                //File des=new File(loc)
-                //f.transferTo(des)
+                def image = username+fName
 
-
-                String path='/home/chaithra/grailsproject/grailsPictures/'+username+fName
-                File des=new File(path)
+                String loc='/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/images/' + image
+                File des=new File(loc)
                 f.transferTo(des)
 
-
-                    User userr = new User(firstName: firstname,lastName: lastname,email:email,username:username,password:password,admin:admin,active:active,photo:path)
-                    userr.save(flush:true,failOnError:true,validate:true)
+                User userr = new User(firstName: firstname,lastName: lastname,email:email,username:username,password:password,admin:admin,active:active,photo:image)
+                userr.save(flush:true,failOnError:true,validate:true)
 
 
             }

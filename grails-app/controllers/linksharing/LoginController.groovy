@@ -22,11 +22,13 @@ class LoginController {
         if(isLogin) {
             //render view: "/dashboard", model: [:]
             session.name = params.email
+            flash.message="Register sucess"
             print session.name
             redirect(controller: "dashboard", action: "index")
         }
         else {
-            redirect(view: "/error", model: [:])
+            flash.message="Fail"
+            redirect(url: '/')
         }
     }
 }

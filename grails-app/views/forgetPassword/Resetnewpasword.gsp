@@ -13,7 +13,7 @@
     </title>
 </head>
 <body>
-<g:form url="[controller:'user' , action : 'updatepassword']" class="form-horizontal">
+<g:form url="[controller:'forgetPassword' , action : 'updatePassword']" class="form-horizontal">
     <input type="hidden" id="hiddenEmail" name="hiddenEmail" value="">
     <div class="form-group">
         <text class="control-label col-md-4" for="email"  style="text-align: left;">
@@ -24,14 +24,14 @@
         </div>
     </div>
     <br>
-    <div class="form-group">
+    %{--<div class="form-group">
         <text class="control-label col-md-4" for="email"  style="text-align: left;">
             Confirm New Password
         </text>
         <div class="col-md-8">
             <input type="email" class="form-control" id="resetConfirmPass" placeholder="confirm Password" name="confirmPassword">
         </div>
-    </div>
+    </div>--}%
     <br>
     <div class=" offset-md-1">
         <button type="submit" class="btn btn-basic">

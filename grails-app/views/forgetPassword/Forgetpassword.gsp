@@ -11,7 +11,8 @@
     <title>Forget Password</title>
 </head>
 <body>
-<g:form url="[controller:'forgetPassword' , action : 'validateResetPasswordEmail']" class="form-horizontal">
+
+<g:form url="[controller:'forgetPassword' , action : 'validateResetPaswordEmail']" class="form-horizontal">
     <div class="form-group">
         <text class="control-label col-md-4" for="resetPassword"  style="text-align: left;">Email *</text>
         <div class="col-md-8">
@@ -24,5 +25,6 @@
         </button>
     </div>
 </g:form>
+
 </body>
 </html>

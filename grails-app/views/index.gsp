@@ -14,7 +14,12 @@
       var confirmPassword =document.getElementById("confirmpassword").value;
 
       if(password!=confirmPassword){
-        document.getElementById("matching").innerHTML="Not Match!!!"
+        alert("Enter same Password")
+        document.getElementById("password").value = "";
+        document.getElementById("confirmpassword").value = "";
+
+
+        //document.getElementById("matching").innerHTML="Not Match!!!"
 
       }
       else
@@ -24,24 +29,31 @@
 
     }
 </script>
+  <style>
+  body{
+    background: #555555;
+  }
+  </style>
 </head>
 <body>
   <div class="container"><br>
     <div class="panel panel-default">
       <div class="panel-body">
-        <div class="container">
+        <div class="container col-md-12" style="background: #31b0d5">
           <div class="col-md-8">
-            <h4><a href="${Holders.config.server.host}"><strong> <u>Link Sharing</u></strong></a></h4>
+            <h2 style="color: #a60000"><a href="${Holders.config.server.host}"><strong> <u>Link Sharing</u></strong></a></h2>
           </div>
+          <br>
           <div class="col-md-3">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
+              <g:textField id="mytext" class="form-control" name="q" placeholder="Search" value="${q}"/>
               <div class="input-group-btn">
                 <button class="btn btn-basic" type="submit">
                   <span class="glyphicon glyphicon-search"></span>
                 </button>
               </div>
             </div>
+            <br>
           </div>
         </div>
       </div>
@@ -124,12 +136,19 @@
                 <text class="control-label col-md-4 " for="pwd" style="text-align: left;">Password *</text>
                 <div class="col-md-8">
                   <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                  <g:if test="${flash.message}">
+                    <div class="message">
+                      ${flash.message}
+                    </div>
+                  </g:if>
                 </div>
               </div>
               <div class="form-group">
                 <div class=" col-md-10">
                  <g:link class="control-label col-md-8" controller="forgetPassword" action="forgetPassword" style="text-align: left;">Forget Password</g:link>
+
                 </div>
+
                 <div class=" offset-md-1">
                   <button type="submit" class="btn btn-basic">Login</button>
                 </div>
@@ -179,7 +198,12 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="password" style="text-align: left;">ConfirmPassword*</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="confirmpassword" placeholder="Enter password again" name="confirmpassword" onkeyup="Matchpassword()">
+                  <input type="password" class="form-control" id="confirmpassword" placeholder="Enter password again" name="confirmpassword" onfocusout="Matchpassword()">
+                  <g:if test="${flash.message}">
+                    <div class="message">
+                      ${flash.message}
+                    </div>
+                  </g:if>
                 </div>
 
 

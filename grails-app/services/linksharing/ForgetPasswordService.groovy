@@ -11,11 +11,18 @@ class ForgetPasswordService {
         User userExist = User.findByEmail(email)
         if(userExist)
         {
-            return 1
+            return userExist
         }
         else {
-            return 0
+            return null
         }
+    }
+    def resetPassword(Map params, String email){
+        String password = params.newpassword
+
+        User u1 = User.findByEmail(email)
+        u1.password = password
+        u1.save(failOnError: true, flush: true)
 
     }
 }

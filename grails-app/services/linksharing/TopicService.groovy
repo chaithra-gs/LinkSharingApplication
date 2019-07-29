@@ -1,6 +1,7 @@
 package linksharing
 
 import Enums.Visibility
+import Enums.Seriousness
 import grails.transaction.Transactional
 
 @Transactional
@@ -12,9 +13,17 @@ class TopicService {
         Visibility visible=params.selection
         User u=User.findByEmail(uemail)
 
-
         Topic topic = new Topic(name:topicName,visibility: visible,createdBy:u)
         topic.save(flush:true,failOnError:true,validate:true)
+
+        Subscription sub=new Subscription(seriousness: Seriousness.VERY_SERIOUS,topic:topic)
+        u.addToSubscribedTo(sub)
+
+        topic.addToSubscriptionHas(sub)
+        sub.save(failOnerror:true,flush:true)
+
+        u.save(flush:true , failOnError : true)
+
     }
 
 

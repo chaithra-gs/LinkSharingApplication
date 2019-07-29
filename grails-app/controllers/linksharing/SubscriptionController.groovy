@@ -10,9 +10,21 @@ class SubscriptionController {
     def subscriptionService
 
 
-    def updateSerious(){
+    def updateSerious() {
         subscriptionService.updateSerious(params)
-        redirect(controller: "dashboard" ,action: "index")
+        redirect(controller: "dashboard", action: "index")
+
+    }
+    def changesub()
+    {
+        subscriptionService.updateSubscription(params)
+        redirect(controller: "dashboard", action: "index")
+
+
+    }
+
+    def save()
+    {
 
     }
 

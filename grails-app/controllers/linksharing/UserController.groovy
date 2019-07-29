@@ -1,19 +1,23 @@
 package linksharing
 
-import static org.springframework.http.HttpStatus.*
+
 import grails.transaction.Transactional
 
 
 @Transactional(readOnly = true)
 class UserController {
-    static defaultAction = "myaction"
+   // static defaultAction = "myaction"
     def showAllUserListService
     def UserService
     def forgetPasswordService
 
 
     def myaction(){
-        render(view:"/EditProfile")
+
+        /*User u = User.findByEmail(session.name)
+        String str = u.username*/
+//        render text: "Heeeelo"
+        render(view:"EditProfile" )
     }
     def showlist() {
         List<User> list1 = showAllUserListService.listMethod()
@@ -61,6 +65,8 @@ class UserController {
 
 
 
+
+/*default  static code */
 
 
 //    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

@@ -30,7 +30,9 @@ class UserService {
     }
 
     def subscriptioncount(List topicids)
-    {
+    {if(topicids){
+
+
         def topiccounts=Subscription.createCriteria().list()
                 {
                     projections{
@@ -52,34 +54,46 @@ class UserService {
         }.collect{it.getAt(0)}
         return counts
     }
+        else {
+        return null
+    }
+    }
     // for displaying topic  which has more resources as a trending topic
     def postscount(List topicids)
     {
-        def rescounts=Resource.createCriteria().list()
-                {
-                    projections{
-                        count('topic.id')
-                        groupProperty('topic.id')
-                        // countDistinct('topic.id')
+        if(topicids) {
+
+            def rescounts = Resource.createCriteria().list()
+                    {
+                        projections {
+                            count('topic.id')
+                            groupProperty('topic.id')
+                            // countDistinct('topic.id')
+                        }
+                        'topic' {
+                            inList('id', topicids)
+                        }
                     }
-                    'topic'{
-                        inList('id',topicids)
-                    }
+
+            List<Integer> resourcecount = topicids.collect { x ->
+                rescounts.find {
+
+                    if (it.getAt(1) == x)
+                        return it.getAt(0)
                 }
 
-        List <Integer> resourcecount=topicids.collect{ x ->
-            rescounts.find{
-
-                if (it.getAt(1)==x)
-                    return it.getAt(0)
+            }.collect {
+                if (!it)
+                    return 0
+                else
+                    it.getAt(0)
             }
 
-        }.collect{if(!it)
-            return 0
-        else
-            it.getAt(0)}
-
-        return resourcecount
+            return resourcecount
+        }
+        else{
+            return null
+        }
 
     }
 
