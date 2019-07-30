@@ -15,9 +15,44 @@
     body{
         background: #555555;
     }
-
-
     </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    .dropbtn {
+        background-color: #d58512;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    .dropdown-content a:hover {background-color: #ddd;}
+    .dropdown:hover .dropdown-content {display: block;}
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+    </style>
+
+
+
+
+
 </head>
 <body>
 <div class="container"><br>
@@ -26,18 +61,12 @@
             <div class="panel-body">
                 <div class="container col-md-12" style="background: #31b0d5">
                     <div class="col-md-5">
-                        <h2 style="color: #a60000"><a href="#"><strong> <u><b>Link Sharing</b></u></strong></a></h2>
+                        <h2 style="color: #a60000"><g:link controller="dashboard" action="index"><strong> <u><b>Link Sharing</b></u></strong></g:link></h2>
                     </div>
                     <div class="col-md-7">
                         <table class="table">
                             <td width=200px>
                                 <div class="input-group">
-                                %{--<input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
-                                <div class="input-group-btn">
-                                    <button class="btn btn-basic" type="submit">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </div>--}%
                                     <g:form controller="search" action="search">
                                         <div class="input-group">
                                             <g:textField id="mytext" class="form-control" name="q" placeholder="Search" value="${q}"/>
@@ -77,14 +106,21 @@
                             <td width=30px>
 
                                 <div class="dropdown" >
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${userdata.username}
-                                        <span class="caret" onclick="display()" ></span></button>
-                                    <ul class="dropdown-menu" id="droped" style="width: 50%">
-                                        <li><a href="/User/myaction">profile</a></li>
-                                        <li><a href="/user/showlist">Users</a></li>
-                                        <li><a href="#">Topics</a></li>
-                                        <li><a href="/user/logout">Logout</a></li>
-                                    </ul>
+                                    <button class="btn btn-primary" >${userdata.username}
+                                    </button>
+                                    <div class="dropdown-content">
+
+                                        <g:if test="${userdata.admin==true}">
+                                            <a href="/User/myaction">profile</a>
+                                            <a href="/user/showlist" >Users</a>
+                                            <a href="/topic/topicshow">Topics</a>
+                                            <a href="/user/logout">Logout</a>
+                                        </g:if>
+                                        <g:else>
+                                            <a href="/User/myaction">profile</a>
+                                            <a href="/user/logout">Logout</a>
+                                        </g:else>
+                                    </div>
                                 </div>
                             </td>
                         </table>
@@ -139,7 +175,10 @@
                                 <div class="col-md-4">
                                     <asset:image src="${userdata.photo}" style="width:60px;height:60px"></asset:image></div>
                                 <div class="col-sm-8">
-                                    <div style="font-size:23px;"><g:link controller="dashboard" action="index" params="[id: us.id]">${us.topic.name}</g:link></div>
+                                    <div style="font-size:23px;">
+                                        <g:link controller="topic" action="topicshow" params="[id: us.id]"> ${us.topic.name} </g:link>
+
+                                    </div>
                                     <div>@${us.topic.createdBy.username}</div>
                                     <div class="col-sm-6">
                                         Subscriptions:
@@ -185,7 +224,7 @@
             </div>
 
 
-            %{--Trending topic List--}%
+           %{-- Trending topic --}%
 
 
             <div class="panel panel-default">
@@ -194,66 +233,33 @@
                     <div style="margin-left:350px">View all</div>
                 </div>
                 <div class="panel-body">
-
-                %{--<g:each in="${trending}" var="us" status="i">
+                    <g:each in="${trending}" var="us" status="i">
                     <li>
                     <div class="row">
                         <div class="col-md-4">
-                            <asset:image src="${Topic.get(us).owner.photo}"  style="width:70px;height:70px"/></div>
+                            <asset:image src="${userdata.photo}" alt="photo here" style="width:70px;height:70px"/>
+                        </div>
                         <div class="col-sm-8">
-                            <div style="font-size:23px;">
-                                <g:link controller="topic" action="index" params="[id: us]"><b>${Topic.get(us).name}</g:link></b></div>
-                            <div>@${Topic.get(us).owner.username}</div>
+                            <div style="font-size:15px;">
+                                <g:link controller="topic" action="index" params="[id: us]"><b>${us.name}</g:link></b></div>
+                            <div>@${us.createdBy.username}</div>
 
                             <div class="col-sm-6">
                                 Subscriptions:
-                                <div>${countforsubs.getAt(i)}</div></div>
+                                <div>${subs1.get(i)}</div></div>
                             <div class="col-sm-6">
 
                                 Posts:
-                                <div><a>${countforposts.getAt(i)}</a></div></div>
+                                <div><a>${topic1.getAt(i)}</a></div></div>
                         </div>
-                        <g:if test="${topicids.contains(us)}">
-                            <g:link controller="subscription" action="save" params="[id:us ,  flag:0]">Unsubscribe</g:link></div></g:if>
-                        <g:else><g:link controller="subscription" action="save" params="[id:us , flag:1]">Subscribe</g:link></g:else>
+
+                        <g:link controller="subscription" action="subscribe" params="[id:us.id ,page:"dashboard"]">Subscribe</g:link>
 
                     </li>
-                </g:each>--}%
-
-
-                    <g:each in="${trending}" var="us" status="i">
-                        <li>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src=""/></div>
-                                <div class="col-sm-8">
-                                    <div style="font-size:23px;"><b>${us.name}</b></div>
-                                    <div>@${us.createdBy.username}</div>
-                                    <div class="col-sm-6">
-                                        Subscriptions:
-                                        <div>2</div></div>
-                                <div class="col-sm-6">
-                                    Posts:
-                                    <div><a>2</a></div>
-                                    <g:if test="${session.username!=us.createdBy.username}">
-                                        <g:if test="${subscriptions.contains(us)}">
-                                            <g:link controller="subscription" action="save" params="[id:us ,  flag:0]">Unsubscribe</g:link></div></g:if>
-                                        <g:else><g:link controller="subscription" action="save" params="[id:us , flag:1]">Subscribe</g:link></g:else></g:if></div>
-                            </div>  </li>
                     </g:each>
                 </div>
-                <script>
-                    function display(){
-                        document.getElementById("droped").style.display="block";
-                    }
-                </script>
-
-
             </div>
-
-
-            %{--send invitation here--}%
-
+ %{--send invitation here--}%
             <div class="modal fade"  id="invite" role="dialog">
                 <div class="modal-dialog">
                     <!-- topic Modal content-->
@@ -299,12 +305,12 @@
                         <li>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <asset:image src="${res.owner.photo}"  style="width:70px;height:70px"/></div>
+                                    <asset:image src="${res.createdBy.photo}"  style="width:70px;height:70px"/></div>
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <b>${res.owner.firstname}&nbsp${res.owner.lastname}</b></div>
-                                        <div class="col-sm-5">@${res.owner.username}</div>
+                                            <b>${res.createdBy.firstName}&nbsp${res.createdBy.lastName}</b></div>
+                                        <div class="col-sm-5">@${res.createdBy.username}</div>
                                         <a class=col-sm-3>${res.topic.name}</a></div>
                                     <div class="row">
                                         ${res.description}
@@ -315,7 +321,7 @@
                                         <a >Download</a>
                                         </div>
                                         <div class="col-md-3">
-                                            <a href="${res.link_path}">View Full Site</a>
+                                            <a href="#%{--${res.link_path}--}%">View Full Site</a>
                                         </div></g:if>
                                     <g:else>
 
@@ -342,33 +348,6 @@
             </div>
         </div>
 
-        %{--<div class="panel panel-default">
-            <div class="panel-heading">Inbox</div>
-            <div class="panel-body">
-                <table style="width:100%" >
-                    <tr>
-                        <td rowspan="3" width=25%> <img src="https://i.stack.imgur.com/l60Hf.png" height=120px width=125px></td>
-                        <td width=400px class="text">Uday Pratap Singh</td>
-                        <td width=150px class="text-muted">@uday 5min</td>
-                        <td width=150px></td>
-                        <td width=150px></td>
-                        <td width=150px>
-                            <a href="#"><small>Grails</small></a></td>
-                    </tr>
-                    <tr>
-                        <td colspan="5" height=100px>A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs.</td>
-                    </tr>
-                    <tr>
-
-                        <td>Links</td>
-                        <td><a href="#"><small><u>Downloads</u></small></a></td>
-                        <td width=250px><a href="#"><small><u>View Full Site</u></small></a></td>
-                        <td width=250px><a href="#"><small><u>Mark as read</u></small></a></td>
-                        <td><a href="#"><small><u>View Post</u></small></a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>--}%
 
 
         %{--Share link--}%

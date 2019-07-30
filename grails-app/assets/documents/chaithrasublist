@@ -1,0 +1,79 @@
+  <div class="panel-heading"><div style="float:left">Subscriptions</div>
+  <div style="margin-left:350px">View all</div>
+  </div>
+  <div class="panel-body">
+   <g:each in="${subscriptions}" var="us" status="i">
+       <li>
+       <div class="row">
+           <div class="col-md-4">
+                           <asset:image src="images.jpeg" style="width:60px;height:60px"/></div>
+                           <div class="col-sm-8">
+                           <div style="font-size:23px;"><g:link controller="topic" action="index" params="[id: us.id]">${us.topic.name}</g:link></div>
+                           <div>@${us.topic.owner.username}</div>
+                           <div class="col-sm-6">
+                           Subscriptions:
+                           <div>${subscount.getAt(i) }</div></div>
+                               <div class="col-sm-6">
+                           Posts:
+                           <div><a>${resourcecount.get(i)}</a></div></div>
+                           <a>Unsubscribe</a></div></div>
+                   <g:if test  = "${us.topic.owner.username==session.username}" >
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                              <ul class="list-inline">
+                                                  <li>
+                                                      <g:form controller="subscription" action="updateSerious">
+                                                          <g:field type="hidden" name="id" value="${us.id}"></g:field>
+                                                          <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                                                      value="${us.seriousness}" />
+                                                      </g:form>
+                                                  </li>
+                                                  <li>
+                                                      <g:form controller="topic" action="updateVisibility">
+                                                          <g:field type="hidden" name="id" value="${us.topicId}"></g:field>
+                                                          <g:select onChange="submit()" name="visibility" from="${['PUBLIC','PRIVATE']}"
+                                                                      value="${us.topic.visibility}" />
+                                                      </g:form>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                      </div>
+                                  </g:if>
+                                  <g:else>
+                                          <g:form controller="subscription" action="updateSerious">
+                                                                                                           <g:field type="hidden" name="id" value="${us.id}"></g:field>
+                                                                                                           <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                                                                                                   value="${us.seriousness}" />
+                                                                                                       </g:form>
+                                  </g:else>
+       </li>
+   </g:each>
+
+  </div>
+</div>
+<div class="panel panel-default">
+        <div class="panel-heading"><div style="float:left">Trending Topics</div>
+        <div style="margin-left:350px">View all</div>
+        </div>
+        <div class="panel-body">
+         <g:each in="${trending}" var="us" status="i">
+             <li>
+             <div class="row">
+                 <div class="col-md-4">
+                                 <img src="images.jpeg"/></div>
+                                 <div class="col-sm-8">
+                                 <div style="font-size:23px;"><b>${us.name}</b></div>
+                                 <div>@${us.owner.username}</div>
+                                 <div class="col-sm-6">
+                                 Subscriptions:
+                                 <div>2</div></div>
+                                     <div class="col-sm-6">
+                                 Posts:
+                                 <div><a>2</a></div></div>
+                                 </div>
+                                 <a>Unsubscribe</a></div>
+             </li>
+         </g:each>
+        </div>
+      </div>
+</div>

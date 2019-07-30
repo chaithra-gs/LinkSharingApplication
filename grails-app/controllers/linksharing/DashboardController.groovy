@@ -8,6 +8,7 @@ class DashboardController {
         //for getting session object name
         print session.name
         User user1 = User.findByEmail(session.name)
+
         println "This is username of the user who is logged in"+user1.username
         println "this is photo path"+user1.photo
         //for displaying subscriptions and topic count of particular user
@@ -32,6 +33,10 @@ class DashboardController {
         User user =User.findByEmail(session.name)
 
 
+        List topic1 = userService.topTopicsPosts(trending)
+        List subs1 = userService.topTopicSubs(trending)
+
+
         render(view: "dashboard" ,model : [user : user ,
                                            userdata: user1,
                                            count_topic : count_topic ,
@@ -39,7 +44,9 @@ class DashboardController {
                                            subscriptions : subscriptionLt,
                                            subscount:counts,
                                            resourcecount:resourcecount ,
-                                           trending : trending])
+                                           trending : trending,
+                                           topic1:topic1,
+                                           subs1:subs1])
 
 
 

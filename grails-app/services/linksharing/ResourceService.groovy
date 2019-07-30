@@ -1,4 +1,3 @@
-/*
 package linksharing
 
 import grails.transaction.Transactional
@@ -107,12 +106,4 @@ class ResourceService {
         res.delete()
     }
 
-
-
-
-
-
-
-
 }
-*/

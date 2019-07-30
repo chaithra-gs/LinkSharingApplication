@@ -41,13 +41,14 @@ class TopicService {
         def f = request.getFile('document')
         String fName = f.getOriginalFilename()
 
-        String  fname = f.getOriginalFilename()
-        String fpath='/home/chaithra/grailsproject/grailsFiles/'+uname+fName
+        String str=uname+fName
+
+        String fpath='/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/documents/'+str
         File des=new File(fpath)
         f.transferTo(des)
 
 
-        DocumentResource newRes = new DocumentResource(description:description1,topic:tID,path:fpath)
+        DocumentResource newRes = new DocumentResource(description:description1,topic:tID,path:str)
         user1.addToResources(newRes)
         tobj.addToResourceHas(newRes)
         newRes.save(flush:true,failOnError:true)
@@ -73,14 +74,78 @@ class TopicService {
         user1.addToResources(newRes)
         tobj.addToResourceHas(newRes)
         newRes.save(flush:true,failOnError:true)
+    }
 
-
+    def serviceMethod(String name,params) {
+        User user=User.findByEmail(name)
+        Topic t1=new Topic(name:params.topicName,visibility: params.visibility)
+        Subscription sub=new Subscription(seriousness: 'VERY_SERIOUS',topic:t1)
+        user.addToTopics(t1)
+        user.save(flush:true,failOnError:true)
+        t1.save(flush:true,failOnError:true)
+        user.addToSubscribedTo(sub)
+        sub.save(flush:true,failOnError:true)
     }
      def updateVisibility(params)
      {
          Topic t=Topic.get(params.id)
          t.visibility=params.visibility
      }
+
+
+
+    def subscriptioncount(List userslist)
+    {
+        def usercounts=Subscription.createCriteria().list()
+                {
+                    projections{
+                        count('user.id')
+                        groupProperty('user.id')
+                        // countDistinct('topic.id')
+                    }
+                    'user'{
+                        inList('id',userslist)
+                    }
+                }
+        List <Integer> counts=userslist.collect{ x ->
+            usercounts.find{
+                if (it.getAt(1)==x)
+                    return it.getAt(0)
+            }
+
+        }.collect{it.getAt(0)}
+        return counts
+    }
+
+    def topiccount(List userslist)
+    {
+        def topcounts=Topic.createCriteria().list()
+                {
+                    projections{
+                        count('createdBy.id')
+                        groupProperty('createdBy.id')
+                        // countDistinct('topic.id')
+                    }
+                    'createdBy'{
+                        inList('id',userslist)
+                    }
+                }
+
+        List <Integer> topiccount=userslist.collect{ x ->
+            topcounts.find{
+
+                if (it.getAt(1)==x)
+                    return it.getAt(0)
+            }
+
+        }.collect{if(!it)
+            return 0
+        else
+            it.getAt(0)}
+
+        return topiccount
+
+    }
 
 
 

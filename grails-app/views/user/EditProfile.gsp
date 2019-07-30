@@ -37,7 +37,7 @@
             <div class="panel-body">
                 <div class="container col-md-12" style="background: #31b0d5">
                     <div class="col-md-5">
-                        <h2 style="color: #a60000"><a href="#"><strong> <u><b>Link Sharing</b></u></strong></a></h2>
+                        <h2 style="color: #a60000"><g:link controller="dashboard" action="index"><strong> <u><b>Link Sharing</b></u></strong></g:link></h2>
                     </div>
                     <div class="col-md-7">
                         <table class="table">
@@ -55,7 +55,7 @@
                             <td width=30px>
 
                                 <div class="dropdown" >
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">%{--${userdata.username}--}%
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${userdata.username}
                                         <span class="caret" onclick="display()" id="droped"></span></button>
                                     <ul class="dropdown-menu" >
                                         <li><a href="/User/myaction">profile</a></li>

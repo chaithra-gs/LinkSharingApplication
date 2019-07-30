@@ -1,32 +1,63 @@
 <html>
 <head>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="4nonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+    body{
+        background: #555555;
+    }
+    </style>
+    <script>
+        function display(){
+            document.getElementById("droped").style.display="block";
+        }
+        var resetTopicForm = function () {
+            $(".topicForm").trigger("reset");
+        }
+    </script>
+
 </head>
 <body>
 <div class="container"><br>
 
+    <div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="container">
+                <div class="container col-md-12" style="background: #31b0d5">
                     <div class="col-md-5">
-                        <h4><a href="#"><strong> <u>Link Sharing</u></strong></a></h4>
+                        <h2 style="color: #a60000"><g:link controller="dashboard" action="index"><strong> <u><b>Link Sharing</b></u></strong></g:link></h2>
                     </div>
                     <div class="col-md-7">
                         <table class="table">
                             <td width=200px>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-basic" type="submit">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </button>
-                                    </div>
+                                    <g:form controller="search" action="search">
+                                        <div class="input-group">
+                                            <g:textField id="mytext" class="form-control" name="q" placeholder="Search" value="${q}"/>
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-basic" type="submit">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </g:form>
+
                                 </div>
+                            </td>
+                            <td width=10px style="text-align:center;"}>
+                                <button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"    data-target="#topicModal">
+                                    <i class="material-icons">chat_bubble_outline</i></button>
+
+                            </td>
+
+                            <td width=30px style="text-align:center;"><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal" style="caret-color: #48802c"   data-target="#invite"><i class="material-icons">
+                                mail_outline
+                            </i></button>
                             </td>
 
                             <td width=30px> <button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#resource"><i class="material-icons" style="text-align:center;">
@@ -38,18 +69,29 @@
                             </i></button>
                             </td>
 
-                            <td width=30px> name here%{--${userdata.username}--}%
-                            </td>
+                            %{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
+                             </td>--}%
 
                             <td width=30px>
 
                                 <div class="dropdown" >
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Menu
-                                        <span class="caret" onclick="display()"></span></button>
-                                    <ul class="dropdown-menu" id="drop">
-                                        <li><a href="#">profile</a></li>
-                                        <li><a href="/user/showlist">Users</a></li>
-                                        <li><a href="/user/logout">Logout</a></li>
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${userdata.username}
+                                        <span class="caret" onclick="display()" ></span></button>
+                                    <ul class="dropdown-menu" id="droped" style="width: 100%">
+
+                                        <g:if test="${userdata.admin==true}">
+                                            <li><a href="/User/myaction">profile</a></li>
+                                            <li><a href="/user/showlist" >Users</a></li>
+                                            <li><a href="/topic/topicshow">Topics</a></li>
+                                            <li><a href="/user/logout">Logout</a></li>
+
+                                        </g:if>
+                                        <g:else>
+                                            <li><a href="/User/myaction">profile</a></li>
+                                            <li><a href="/user/logout">Logout</a></li>
+
+                                        </g:else>
+
                                     </ul>
                                 </div>
                             </td>
@@ -58,142 +100,243 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    %{--THIS IS SHARE LINK OF TOPIC MODEL--}%
+
+    <div class="modal fade"  id="linkresource" role="dialog">
+        <div class="modal-dialog">
+            <!-- topic Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Share Link</h4>
+                </div>
+                <div class="modal-body">
+                    <g:uploadForm  controller="topic" action="saveLink" class="topicForm">
+                        Link *:
+                        <input type="text" class="form-control" id="linkres" placeholder="Link" name="linkres">
+                        <br>
+                        Description *:
+                        <textarea class="form-control" id="selectlink" name="selectlink"></textarea>
+                        <br>
+                        <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
+                        <br>
+                        <br>
+                        <input type="submit" value="share"   class="btn btn-success" style="float: right; margin-top: 5px;"/>
+
+                    </g:uploadForm>
+                </div>
+                <div class="modal-footer" style=" margin-top: 15px;">
+                    <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+%{--THIS IS SHARE DOCUMENT MODEL--}%
+    <div class="modal fade"  id="resource" role="dialog">
+        <div class="modal-dialog">
+            <!-- topic Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Share Document</h4>
+                </div>
+                <div class="modal-body">
+                    <g:uploadForm  controller="topic" action="saveDoc" class="topicForm">
+                        Document *:
+                        <input type="file" class="form-control" id="doc" placeholder="choose" name="document">
+                        <br>
+                        Description *:
+                        <textarea class="form-control" id="select" name="select"></textarea>
+                        <br>
+                        <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
+                        <br>
+                        <br>
+                        <input type="submit" value="share"   class="btn btn-success" style="float: right; margin-top: 5px;"/>
+
+                    </g:uploadForm>
+                </div>
+                <div class="modal-footer" style=" margin-top: 15px;">
+                    <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    %{--CREATE TOPIC MODEL--}%
+    <div class="modal fade" id="topicModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- topic Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Topic</h4>
+                </div>
+                <div class="modal-body">
+                    <g:form  controller="topic" action="save" class="topicForm">
+                        Name *:
+                        <input class="form-control" type="text" name="topicName" id="topicName"/>
+                        Visibility *:
+                        <select class="form-control" id="select" name="selection">
+                            <option>PUBLIC</option>
+                            <option>PRIVATE</option>
+                        </select>
+                        <input type="submit" class="btn btn-success" style="float: right; margin-top: 5px;"/>
+                    </g:form>
+                </div>
+                <div class="modal-footer" style=" margin-top: 15px;">
+                    <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
 
 
         <div class="col-md-5">
-            %{--here left pannel elements--}%
 
-            %{-- particular topic information--}%
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div>Topic:%{--${}--}%</div>
-                </div>
+            <div class="panel panel-default" style="overflow: auto;height: 200px">
+                <div class="panel-heading">${subs.topic.name}</div>
+
                 <div class="panel-body">
-                    <table>
-                        <tr>
-                            <td rowspan="3" align="center">
-                                <asset:image src="https://i.stack.imgur.com/l60Hf.png" style="width:60px;height:60px"/>
-                            </td>
-                            <td>
-                                Grails
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 30%">
-                                @emailid here
-                            </td>
-                            <td style="width: 30%">
-                                <nbsp></nbsp>Subscriptions
-                            </td>
-                            <td style="width: 50%">
-                                Post
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 30%">
-                                <a>Subscribe</a>
-                            </td>
-                            <td style="width: 30%">
-                                50
-                            </td>
-                            <td style="width: 30%">
-                                50
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-
-
-                            </td>
-                        </tr>
-                    </table>
-                    <div>
-                        <g:form controller="subscription" action="updateSerious">
-                            <g:field type="hidden" name="id" ></g:field>
-                            <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"/>
-                        </g:form>
-
+                    <div class="col-md-3">
+                        <g:img src="${userdata.photo}"  style="width:60px;height:60px"/>
                     </div>
 
+                    <div class="col-md-9">
+                        <div style="font-size:23px;"><b>${subs.topic.name}</b>(${subs.topic.visibility})</div>
+
+                        <div>@${subs.topic.createdBy.username}</div>
+
+                        <div class="col-md-6">
+                            Subscriptions:
+                            <div>${subscount}</div></div>
+
+                        <div class="col-md-6">
+
+                            Posts:
+                            <div><a>${postcount}</a></div></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <a>Unsubscribe</a></div>
+
+                        <div class="col-md-7">
+                            <g:form controller="subscription" action="updateSerious">
+                                <g:field type="hidden" name="sid" value="${subs.id}"></g:field>
+                                <g:field type="hidden" name="page" value="topic"></g:field>
+                                <g:select onChange="submit()" name="seriousness"
+                                          from="${['CASUAL', 'SERIOUS', 'VERY_SERIOUS']}"
+                                          value="${subs.seriousness}"/>
+                            </g:form></div></div>
 
                 </div>
+
             </div>
 
-            %{-- all the users of particular topic--}%
 
-            <div class="panel panel-default">
-                <div class="panel-heading" style="font-size: medium">
-                    users
+            <div class="panel panel-default" style="overflow: auto;height: 300px">
+                <div class="panel-heading"><div style="float:left">Users : ${subs.topic.name}</div>
+
+                    <div style="margin-left:350px">View all</div>
                 </div>
+
                 <div class="panel-body">
-                    <g:each in="${subscriptions}" var="us" status="i">
-                        <li>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <asset:image src="https://i.stack.imgur.com/l60Hf.png" style="width:60px;height:60px"/>
-                                </div>
-                                <div class="col-sm-8">
-                                    <div style="font-size:23px;">%{--<g:link controller="dashboard" action="index" params="[id: us.id]">${us.topic.name}</g:link>--}%</div>
-                                    <div>@%{--${us.topic.createdBy.username}--}%</div>
-                                    <div class="col-sm-6">
-                                        Subscriptions:
-                                        <div>%{--${subscount.getAt(i) }--}%</div></div>
-                                    <div class="col-sm-6">
-                                        Posts:
-                                        <div><a>%{--${resourcecount.get(i)}--}%</a></div></div>
-                                    <a>Unsubscribe</a></div></div>
-                        </li>
+                    <g:each in="${subscription}" var="us" status="i">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <asset:image src="${userdata.photo}" style="width:60px;height:60px"/></div>
+
+                            <div class="col-sm-8">
+                                <div style="font-size:23px;"><b>${us.user.firstName}&nbsp${us.user.lastName}</b></div>
+
+                                <div>@${us.user.username}</div>
+
+                                <div class="col-sm-6">
+                                    Subscriptions:
+                                    <div>${subscriptioncount.getAt(i)}</div></div>
+
+                                <div class="col-sm-6">
+
+                                    Topics:
+                                    <div><a>${postscount.getAt(i)}</a></div></div>
+
+                                <a>Unsubscribe</a></div></div>
+                        <br>
+
                     </g:each>
 
                 </div>
+
             </div>
 
         </div>
 
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading"><div style="float:left">Posts : ${subs.topic.name}</div>
 
-    %{--here  right pannel elements--}%
+                <div class="input-group" style="margin-left:350px">
+                    <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
 
-        <div class="col-md-7">
-            %{--here posts of particular topic --}%
-            <div class="panel panel-default">
-                <div class="panel-heading" style="font-size: medium">
-                    posts:grails
-                </div>
-                <div class="panel-body">
-                    %{--<g:each in="${subscriptions}" var="us" status="i">--}%
-                        <li>
-                                <div class="col-md-4">
-                                    <img src="https://i.stack.imgur.com/l60Hf.png" style="width:60px;height:60px"/>
-                                </div>
-                                <div class="col-md-8">
-                                    <div>%{--${descriptionhere}--}% nkjsCJBNCBKNCLKAHCLKNCMN,.ZNCLKHCCN M,NVDFsBNKALHA</div>
-                                </div>
-                                    <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="#">Downloads</a>
-                                    </div>
-                                        <div class="col-md-3">
-                                            <a href="#">View Fullsite</a>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <a href="#">Mark as Unread</a>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <a href="#">view Post</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                        </li>
-                   %{-- </g:each>--}%
-
+                    <div class="input-group-btn">
+                        <button class="btn btn-basic" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            <div class="panel-body">
+                <g:each in="${resources}" var="res" status="i">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <asset:image src="${userdata.photo}" style="width:60px;height:60px"/>
+                        </div>
+
+
+                        <div class="col-md-8">${res.description}
+                        <div class="row">
+                        <div class="col-md-3">
+                            <g:if test="${res instanceof linksharing.LinkResource}">
+                                <a>Download</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="${res.Linkurl}">View Full Site</a>
+                                </div>
+                            </g:if>
+                            <g:else>
+                                <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link>
+                                </div>
+                                <div class="col-md-3">
+                                    <a >View Full Site</a>
+                                </div>
+                            </g:else>
+
+                            <div class="col-md-3">
+                                <a>Mark as read</a>
+                            </div>
+                            <div class="col-md-3">
+                                <g:link controller="Resource" action="index" params="[id:res.id]" >View post</g:link>
+
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                </g:each>
             </div>
-    </div>
-
-
-
+        </div>
 </div>
+</div>
+
 </body>
 </html>

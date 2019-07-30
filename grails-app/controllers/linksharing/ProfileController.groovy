@@ -10,6 +10,7 @@ class ProfileController {
             print params.fname
             print params.lname
             def update=profileService.update(params,request,user)
+
             redirect(controller: "dashboard", action: "index")
             //redirect(controller:'Profile',action:'editProfile')
 

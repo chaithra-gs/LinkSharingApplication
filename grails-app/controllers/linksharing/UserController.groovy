@@ -13,15 +13,15 @@ class UserController {
 
 
     def myaction(){
+        User user1=User.findByEmail(session.name)
 
-        /*User u = User.findByEmail(session.name)
-        String str = u.username*/
-//        render text: "Heeeelo"
-        render(view:"EditProfile" )
+        render(view:"EditProfile" ,model:[userdata:user1])
     }
     def showlist() {
+        String str = session.name
+        User user1 = User.findByEmail(str)
         List<User> list1 = showAllUserListService.listMethod()
-        render(view: "showUserList", model: [userList: list1])
+        render(view: "showUserList", model: [userList: list1,userdata:user1])
     }
 
     def logout(){
@@ -30,8 +30,25 @@ class UserController {
     }
 
     // To display the number of subscription and trending topics  done by particular user
+    def userTable() {
+        render(view: 'showUserList', model: [userList: User.list()])
+    }
 
-
+    def activate() {
+        User user = User.findById(params.userId)
+        user.active = true
+        user.save(failOnError: true, flush: true)
+        redirect(controller:"user" ,action:'showlist')
+    }
+    @Transactional
+    def deactivate() {
+        User user = User.findById(params.userId)
+        user.active = false
+        //user.confirmPassword = user.password
+        user.save(failOnError: true, flush: true)
+        redirect(controller:"user" ,action:'showlist')
+        //redirect(action: 'userTable')
+    }
 
 
 

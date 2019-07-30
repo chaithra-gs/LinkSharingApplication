@@ -1,6 +1,7 @@
 package linksharing
 
 import Enums.Visibility
+import Enums.*
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -8,7 +9,6 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class SubscriptionController {
     def subscriptionService
-
 
     def updateSerious() {
         subscriptionService.updateSerious(params)
@@ -23,12 +23,98 @@ class SubscriptionController {
 
     }
 
-    def save()
-    {
-
+    def unsubscribe(params){
+        println params.id
+        Long sid = 0.0
+        User user=User.findByEmail(session.name)
+        Subscription su=Subscription.findById(params.id)
+        if(su) {
+            sid = Long.parseLong(params.id)
+        }
+        else
+        {
+            Long topid = Long.parseLong(params.id)
+            println "----------------------"
+            println topid
+            Subscription sub = Subscription.createCriteria().get {
+                eq('topic.id', topid)
+                eq('user.id', user.id)
+            }
+            println sub
+            sid = sub.id
+        }
+        Subscription s=Subscription.findById(sid)
+        s.delete(flush:true)
+        if(params.page=="dashboard"){
+            redirect(controller: "dashboard", action: "index")
+        }
+        else if(params.page=="topic"){
+            redirect(controller:"Topic" ,action:"topicshow",params:[id:params.id])
+        }
     }
 
 
+    def subscribe(params){
+        User user=User.findByEmail(session.name)
+
+        Long topid = Long.parseLong(params.id)
+        Topic t=Topic.get(topid)
+        println "++++++++++++++++++++++"
+        println t
+        println "++++++++++++++++++++++++++++"
+
+        Subscription s=new Subscription(seriousness:Seriousness.'CASUAL'  ,topic :t)
+        //seriousness: 'VERY_SERIOUS'
+        user.addToSubscribedTo(s)
+        s.save(flush:true,failOnError:true)
+        user.save(flush:true,failOnError:true)
+        redirect(controller:"dashboard" ,action:"index")
+    }
+
+    /*def unsubscribe(params){
+
+        println params.id
+        Long sid = 0.0
+        User user=User.findByEmail(session.name)
+        Subscription su=Subscription.findById(params.id)
+        if(su instanceof linksharing.Subscription) {
+            sid = Long.parseLong(params.id)
+        }
+        else
+        {
+            Long topid = Long.parseLong(params.id)
+
+            println topid
+            Subscription sub = Subscription.createCriteria().get {
+                eq('topic.id', topid)
+                eq('user.id', user.id)
+            }
+            println sub
+            sid = sub.id
+        }
+        Subscription s=Subscription.findById(sid)
+        s.delete(flush:true)
+
+        if(params.page=="dashboard"){
+            redirect(controller:"dashboard" ,action:"index")
+        }
+        else if(params.page=="topic"){
+            redirect(controller:"Topic" ,action:"topicshow",params:[id:params.id])
+        }
+    }
+
+    def subscribe(params){
+        User user=User.findByEmail(session.name)
+        Long topid = Long.parseLong(params.id)
+        Topic t=Topic.get(topid)
+
+        Subscription s=new Subscription(seriousness: "CASUAL" ,topic :t)
+        user.addToSubscribedTo(s)
+        s.save(flush:true,failOnError:true)
+        user.save(flush:true,failOnError:true)
+        redirect(controller:"dashboard" ,action:"index")
+    }*/
+}
 
 
 
@@ -60,7 +146,9 @@ class SubscriptionController {
 
 
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+
+    /*static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -157,5 +245,5 @@ class SubscriptionController {
             }
             '*'{ render status: NOT_FOUND }
         }
-    }
-}
+    }*/
+

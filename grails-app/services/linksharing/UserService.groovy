@@ -59,6 +59,8 @@ class UserService {
     }
     }
     // for displaying topic  which has more resources as a trending topic
+
+
     def postscount(List topicids)
     {
         if(topicids) {
@@ -115,29 +117,102 @@ class UserService {
                 }
 
         abcd.sort{b,a-> a.getAt(0)<=>b.getAt(0)}
+        println "abcd>"+abcd
 
-        List <Integer> xyz=topicsid.collect{ x ->
-            abcd.find{
+        List <Integer> xyz=abcd.collect{ x ->
+           topicsid.find{
 
-                if (it.getAt(1)==x)
-                    return it.getAt(0)
+                if (x.getAt(1)==it)
+                    return x.getAt(1)
                 else
                     return 0
 
             }
 
-        }.collect{if(!it)
-            return 0
-        else
-            it.getAt(1)}
+        }
+        print "xyz:::::::::::::::::"+xyz
         xyz.removeAll{it==0}
         List bbb= xyz+(topicsid-xyz)
-        List <Topic> topicstrendy=Topic.createCriteria().list{
+        println ">>>>>>>>>>>>>>>>bbb"+bbb
+        /*List <Topic> topicstrendy=Topic.createCriteria().list{
             inList('id' , bbb)
 
+        }*/
+        List<Topic> topicList1 = []
+        def i
+        for(i=0;i<5;i++){
+            topicList1.add(Topic.get(bbb[i]))
         }
-        return topicstrendy
+        println "topic List:"+topicList1
+        return topicList1
+        /*bbb.each{
+            topicList1.add(Topic.get(it))
+        }
+        List<Topic> topicList=[]
+        def i
+        for(i=0;i<5;i++)
+            topicList.add(topicList1[i])
+        println topicList
+        return topicList*/
+        /*return topicstrendy*/
     }
+
+    /*for particualr trending topic post and subscriptions*/
+
+    def topTopicsPosts(List<Topic> trending) {
+
+        //print topicsid
+        List abcd = Resource.createCriteria().list(max: 5)
+                {
+                    projections {
+                        count('topic.id')
+                        groupProperty('topic.id')
+                        // countDistinct('topic.id')
+                    }
+                    //order()
+                }
+        //println abcd
+        abcd.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
+        print ":::::::"+abcd
+        List<Integer> xyz = trending.collect { x ->
+            abcd.find {
+                if (it.getAt(1) == x.id)
+                    return it.getAt(0)
+                else
+                    return 0
+            }
+        }
+        List x = xyz.collect{it.getAt(0)}
+        return x
+    }
+
+    def topTopicSubs(List<Topic> trending)
+    {
+
+        def topiccounts = Subscription.createCriteria().list()
+                {
+                    projections {
+                        count('topic.id')
+                        groupProperty('topic.id')
+                        // countDistinct('topic.id')
+                    }
+                    'topic' {
+                        inList('id', trending.id)
+                    }
+                }
+        println ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"+trending
+        println  "??????????????????????????" +topiccounts
+        List<Integer> counts = trending.collect { x ->
+            topiccounts.find {
+                if (it.getAt(1) == x.id)
+                    return it.getAt(0)
+            }
+        }
+        println "::::"+counts
+        List l = counts.collect{it.getAt(0)}
+        return l
+    }
+
 
 
 }
