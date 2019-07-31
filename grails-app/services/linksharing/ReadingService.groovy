@@ -1,10 +1,13 @@
 package linksharing
 
 import grails.transaction.Transactional
+import Enums.*
 
 @Transactional
-class ResourceService {
-    def displayunread(String username) {
+class ReadingService {
+
+    def displayunread(String username)
+    {
         Long id = User.findByEmail(username).id
 
 
@@ -15,8 +18,7 @@ class ResourceService {
             eq("user.id", id)
             eq("seriousness", Seriousness.VERY_SERIOUS)
         }.collect{it.id}
-        //print Verys
-        //println "csdc"
+
 
         List<Long> Ser = Subscription.createCriteria().list {
             projections {
@@ -61,7 +63,7 @@ class ResourceService {
                 eq("isRead",false)
             }}
         if(Cas){
-            Casr=ReadingItem.createCriteria().list {
+            Casr= ReadingItem.createCriteria().list {
                 projections {
                     property("resource")
                 }
@@ -83,27 +85,26 @@ class ResourceService {
         Casr.each{
             resources.add(it)
         }
-        println "resources here" +resources
+        print resources
         return resources
 
     }
 
     def editreadMethod(params,String username)
     {
-        User user=User.findByEmail(username)
+        User user=Users.findByUsername(username)
         Long id=Long.parseLong(params.id)
         ReadingItem ri=ReadingItem.createCriteria().get{
             eq('resource.id',id)
             eq('user.id',user.id)
         }
         ri.isRead=true
-        ri.save(flush:true,failOnError:true)
+        ri.save()
 
     }
     def deleteMethod(params)
     {
-        Resource res= Resource.get(Long.parseLong(params.id))
+        Resource res= Resources.get(Long.parseLong(params.id))
         res.delete()
     }
-
 }

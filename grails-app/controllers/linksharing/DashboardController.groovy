@@ -3,6 +3,7 @@ package linksharing
 class DashboardController {
 
     def userService
+    def readingService
 
     def index() {
         //for getting session object name
@@ -36,6 +37,7 @@ class DashboardController {
         List topic1 = userService.topTopicsPosts(trending)
         List subs1 = userService.topTopicSubs(trending)
 
+        List resources=readingService.displayunread(session.name)
 
         render(view: "dashboard" ,model : [user : user ,
                                            userdata: user1,
@@ -46,7 +48,8 @@ class DashboardController {
                                            resourcecount:resourcecount ,
                                            trending : trending,
                                            topic1:topic1,
-                                           subs1:subs1])
+                                           subs1:subs1,
+        resources:resources])
 
 
 

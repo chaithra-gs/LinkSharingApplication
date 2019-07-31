@@ -28,6 +28,10 @@
       }
 
     }
+    function myFunc() {
+      alert("Please Login!!!")
+
+    }
 </script>
   <style>
   body{
@@ -41,7 +45,7 @@
       <div class="panel-body">
         <div class="container col-md-12" style="background: #31b0d5">
           <div class="col-md-8">
-            <h2 style="color: #a60000"><a href="${Holders.config.server.host}"><strong> <u>Link Sharing</u></strong></a></h2>
+            <h2 style="color: #a60000" onclick="myFunc()"><a href="${Holders.config.server.host}"><strong> <u>Link Sharing</u></strong></a></h2>
           </div>
           <br>
           <div class="col-md-3">

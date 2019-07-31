@@ -15,6 +15,11 @@ class SubscriptionController {
         redirect(controller: "dashboard", action: "index")
 
     }
+    def updateSeriouss() {
+        subscriptionService.updateSeriouss(params)
+        redirect(controller:"topic",action: "topicshow")
+
+    }
     def changesub()
     {
         subscriptionService.updateSubscription(params)
@@ -71,49 +76,7 @@ class SubscriptionController {
         redirect(controller:"dashboard" ,action:"index")
     }
 
-    /*def unsubscribe(params){
 
-        println params.id
-        Long sid = 0.0
-        User user=User.findByEmail(session.name)
-        Subscription su=Subscription.findById(params.id)
-        if(su instanceof linksharing.Subscription) {
-            sid = Long.parseLong(params.id)
-        }
-        else
-        {
-            Long topid = Long.parseLong(params.id)
-
-            println topid
-            Subscription sub = Subscription.createCriteria().get {
-                eq('topic.id', topid)
-                eq('user.id', user.id)
-            }
-            println sub
-            sid = sub.id
-        }
-        Subscription s=Subscription.findById(sid)
-        s.delete(flush:true)
-
-        if(params.page=="dashboard"){
-            redirect(controller:"dashboard" ,action:"index")
-        }
-        else if(params.page=="topic"){
-            redirect(controller:"Topic" ,action:"topicshow",params:[id:params.id])
-        }
-    }
-
-    def subscribe(params){
-        User user=User.findByEmail(session.name)
-        Long topid = Long.parseLong(params.id)
-        Topic t=Topic.get(topid)
-
-        Subscription s=new Subscription(seriousness: "CASUAL" ,topic :t)
-        user.addToSubscribedTo(s)
-        s.save(flush:true,failOnError:true)
-        user.save(flush:true,failOnError:true)
-        redirect(controller:"dashboard" ,action:"index")
-    }*/
 }
 
 

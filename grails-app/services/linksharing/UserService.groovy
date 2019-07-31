@@ -44,7 +44,8 @@ class UserService {
                         inList('id',topicids)
                     }
                 }
-
+println "Topic counts>>>>>>>>>>>>>>>>>>"+topiccounts
+println "topic ids>>>>>>>>>>>>>>>>>>>>>>>>>>"+topicids
         List <Integer> counts = topicids.collect{ x ->
             topiccounts.find{
                 if (it.getAt(1)==x)
@@ -145,16 +146,7 @@ class UserService {
         }
         println "topic List:"+topicList1
         return topicList1
-        /*bbb.each{
-            topicList1.add(Topic.get(it))
-        }
-        List<Topic> topicList=[]
-        def i
-        for(i=0;i<5;i++)
-            topicList.add(topicList1[i])
-        println topicList
-        return topicList*/
-        /*return topicstrendy*/
+
     }
 
     /*for particualr trending topic post and subscriptions*/
@@ -182,7 +174,11 @@ class UserService {
                     return 0
             }
         }
-        List x = xyz.collect{it.getAt(0)}
+        List x = xyz.collect{if(!it)
+        return 0
+            else
+            return it.getAt(0)
+        }
         return x
     }
 
@@ -209,7 +205,10 @@ class UserService {
             }
         }
         println "::::"+counts
-        List l = counts.collect{it.getAt(0)}
+        List l = counts.collect{if(!it)
+            return 0
+        else
+            return it.getAt(0)}
         return l
     }
 

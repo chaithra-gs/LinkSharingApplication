@@ -22,9 +22,6 @@ class DocumentService {
         } else {
             file = null
         }
-
-
-
         response.setHeader("Content-disposition", "attachment;filename=\"${dr.path}\"")
         response.outputStream << file.bytes
 

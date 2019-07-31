@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
 
-    </head>
+</head>
 <body onload="Ratingsprint('${rating}')">
 <div class="container"><br>
     <div class="panel panel-default" style="height:70px">
@@ -53,19 +53,16 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-2">
-                                <asset:image src="${resource.owner.photo}" style="width:70px;height:70px"/></div>
+                                <asset:image src="${resource.user.photo}" style="width:70px;height:70px"/></div>
                             <div class="col-md-6">
-                                <div style="font-size:18px;"><b>${resource.owner.firstname}&nbsp${resource.owner.lastname}</b></div>
-                                <div>@${resource.owner.username}</div></div>
+                                <div style="font-size:18px;"><b>${resource.user.firstName}&nbsp${resource.user.lastName}</b></div>
+                                <div>@${resource.user.username}</div></div>
                             <div class="col-md-4">
                                 <g:link controller="topic" action="index" params="[id: resource.topic.id]">${resource.topic.name}</g:link><br>
                                 ${resource.dateCreated}
                             </div></div>
                         <div class="row">
                             <div class="col-md-9">
-
-
-
                                 ${resource.description}</div>
                             <div class="col-md-3">
                                 <span id="1" onclick="Rating('${session.username}' , '${resource.id}' , '${1}')"class="glyphicon glyphicon-star"></span>
@@ -81,7 +78,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                     <div class="col-md-2">
-                        <g:if test="${resource.owner.username==session.username}">
+                        <g:if test="${resource.user.email==session.name}">
                             <g:link controller="resource" action="delete" params="[id:resource.id]">Delete</g:link>
                             </div>
                             <div class="col-md-2">
@@ -104,9 +101,6 @@
                             <a>View full site</a>   </div>
                     </div>
 
-
-
-
                 </div>
             </div></div>
 
@@ -120,10 +114,10 @@
                         <li>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <asset:image src="${Topic.get(us).owner.photo}"  style="width:70px;height:70px"/></div>
+                                    <asset:image src="${us.createdBy.photo}"  style="width:70px;height:70px"/></div>
                                 <div class="col-sm-8">
-                                    <div style="font-size:23px;"><b>${Topic.get(us).name}</b></div>
-                                    <div>@${Topic.get(us).owner.username}</div>
+                                    <div style="font-size:23px;"><b>${us.name}</b></div>
+                                    <div>@${us.createdBy.username}</div>
 
                                     <div class="col-sm-6">
                                         Subscriptions:
@@ -186,7 +180,8 @@
             }
         }
     </script>
+</div>
 
-
+</div>
 </body>
 </html>

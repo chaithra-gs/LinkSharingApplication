@@ -16,7 +16,7 @@ class SignupController {
             flash.message = "Login Fail"
             render(text: "register failed")
         }
-        //render(text: "Success")
+
     }
 }
 

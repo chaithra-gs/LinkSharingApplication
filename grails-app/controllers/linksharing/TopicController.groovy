@@ -2,14 +2,21 @@ package linksharing
 
 class TopicController {
     def userService
+    def topicService
+    def topiclistService
 
     def newTopic(){
         render(view:"topicShow")
     }
 
+    def topiclist() {
+        User u = User.findByEmail(session.name)
+        List subscriptionLt = userService.subscriptions(session.name)
+        List topiclist = topiclistService.serviceMethod()
 
-    def topicService
-    // static defaultAction = "enterTopics"
+        render(view:'TopicList', model: [topiclists: topiclist,userdata: u,subscriptions:subscriptionLt])
+    }
+
     def save() {
         String email = session.name
         topicService.save(params, email)
@@ -17,7 +24,6 @@ class TopicController {
         redirect(controller: "dashboard", action: "index")
 
     }
-
 
     def saveDoc(){
         topicService.saveDoc(params,request,session.name)
@@ -32,20 +38,17 @@ class TopicController {
     {
         Topic t=Topic.get(params.id)
         t.visibility=params.visibility
+        redirect(controller: "dashboard", action: "index")
+
     }
 
-    /*def topiclist() {
-        List topiclist = topiclistService.serviceMethod()
-
-        render(view: 'topiclist', model: [topiclists: topiclist])
-    }*/
 
     def topicshow() {
         User user=User.findByEmail(session.name)
        User user1 = User.findByEmail(session.name)
         Long tid=0.0
-        println "+++++++++++++++++++++++++++++"
-        println params.id
+        println "+++++++++++++++++++++++++++++++++++++++params id+++++++++++++++++++++++++++++++++++++=++++++++++++++++"
+        print params.id
         Long id = Long.parseLong(params.id)
         Subscription sub = Subscription.get(id)
 
@@ -88,10 +91,11 @@ class TopicController {
                          subscount:subscount ,
                          postcount : postcount ,
                          subscription:subscription,
+                         subscriptions : subscriptionLt,
                          subscriptioncount:subscriptioncount ,
                          postscount:postscount,
                          resources:resource,
-                userdata:user1,
+                           userdata:user1,
                          subscriptions : subscriptionLt])
     }
 }

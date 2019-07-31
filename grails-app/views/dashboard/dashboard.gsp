@@ -49,10 +49,6 @@
     .dropdown:hover .dropbtn {background-color: #3e8e41;}
     </style>
 
-
-
-
-
 </head>
 <body>
 <div class="container"><br>
@@ -113,7 +109,7 @@
                                         <g:if test="${userdata.admin==true}">
                                             <a href="/User/myaction">profile</a>
                                             <a href="/user/showlist" >Users</a>
-                                            <a href="/topic/topicshow">Topics</a>
+                                            <a href="/topic/topiclist">Topics</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:if>
                                         <g:else>
@@ -305,12 +301,12 @@
                         <li>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <asset:image src="${res.createdBy.photo}"  style="width:70px;height:70px"/></div>
+                                    <asset:image src="${res.user.photo}"  style="width:70px;height:70px"/></div>
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <b>${res.createdBy.firstName}&nbsp${res.createdBy.lastName}</b></div>
-                                        <div class="col-sm-5">@${res.createdBy.username}</div>
+                                            <b>${res.user.firstName}&nbsp${res.user.lastName}</b></div>
+                                        <div class="col-sm-5">@${res.user.username}</div>
                                         <a class=col-sm-3>${res.topic.name}</a></div>
                                     <div class="row">
                                         ${res.description}
@@ -321,7 +317,7 @@
                                         <a >Download</a>
                                         </div>
                                         <div class="col-md-3">
-                                            <a href="#%{--${res.link_path}--}%">View Full Site</a>
+                                            <a href="${res.Linkurl}">View Full Site</a>
                                         </div></g:if>
                                     <g:else>
 
@@ -336,7 +332,9 @@
                                         <g:link controller="resource" action="editread" params="[id:res.id]">Mark as read</g:link>
                                     </div>
                                     <div class="col-md-3">
+                                        %{--<g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>--}%
                                         <g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>
+
                                     </div>
                                 </div>
                             </div>

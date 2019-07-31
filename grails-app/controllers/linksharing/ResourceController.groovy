@@ -12,23 +12,28 @@ class ResourceController {
     def index() {
         if (!session.name) {
             render("Login reqired")
-        } else {
+        }
+        else {
             Resource res = Resource.get(params.id)
             List trending = userService.trendtopics()
-            List countforsubs = userService.subscriptioncount(trending)
-            List countforposts = userService.postscount(trending)
 
-            render(view: "dashboard", model: [resource: res, trending: trending, countforsubs: countforsubs, countforposts: countforposts])
+            List trending1=trending.collect{it.id}
+            println "trending1>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+trending1
+            List subcount = userService.subscriptioncount(trending1)
+            List postcount = userService.postscount(trending1)
+
+            render(view: "rating", model: [resource: res, trending: trending, countforsubs: subcount, countforposts:postcount])
 
 
         }
     }
 
+
     def editread() {
         if (!session.name) {
             render("Login required")
         } else {
-            resourceService.editreadMethod(params, session.username)
+            resourceService.editreadMethod(params, session.name)
             redirect(controller: "dashboard", action: "index")
         }
     }

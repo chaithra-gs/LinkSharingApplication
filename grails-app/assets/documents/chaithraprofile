@@ -1,0 +1,18 @@
+/* def editprofile() {
+            User user = Users.findByEmail(session.name)
+            Integer topcount=dashboardService.topicCountMethod(session.name)
+            Integer subcount=dashboardService.subscriptionCountMethod(session.name)
+            render(view:'profileedit',model: [userdata:user,topcount:topcount,subcounts:subcount])
+        }*/
+activate and deactivate
+subscribe
+posts(topic and document) click on link and download the document
+populate the existing user values using binding data
+ui shall be consistent
+all dropdown should work
+inbox implement
+email send for password reset
+share link(email)
+label the profile
+no dummy data
+

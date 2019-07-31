@@ -7,6 +7,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        function display(){
+            document.getElementById("droped").style.display="block";
+        }
+    </script>
     <style>
     body{
         background: #555555;
@@ -82,7 +87,7 @@
                                         <g:if test="${userdata.admin==true}">
                                             <li><a href="/User/myaction">profile</a></li>
                                             <li><a href="/user/showlist" >Users</a></li>
-                                            <li><a href="/topic/topicshow">Topics</a></li>
+                                            <li><a href="/topic/topiclist">Topics</a></li>
                                             <li><a href="/user/logout">Logout</a></li>
 
                                         </g:if>
@@ -196,10 +201,7 @@
         </div>
 </div>
 
-
-
-
-        <div class="col-md-5">
+    <div class="col-md-5">
 
             <div class="panel panel-default" style="overflow: auto;height: 200px">
                 <div class="panel-heading">${subs.topic.name}</div>
@@ -210,7 +212,7 @@
                     </div>
 
                     <div class="col-md-9">
-                        <div style="font-size:23px;"><b>${subs.topic.name}</b>(${subs.topic.visibility})</div>
+                        <div><b>${subs.topic.name}</b>(${subs.topic.visibility})</div>
 
                         <div>@${subs.topic.createdBy.username}</div>
 
@@ -218,7 +220,7 @@
                             Subscriptions:
                             <div>${subscount}</div></div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
 
                             Posts:
                             <div><a>${postcount}</a></div></div>
@@ -229,18 +231,24 @@
                             <a>Unsubscribe</a></div>
 
                         <div class="col-md-7">
-                            <g:form controller="subscription" action="updateSerious">
+                            %{--<g:form controller="subscription" action="updateSerious">
                                 <g:field type="hidden" name="sid" value="${subs.id}"></g:field>
                                 <g:field type="hidden" name="page" value="topic"></g:field>
                                 <g:select onChange="submit()" name="seriousness"
                                           from="${['CASUAL', 'SERIOUS', 'VERY_SERIOUS']}"
                                           value="${subs.seriousness}"/>
-                            </g:form></div></div>
+                            </g:form>--}%
+                            <g:form controller="subscription" action="updateSeriouss">
+                                <g:field type="hidden" name="id" value="${subs.id}"></g:field>
+                                <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                          value="${subs.seriousness}" />
+                            </g:form>
+
+                        </div>
+                    </div>
 
                 </div>
-
-            </div>
-
+                </div>
 
             <div class="panel panel-default" style="overflow: auto;height: 300px">
                 <div class="panel-heading"><div style="float:left">Users : ${subs.topic.name}</div>
@@ -271,14 +279,10 @@
 
                                 <a>Unsubscribe</a></div></div>
                         <br>
-
                     </g:each>
-
                 </div>
-
             </div>
-
-        </div>
+    </div>
 
     <div class="col-md-7">
         <div class="panel panel-default">
@@ -302,36 +306,33 @@
                             <asset:image src="${userdata.photo}" style="width:60px;height:60px"/>
                         </div>
 
-
                         <div class="col-md-8">${res.description}
                         <div class="row">
-                        <div class="col-md-3">
+                            <div class="col-md-3">
                             <g:if test="${res instanceof linksharing.LinkResource}">
-                                <a>Download</a>
-                                </div>
+                                    <a>Download</a>
+                            </div>
                                 <div class="col-md-3">
+
                                     <a href="${res.Linkurl}">View Full Site</a>
                                 </div>
                             </g:if>
                             <g:else>
-                                <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link>
-                                </div>
-                                <div class="col-md-3">
-                                    <a >View Full Site</a>
+                                <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link></div>
+                            <div class="col-md-3">
+                                <a >View Full Site</a>
                                 </div>
                             </g:else>
 
                             <div class="col-md-3">
-                                <a>Mark as read</a>
-                            </div>
-                            <div class="col-md-3">
+                                %{--<a>Mark as read</a>--}%
                                 <g:link controller="Resource" action="index" params="[id:res.id]" >View post</g:link>
-
                             </div>
                         </div>
-                        <br>
-                    </div>
+                        </div>
 
+                    </div>
+                    </br>
                 </g:each>
             </div>
         </div>
