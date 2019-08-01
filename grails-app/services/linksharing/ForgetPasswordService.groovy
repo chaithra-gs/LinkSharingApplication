@@ -7,16 +7,17 @@ class ForgetPasswordService {
 
     def validateEmail(Map params)
     {
-        String email = params.fetch_email
+        String email = params.email
         User userExist = User.findByEmail(email)
         if(userExist)
         {
-            return userExist
+            return 1
         }
         else {
-            return null
+            return 0
         }
     }
+
     def resetPassword(Map params, String email){
         String password = params.newpassword
 

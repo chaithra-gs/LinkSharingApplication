@@ -14,18 +14,29 @@ class UserController {
     /*def forgetPasswordService*/
 
     def myaction(){
-        List subscriptionLt = UserService.subscriptions(session.name)
-        User user1=User.findByEmail(session.name)
+        if(!session.name)
+        {
+            render("please login first")
+        }
+        else {
+            List subscriptionLt = UserService.subscriptions(session.name)
+            User user1 = User.findByEmail(session.name)
 
-        render(view:"EditProfile" ,model:[userdata:user1, subscriptions : subscriptionLt])
+            render(view: "EditProfile", model: [userdata: user1, subscriptions: subscriptionLt])
+        }
     }
     def showlist() {
+        if(!session.name)
+        {
+            render("please login first")
+        }
+        else{
         String str = session.name
         User user1 = User.findByEmail(str)
         List subscriptionLt = UserService.subscriptions(session.name)
         List<User> list1 = showAllUserListService.listMethod()
         render(view: "showUserList", model: [userList: list1,userdata:user1,subscriptions : subscriptionLt])
-    }
+    }}
 
     def logout(){
         session.invalidate()

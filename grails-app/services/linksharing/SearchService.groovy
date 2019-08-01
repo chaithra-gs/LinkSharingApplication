@@ -19,6 +19,7 @@ class SearchService {
         List<String> resourceResults = Resource.createCriteria().list{
             ilike("description","%${entry}%")
         }.collect{it.description}
+
         println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TopicResults${topicResults}"
         println ">>>>>>>>>>>>>ResourceResults${resourceResults}"
         List<String> resultSet = topicResults+resourceResults

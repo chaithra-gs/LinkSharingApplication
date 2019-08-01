@@ -11,9 +11,9 @@ class ForgetPasswordController {
 
     def validateResetPaswordEmail()
     {
-        if(forgetPasswordService.validateEmail(params))
+        if(forgetPasswordService.validateEmail(params)==1)
         {
-            session.name = params.fetch_email
+            session.name = params.email
             render(view:"Resetnewpasword")
             //render(text:"jelklhkd")
         }
@@ -28,9 +28,10 @@ class ForgetPasswordController {
         session.invalidate()
 
         render(text: "Login with new Password")
+       /* render(view:"loginWithNewPassword")*/
     }
-    /*def backtodashboard()
+    def newpass()
     {
-        redirect(view:'dashboard')
-    }*/
+        redirect(url:"/")
+}
 }

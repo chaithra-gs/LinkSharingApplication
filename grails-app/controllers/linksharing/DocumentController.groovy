@@ -2,21 +2,23 @@ package linksharing
 
 class DocumentController {
 
-        def documentService
+    def documentService
 
-        def download()
-        {
+    def download() {
+        if (!session.name) {
+            render("please login first")
+        } else {
 
-            Long id=Long.parseLong(params.id)
-            println "id:"+id
+            Long id = Long.parseLong(params.id)
+            println "id:" + id
             DocumentResource dr = (DocumentResource) Resource.get(id)
 
 
             //Users user = session.user
-            User user=User.findByEmail(session.name)
-            def file=new File("/home/chaithra/Downloads/grailsDocs/")
+            User user = User.findByEmail(session.name)
+            def file = new File("/home/chaithra/Downloads/grailsDocs/")
 
-            def temp = new File("/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/documents/"+dr.path)
+            def temp = new File("/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/documents/" + dr.path)
             if (temp.exists()) {
                 file = temp
             } else {
@@ -28,17 +30,24 @@ class DocumentController {
             response.outputStream << file.bytes
 
         }
+    }
 
 
-        def save()
+    def save()
+    {
+        if(!session.name)
         {
-            documentService.saveMethod(params,session.uname,request)
-            redirect(controller:"Dashboard" , action:"index")
-
+            render("please login first")
+        }
+        else {
+            documentService.saveMethod(params, session.name, request)
+            redirect(controller: "Dashboard", action: "index")
         }
 
-
-
-
     }
+
+
+
+
+}
 

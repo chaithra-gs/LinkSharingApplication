@@ -29,35 +29,43 @@ class UserService {
 
     }
 
-    def subscriptioncount(List topicids)
-    {if(topicids){
+    def subscriptioncount(List topicids) {
+        if (topicids) {
 
 
-        def topiccounts=Subscription.createCriteria().list()
-                {
-                    projections{
-                        count('topic.id')
-                        groupProperty('topic.id')
-                        // countDistinct('topic.id')
+            def topiccounts = Subscription.createCriteria().list()
+                    {
+                        projections {
+                            count('topic.id')
+                            groupProperty('topic.id')
+                            // countDistinct('topic.id')
+                        }
+                        'topic' {
+                            inList('id', topicids)
+                        }
                     }
-                    'topic'{
-                        inList('id',topicids)
+            println "Topic counts>>>>>>>>>>>>>>>>>>" + topiccounts
+            println "topic ids>>>>>>>>>>>>>>>>>>>>>>>>>>" + topicids
+            List<Integer> counts = topicids.collect { x ->
+                topiccounts.find {
+                    if (it.getAt(1) == x)
+                        return it.getAt(0)
+                    else {
+                        return 0
                     }
                 }
-println "Topic counts>>>>>>>>>>>>>>>>>>"+topiccounts
-println "topic ids>>>>>>>>>>>>>>>>>>>>>>>>>>"+topicids
-        List <Integer> counts = topicids.collect{ x ->
-            topiccounts.find{
-                if (it.getAt(1)==x)
-                    return it.getAt(0)
-            }
 
-        }.collect{it.getAt(0)}
-        return counts
-    }
-        else {
-        return null
-    }
+            }.collect {
+                if (!it) {
+                    return 0
+                } else {
+                    return it.getAt(0)
+                }
+            }
+            return counts
+
+
+        }
     }
     // for displaying topic  which has more resources as a trending topic
 

@@ -8,12 +8,17 @@ class ResourceController {
 
     def userService
     def resourceService
+    def resourceRatingService
 
     def index() {
         if (!session.name) {
             render("Login reqired")
         }
         else {
+
+            User user=User.findByEmail(session.name)
+            List subscriptionLt=userService.subscriptions(session.name)
+
             Resource res = Resource.get(params.id)
             List trending = userService.trendtopics()
 
@@ -22,7 +27,9 @@ class ResourceController {
             List subcount = userService.subscriptioncount(trending1)
             List postcount = userService.postscount(trending1)
 
-            render(view: "rating", model: [resource: res, trending: trending, countforsubs: subcount, countforposts:postcount])
+            def rating = resourceRatingService.readMethod(session.name,res)
+
+            render(view: "rating", model: [userdata:user,subscriptions : subscriptionLt,resource: res, trending: trending, value:rating,countforsubs: subcount, countforposts:postcount])
 
 
         }
@@ -41,6 +48,16 @@ class ResourceController {
     def delete() {
         resourceService.deleteMethod(params)
         redirect(controller: "dashboard", action: "index")
+    }
+    def postlist() {
+        if (!session.name) {
+            render("please login first")
+        } else {
+            User user = User.findByEmail(session.name)
+            List subscriptionLt = userService.subscriptions(session.name)
+            List resources = Resource.list()
+            render(view: 'postlist', model: [list: resources, userdata: user, subscriptions: subscriptionLt])
+        }
     }
 
 }

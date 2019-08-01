@@ -7,7 +7,6 @@ class LoginController {
 
     def index() {
 
-
         //get boolean value from service
         //compare value to true and false
         //if true -- render dashboard

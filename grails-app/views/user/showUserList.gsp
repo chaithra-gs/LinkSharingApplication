@@ -115,6 +115,7 @@
                                             <a href="/User/myaction">profile</a>
                                             <a href="/user/showlist" >Users</a>
                                             <a href="/topic/topiclist">Topics</a>
+                                            <a href="/resource/postlist">posts</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:if>
                                         <g:else>

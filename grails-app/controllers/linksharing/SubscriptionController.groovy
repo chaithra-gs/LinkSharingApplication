@@ -11,22 +11,37 @@ class SubscriptionController {
     def subscriptionService
 
     def updateSerious() {
-        subscriptionService.updateSerious(params)
-        redirect(controller: "dashboard", action: "index")
+        if(!session.name)
+        {
+            render("please login first")
+        }
+        else{
+            subscriptionService.updateSerious(params)
+            redirect(controller: "dashboard", action: "index")
 
-    }
+        }}
     def updateSeriouss() {
-        subscriptionService.updateSeriouss(params)
-        redirect(controller:"topic",action: "topicshow")
+        if(!session.name)
+        {
+            render("please login first")
+        }
+        else{
+            subscriptionService.updateSeriouss(params)
+            redirect(controller:"topic",action: "topicshow")
 
-    }
+        }}
     def changesub()
     {
-        subscriptionService.updateSubscription(params)
-        redirect(controller: "dashboard", action: "index")
+        if(!session.name)
+        {
+            render("please login first")
+        }
+        else{
+            subscriptionService.updateSubscription(params)
+            redirect(controller: "dashboard", action: "index")
 
 
-    }
+        }}
 
     def unsubscribe(params){
         println params.id
@@ -59,23 +74,26 @@ class SubscriptionController {
     }
 
 
-    def subscribe(params){
-        User user=User.findByEmail(session.name)
+    def subscribe(params) {
+        if (!session.name) {
+            render("please login first")
+        } else {
+            User user = User.findByEmail(session.name)
 
-        Long topid = Long.parseLong(params.id)
-        Topic t=Topic.get(topid)
-        println "++++++++++++++++++++++"
-        println t
-        println "++++++++++++++++++++++++++++"
+            Long topid = Long.parseLong(params.id)
+            Topic t = Topic.get(topid)
+            println "++++++++++++++++++++++"
+            println t
+            println "++++++++++++++++++++++++++++"
 
-        Subscription s=new Subscription(seriousness:Seriousness.'CASUAL'  ,topic :t)
-        //seriousness: 'VERY_SERIOUS'
-        user.addToSubscribedTo(s)
-        s.save(flush:true,failOnError:true)
-        user.save(flush:true,failOnError:true)
-        redirect(controller:"dashboard" ,action:"index")
+            Subscription s = new Subscription(seriousness: Seriousness.'CASUAL', topic: t)
+            //seriousness: 'VERY_SERIOUS'
+            user.addToSubscribedTo(s)
+            s.save(flush: true, failOnError: true)
+            user.save(flush: true, failOnError: true)
+            redirect(controller: "dashboard", action: "index")
+        }
     }
-
 
 }
 
@@ -111,102 +129,102 @@ class SubscriptionController {
 
 
 
-    /*static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+/*static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Subscription.list(params), model:[subscriptionCount: Subscription.count()]
+def index(Integer max) {
+    params.max = Math.min(max ?: 10, 100)
+    respond Subscription.list(params), model:[subscriptionCount: Subscription.count()]
+}
+
+def show(Subscription subscription) {
+    respond subscription
+}
+
+def create() {
+    respond new Subscription(params)
+}
+
+@Transactional
+def save(Subscription subscription) {
+    if (subscription == null) {
+        transactionStatus.setRollbackOnly()
+        notFound()
+        return
     }
 
-    def show(Subscription subscription) {
-        respond subscription
+    if (subscription.hasErrors()) {
+        transactionStatus.setRollbackOnly()
+        respond subscription.errors, view:'create'
+        return
     }
 
-    def create() {
-        respond new Subscription(params)
+    subscription.save flush:true
+
+    request.withFormat {
+        form multipartForm {
+            flash.message = message(code: 'default.created.message', args: [message(code: 'subscription.label', default: 'Subscription'), subscription.id])
+            redirect subscription
+        }
+        '*' { respond subscription, [status: CREATED] }
+    }
+}
+
+def edit(Subscription subscription) {
+    respond subscription
+}
+
+@Transactional
+def update(Subscription subscription) {
+    if (subscription == null) {
+        transactionStatus.setRollbackOnly()
+        notFound()
+        return
     }
 
-    @Transactional
-    def save(Subscription subscription) {
-        if (subscription == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (subscription.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond subscription.errors, view:'create'
-            return
-        }
-
-        subscription.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'subscription.label', default: 'Subscription'), subscription.id])
-                redirect subscription
-            }
-            '*' { respond subscription, [status: CREATED] }
-        }
+    if (subscription.hasErrors()) {
+        transactionStatus.setRollbackOnly()
+        respond subscription.errors, view:'edit'
+        return
     }
 
-    def edit(Subscription subscription) {
-        respond subscription
+    subscription.save flush:true
+
+    request.withFormat {
+        form multipartForm {
+            flash.message = message(code: 'default.updated.message', args: [message(code: 'subscription.label', default: 'Subscription'), subscription.id])
+            redirect subscription
+        }
+        '*'{ respond subscription, [status: OK] }
+    }
+}
+
+@Transactional
+def delete(Subscription subscription) {
+
+    if (subscription == null) {
+        transactionStatus.setRollbackOnly()
+        notFound()
+        return
     }
 
-    @Transactional
-    def update(Subscription subscription) {
-        if (subscription == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
+    subscription.delete flush:true
 
-        if (subscription.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond subscription.errors, view:'edit'
-            return
+    request.withFormat {
+        form multipartForm {
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'subscription.label', default: 'Subscription'), subscription.id])
+            redirect action:"index", method:"GET"
         }
-
-        subscription.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'subscription.label', default: 'Subscription'), subscription.id])
-                redirect subscription
-            }
-            '*'{ respond subscription, [status: OK] }
-        }
+        '*'{ render status: NO_CONTENT }
     }
+}
 
-    @Transactional
-    def delete(Subscription subscription) {
-
-        if (subscription == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
+protected void notFound() {
+    request.withFormat {
+        form multipartForm {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'subscription.label', default: 'Subscription'), params.id])
+            redirect action: "index", method: "GET"
         }
-
-        subscription.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'subscription.label', default: 'Subscription'), subscription.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+        '*'{ render status: NOT_FOUND }
     }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'subscription.label', default: 'Subscription'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
-    }*/
+}*/
 

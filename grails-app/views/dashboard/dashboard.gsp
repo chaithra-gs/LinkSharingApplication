@@ -110,6 +110,7 @@
                                             <a href="/User/myaction">profile</a>
                                             <a href="/user/showlist" >Users</a>
                                             <a href="/topic/topiclist">Topics</a>
+                                            <a href="/resource/postlist">posts</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:if>
                                         <g:else>
@@ -233,7 +234,7 @@
                     <li>
                     <div class="row">
                         <div class="col-md-4">
-                            <asset:image src="${userdata.photo}" alt="photo here" style="width:70px;height:70px"/>
+                            <asset:image src="${us.createdBy.photo}" alt="photo here" style="width:70px;height:70px"/>
                         </div>
                         <div class="col-sm-8">
                             <div style="font-size:15px;">

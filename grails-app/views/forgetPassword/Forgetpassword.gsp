@@ -12,11 +12,11 @@
 </head>
 <body>
 
-<g:form url="[controller:'forgetPassword' , action : 'validateResetPaswordEmail']" class="form-horizontal">
+<g:form url="[controller:'sendlink' , action : 'index']" class="form-horizontal">
     <div class="form-group">
         <text class="control-label col-md-4" for="resetPassword"  style="text-align: left;">Email *</text>
         <div class="col-md-8">
-            <input type="email" class="form-control" id="resetPassword" placeholder="Enter email" name="fetch_email">
+            <input type="email" class="form-control" id="resetPassword" placeholder="Enter email" name="fetchemail">
         </div>
     </div>
     <div class=" offset-md-2">

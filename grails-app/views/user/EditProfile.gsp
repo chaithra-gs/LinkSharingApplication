@@ -121,6 +121,7 @@
                                             <a href="/User/myaction">profile</a>
                                             <a href="/user/showlist" >Users</a>
                                             <a href="/topic/topiclist">Topics</a>
+                                            <a href="/resource/postlist">posts</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:if>
                                         <g:else>
@@ -176,19 +177,20 @@
                 <div class="form-group">
                     <text class="control-label col-md-4" for="email" style="text-align: left;">First Name *</text>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="fname" placeholder="Enter firstname" name="fname">
+                        <input type="text" class="form-control" id="fname" placeholder="${userdata.firstName}" name="fname">
                     </div>
                 </div>
                 <div class="form-group">
                     <text class="control-label col-md-4" for="email" style="text-align: left;">Last Name *</text>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="lname" id="lname" placeholder="Enter lastname" >
+                        <input type="text" class="form-control" name="lname" id="lname" placeholder="${userdata.lastName}" >
                     </div>
                 </div>
                 <div class="form-group">
                     <text class="control-label col-md-4" for="email" style="text-align: left;">Username *</text>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" >
+                       %{-- <g:select from="${name}" />--}%
+                        <input type="text" class="form-control" id="username" name="username" placeholder="${userdata.username}" >
                     </div>
                 </div>
                 <div class="form-group">

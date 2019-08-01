@@ -88,6 +88,7 @@
                                             <li><a href="/User/myaction">profile</a></li>
                                             <li><a href="/user/showlist" >Users</a></li>
                                             <li><a href="/topic/topiclist">Topics</a></li>
+                                            <li><a href="/resource/postlist">posts</a></li>
                                             <li><a href="/user/logout">Logout</a></li>
 
                                         </g:if>

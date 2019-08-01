@@ -2,7 +2,6 @@ package linksharing
 
 class ResourceRating {
 
-    User user
     Integer score
 
     static belongsTo = [userRated:User, resource:Resource]
