@@ -6,14 +6,18 @@ import grails.transaction.Transactional
 class SubscriptionService {
 
     def updateSerious(params)
+
     {
+        print "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS/ params of serin service"+params
         Subscription s=Subscription.get(params.id)
         s.seriousness = params.seriousness
+        s.save(flush:true,failOnError:true)
     }
     def updateSeriouss(params)
     {
         Subscription s=Subscription.get(params.id)
         s.seriousness = params.seriousness
+         s.save(flush:true,failOnError:true)
     }
     def updateSubscription(params){
         Subscription s = Subscription.get(Long.parseLong(params.id))

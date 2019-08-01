@@ -177,26 +177,26 @@
                 <div class="form-group">
                     <text class="control-label col-md-4" for="email" style="text-align: left;">First Name *</text>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="fname" placeholder="${userdata.firstName}" name="fname">
+                        <input type="text" class="form-control" name="fname" id="fname" value="${userdata.firstName}" >
                     </div>
                 </div>
                 <div class="form-group">
                     <text class="control-label col-md-4" for="email" style="text-align: left;">Last Name *</text>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="lname" id="lname" placeholder="${userdata.lastName}" >
+                        <input type="text" class="form-control" name="lname" id="lname" value="${userdata.lastName}" >
                     </div>
                 </div>
                 <div class="form-group">
                     <text class="control-label col-md-4" for="email" style="text-align: left;">Username *</text>
                     <div class="col-md-8">
                        %{-- <g:select from="${name}" />--}%
-                        <input type="text" class="form-control" id="username" name="username" placeholder="${userdata.username}" >
+                        <input type="text" class="form-control" id="username" name="username" value="${userdata.username}" >
                     </div>
                 </div>
                 <div class="form-group">
                     <text class="control-label col-md-4 " for="photo" style="text-align: left;">Photo</text>
                     <div class="col-md-8">
-                        <input type="file" class="form-control" id="inputphoto" placeholder="choose" name="inputphoto">
+                        <input type="file" class="form-control" id="inputphoto" value="${userdata.photo}" name="inputphoto">
                     </div>
                 </div>
                 <div class="form-group">

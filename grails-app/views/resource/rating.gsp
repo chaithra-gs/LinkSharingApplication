@@ -113,14 +113,14 @@
                                     <div class="dropdown-content">
 
                                         <g:if test="${userdata.admin==true}">
-                                            <a href="/User/myaction">profile</a>
+                                            <a href="/User/myaction">Profile</a>
                                             <a href="/user/showlist" >Users</a>
                                             <a href="/topic/topiclist">Topics</a>
-                                            <a href="/resource/postlist">posts</a>
+                                            <a href="/resource/postlist">Posts</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:if>
                                         <g:else>
-                                            <a href="/User/myaction">profile</a>
+                                            <a href="/User/myaction">Profile</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:else>
                                     </div>
@@ -278,7 +278,7 @@
                         </div>
 
                         <div class="col-md-2">
-                            <a>View full site</a>   </div>
+                            <a>View full site</a></div>
                     </div>
 
                 </div>
@@ -287,11 +287,13 @@
 
 
             <div class ="col-md-6">
-                <div class="panel panel-default">
+                <div class="panel panel-default" style="height:500px;overflow: auto;">
                     <div class="panel-heading">Trending Topics
                     </div>
                     <div class="panel-body">
                         <g:each in="${trending}" var="us" status="i">
+                            <ul class="list-inline">
+
                             <li>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -310,10 +312,13 @@
                                             <div><a>${countforposts.getAt(i)}</a></div>
                                         </div>
                                     </div>
-                                    <a>subscribe</a>
+                                    <div class="col-md-offset-4">
+                                        <g:link controller="subscription" action="subscribe" params="[id:us.id ,page:"rating"]">Subscribe</g:link>
+                                    </div>
                                 </div>
 
                             </li>
+                            </ul>
                         </g:each>
 
                     </div>

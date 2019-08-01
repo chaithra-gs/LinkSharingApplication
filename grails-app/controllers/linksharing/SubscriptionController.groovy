@@ -16,6 +16,7 @@ class SubscriptionController {
             render("please login first")
         }
         else{
+            //println "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS in subscripti controller"+params
             subscriptionService.updateSerious(params)
             redirect(controller: "dashboard", action: "index")
 
@@ -27,7 +28,7 @@ class SubscriptionController {
         }
         else{
             subscriptionService.updateSeriouss(params)
-            redirect(controller:"topic",action: "topicshow")
+            redirect(controller:"topic",action: "topicshow",params:[id: params.id])
 
         }}
     def changesub()

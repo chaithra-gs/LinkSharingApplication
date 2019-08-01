@@ -11,7 +11,7 @@ class DocumentController {
 
             Long id = Long.parseLong(params.id)
             println "id:" + id
-            DocumentResource dr = (DocumentResource) Resource.get(id)
+            DocumentResource dr =  Resource.get(id)
 
 
             //Users user = session.user

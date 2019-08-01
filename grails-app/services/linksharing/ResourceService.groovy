@@ -104,6 +104,7 @@ class ResourceService {
     {
         Resource res= Resource.get(Long.parseLong(params.id))
         res.delete()
+        res.save(flush:true,failOnError:true)
     }
 
 }

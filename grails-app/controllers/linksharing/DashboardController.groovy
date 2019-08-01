@@ -18,7 +18,7 @@ class DashboardController {
             Integer count_topic = userService.topicCount(session.name)
             Integer count_subscribe = userService.subCount(session.name)
 
-            println session.name
+            //println session.name
 
             List subscriptionLt = userService.subscriptions(session.name)
             print subscriptionLt

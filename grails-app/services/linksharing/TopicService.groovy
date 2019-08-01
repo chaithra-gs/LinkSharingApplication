@@ -134,12 +134,13 @@ class TopicService {
      {
          Topic t=Topic.get(params.id)
          t.visibility=params.visibility
+         t.save(flush:true,failOnError:true)
      }
 
 
 
     def subscriptioncount(List userslist)
-    {
+    {  //list of users who subscribed to a particlar topic[noOFSUBSCRIPTIONS ,USER ID]
         def usercounts=Subscription.createCriteria().list()
                 {
                     projections{
@@ -147,12 +148,10 @@ class TopicService {
                         groupProperty('user.id')
                         // countDistinct('topic.id')
                     }
-                    'user'{
-                        inList('id',userslist)
-                    }
+
                 }
-        List <Integer> counts=userslist.collect{ x ->
-            usercounts.find{
+
+        List <Integer> counts=userslist.collect{ x -> usercounts.find{
                 if (it.getAt(1)==x)
                     return it.getAt(0)
             }

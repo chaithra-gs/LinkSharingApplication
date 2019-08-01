@@ -107,14 +107,14 @@
                                     <div class="dropdown-content">
 
                                         <g:if test="${userdata.admin==true}">
-                                            <a href="/User/myaction">profile</a>
+                                            <a href="/User/myaction">Profile</a>
                                             <a href="/user/showlist" >Users</a>
                                             <a href="/topic/topiclist">Topics</a>
-                                            <a href="/resource/postlist">posts</a>
+                                            <a href="/resource/postlist">Posts</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:if>
                                         <g:else>
-                                            <a href="/User/myaction">profile</a>
+                                            <a href="/User/myaction">Profile</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:else>
                                     </div>
@@ -160,13 +160,14 @@
             </div>
 
             %{--subscription Modal--}%
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="height:500px;overflow: auto;">
                 <div class="panel-heading">
                     <div style="float:left">Subscriptions</div>
                     <div style="margin-left:350px">View all</div>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" >
                     <g:each in="${subscriptions}" var="us" status="i">
+                        <ul class="list-inline">
                         <li>
                             <div class="row">
                                 <div class="col-md-4">
@@ -179,13 +180,20 @@
                                     <div>@${us.topic.createdBy.username}</div>
                                     <div class="col-sm-6">
                                         Subscriptions:
-                                        <div>${subscount.getAt(i) }</div></div>
+                                        <div>${subscount.getAt(i) }</div>
+                                    </div>
                                     <div class="col-sm-6">
                                         Posts:
-                                        <div><a>${resourcecount.get(i)}</a></div></div>
-
-                                    <g:link controller="subscription" action="changesub" params="[id:us.id ,  flag:0]">Unsubscribe</g:link></div>
-
+                                        <div><a>${resourcecount.get(i)}</a></div>
+                                    </div >
+                                    <div class="col-sm-6">
+                                    <g:if test="${us.topic.createdBy.email==session.name}">
+                                        <a>unsubscribe</a>
+                                    </g:if>
+                                   <g:else>
+                                        <g:link controller="subscription" action="changesub" params="[id:us.id ,  flag:0]">Unsubscribe</g:link></div>
+                                    </g:else>
+                                    </div>
                                 <g:if test  = "${us.topic.createdBy.email==session.name}" >
                                     <div class="row">
                                         <div class="col-md-12">
@@ -216,6 +224,7 @@
                                     </g:form>
                                 </g:else>
                         </li>
+                        </ul>
                     </g:each>
                 </div>
             </div>
@@ -224,13 +233,14 @@
            %{-- Trending topic --}%
 
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="height:500px;overflow: auto;">
                 <div class="panel-heading">
                     <div style="float:left">Trending Topics</div>
                     <div style="margin-left:350px">View all</div>
                 </div>
                 <div class="panel-body">
                     <g:each in="${trending}" var="us" status="i">
+                        <ul class="list-inline">
                     <li>
                     <div class="row">
                         <div class="col-md-4">
@@ -253,6 +263,7 @@
                         <g:link controller="subscription" action="subscribe" params="[id:us.id ,page:"dashboard"]">Subscribe</g:link>
 
                     </li>
+                        </ul>
                     </g:each>
                 </div>
             </div>
@@ -293,12 +304,13 @@
         <div class="col-md-7">
             %{--inbox--}%
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="height:400px;overflow: auto;">
                 <div class="panel-heading"><div style="float:left">Inbox</div>
                     <div style="margin-left:350px">View all</div>
                 </div>
                 <div class="panel-body">
                     <g:each in="${resources}" var="res" status="i">
+                        <ul class="list-inline">
                         <li>
                             <div class="row">
                                 <div class="col-md-3">
@@ -312,22 +324,23 @@
                                     <div class="row">
                                         ${res.description}
                                     </div>
+                                    <br>
                                 <div class="row">
                                 <div class="col-md-3">
-                                    <g:if test="${res instanceof linksharing.LinkResource}">
+                                    <g:if test="${res.hasProperty("Linkurl")}">
                                         <a >Download</a>
                                         </div>
                                         <div class="col-md-3">
                                             <a href="${res.Linkurl}">View Full Site</a>
-                                        </div></g:if>
+                                        </div>
+                                    </g:if>
                                     <g:else>
-
-
                                         <g:link controller="Document" action="download" params="[id:res.id , tid:res.id , flag:1]" >Download</g:link>
                                         </div>
                                         <div class="col-md-3">
-                                            <a href="">View Full Site</a>
-                                        </div></g:else>
+                                            <a >View Full Site</a>
+                                        </div>
+                                    </g:else>
 
                                     <div class="col-md-3">
                                         <g:link controller="resource" action="editread" params="[id:res.id]">Mark as read</g:link>
@@ -335,11 +348,12 @@
                                     <div class="col-md-3">
                                         %{--<g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>--}%
                                         <g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>
-
                                     </div>
                                 </div>
                             </div>
                         </li>
+                        </ul>
+                        <br>
                     </g:each>
 
                 </div>

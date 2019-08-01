@@ -38,6 +38,7 @@ class TopicController {
     {
         Topic t=Topic.get(params.id)
         t.visibility=params.visibility
+        t.save(flush:true,failOnerror:true)
         redirect(controller: "dashboard", action: "index")
 
     }
@@ -50,9 +51,10 @@ class TopicController {
             User user = User.findByEmail(session.name)
             User user1 = User.findByEmail(session.name)
             Long tid = 0.0
-            println "+++++++++++++++++++++++++++++++++++++++params id+++++++++++++++++++++++++++++++++++++=++++++++++++++++"
+            //println "+++++++++++++++++++++++++++++++++++++++params id+++++++++++++++++++++++++++++++++++++=++++++++++++++++"
             print params.id
             Long id = Long.parseLong(params.id)
+            //Long id=params.id
             Subscription sub = Subscription.get(id)
 
             List subscriptionLt = userService.subscriptions(session.name)
@@ -77,6 +79,7 @@ class TopicController {
                 eq("topic.id", tid)
             }
             List<User> users = subscription*.user
+            //get count of users subscribed to particualr topic
             List<Long> userslist = users.collect { it.id }
 
 

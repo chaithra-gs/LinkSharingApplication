@@ -1,5 +1,6 @@
 package linksharing
 
+import Enums.Visibility
 import grails.transaction.Transactional
 
 @Transactional
@@ -18,7 +19,7 @@ class UserService {
     def subscriptions(String name) {
         User user =User.findByEmail(name)
 
-        List<Long> subscriptionList = Subscription.createCriteria().list{
+        List<Long> subscriptionList = Subscription.createCriteria().list(max:5){
             eq("user.id",user.id)
         }
 
@@ -44,8 +45,8 @@ class UserService {
                             inList('id', topicids)
                         }
                     }
-            println "Topic counts>>>>>>>>>>>>>>>>>>" + topiccounts
-            println "topic ids>>>>>>>>>>>>>>>>>>>>>>>>>>" + topicids
+           // println "Topic counts>>>>>>>>>>>>>>>>>>" + topiccounts
+            //println "topic ids>>>>>>>>>>>>>>>>>>>>>>>>>>" + topicids
             List<Integer> counts = topicids.collect { x ->
                 topiccounts.find {
                     if (it.getAt(1) == x)
@@ -111,9 +112,12 @@ class UserService {
     def trendtopics()
     {
         List <Long> topicsid=Topic.list().collect{
-            it.id
+            /*if(it.visibility== Visibility.PUBLIC){
+                return it.id
+            }*/
+it.id
         }
-
+ println ">>>>>>>>>>>>>>>>>>>>>>>. TOPICSID"+topicsid
         List abcd=Resource.createCriteria().list(max:5)
                 {
                     projections{
@@ -139,14 +143,10 @@ class UserService {
             }
 
         }
-        print "xyz:::::::::::::::::"+xyz
+        print "xyz::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::"+xyz
         xyz.removeAll{it==0}
         List bbb= xyz+(topicsid-xyz)
-        println ">>>>>>>>>>>>>>>>bbb"+bbb
-        /*List <Topic> topicstrendy=Topic.createCriteria().list{
-            inList('id' , bbb)
-
-        }*/
+        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>bbb"+bbb
         List<Topic> topicList1 = []
         def i
         for(i=0;i<5;i++){
@@ -173,7 +173,7 @@ class UserService {
                 }
         //println abcd
         abcd.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
-        print ":::::::"+abcd
+        print ":::::::?????????????????????????????????????????????????"+abcd
         List<Integer> xyz = trending.collect { x ->
             abcd.find {
                 if (it.getAt(1) == x.id)

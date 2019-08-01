@@ -8,7 +8,8 @@ import linksharing.User
 class BootStrap {
 
     def init = { servletContext ->
-
+        /*User u1=new User(username : 'LSA_Admin' , firstName :'myname'  , lastName : 's' , password : '12345' , admin : true , active : true , email : 'myemail@gmail.com' )
+        u1.save(flush:true,failOnError:true)*/
        /* User u1=new User(username : 'chaithra1 gs' , firstName :'chaithra'  , lastName : 'gs' , password : '1234' , admin : false , active : true , email : 'chaithraa@gmail.com' )
         User u2=new User(username : 'roopa1 sabri' , firstName: 'roopa'  , lastName : 'sabri' , password : '12345' , admin : false , active : true , email : 'roopaa@gmail.com')
         User u3=new User(username : 'sabri1 ss' , firstName : 'sabri'  , lastName : 'ss' , password : 'chai' , admin : false , active : true , email : 'sabrii@gmail.com')

@@ -85,15 +85,15 @@
                                     <ul class="dropdown-menu" id="droped" style="width: 100%">
 
                                         <g:if test="${userdata.admin==true}">
-                                            <li><a href="/User/myaction">profile</a></li>
+                                            <li><a href="/User/myaction">Profile</a></li>
                                             <li><a href="/user/showlist" >Users</a></li>
                                             <li><a href="/topic/topiclist">Topics</a></li>
-                                            <li><a href="/resource/postlist">posts</a></li>
+                                            <li><a href="/resource/postlist">Posts</a></li>
                                             <li><a href="/user/logout">Logout</a></li>
 
                                         </g:if>
                                         <g:else>
-                                            <li><a href="/User/myaction">profile</a></li>
+                                            <li><a href="/User/myaction">Profile</a></li>
                                             <li><a href="/user/logout">Logout</a></li>
 
                                         </g:else>

@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class ResourceRatingService {
 
     def saveMethod(params) {
-        print "very much inside"
+       // print "very much inside"
         int rating=Integer.parseInt(params.value)
         User user=User.findByEmail(params.username)
         Long resourceId= Long.parseLong(params.resourceId)
@@ -22,7 +22,7 @@ class ResourceRatingService {
         }
         else{
             ResourceRating resourceRate = new ResourceRating(score:rating,userRated: user,resource: res)
-            println "??????????????????? resource rate object :"+resourceRate.score
+            //println "??????????????????? resource rate object :"+resourceRate.score
             resourceRate.save(failOnError: true)
             user.addToResourceRated(resourceRate)
             res.addToResourceRated(resourceRate)
@@ -37,7 +37,7 @@ class ResourceRatingService {
 
     def readMethod(username , Resource res)
     {
-        println "here i am in read Method:"+username+" " +res
+       // println "here i am in read Method:"+username+" " +res
         User user=User.findByEmail(username)
         ResourceRating resRate=ResourceRating.createCriteria().get{
             eq('userRated.id',user.id)

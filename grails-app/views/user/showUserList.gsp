@@ -112,14 +112,14 @@
                                     <div class="dropdown-content">
 
                                         <g:if test="${userdata.admin==true}">
-                                            <a href="/User/myaction">profile</a>
+                                            <a href="/User/myaction">Profile</a>
                                             <a href="/user/showlist" >Users</a>
                                             <a href="/topic/topiclist">Topics</a>
-                                            <a href="/resource/postlist">posts</a>
+                                            <a href="/resource/postlist">Posts</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:if>
                                         <g:else>
-                                            <a href="/User/myaction">profile</a>
+                                            <a href="/User/myaction">Profile</a>
                                             <a href="/user/logout">Logout</a>
                                         </g:else>
                                     </div>
