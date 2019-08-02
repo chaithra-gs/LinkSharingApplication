@@ -8,22 +8,49 @@ class ProfileService {
     def update(params,request,user) {
         print "......................." + params.inputphoto
         print ">>>>>>>>>>>>>>>>>>>>."+params.fname
-        user.firstName=params.fname
 
-        user.lastName=params.lname
-        user.username=params.username
-        def des = request.getFile('inputphoto')
+            user.firstName=params.fname
+            user.lastName=params.lname
+            user.username=params.username
 
-        if(des){
-            File file=new File( "/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/images/${params.username}.jpg")
-            des.transferTo(file)
+        String uname=params.username
+
+           /* def des = request.getFile('inputphoto')
+             String fName = des.getOriginalFilename()
+             String photo1= params.username+fName
+
+            if(des){
+                File file=new File( "/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/images/"+ photo1)
+                des.transferTo(file)
+            }*/
+        String image="default.png"
+        def f = request.getFile('inputphoto')
+        String fName = f.getOriginalFilename()
+        if(fName){
+
+            image = uname+fName
+
+            String loc='/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/images/'+image
+            File des=new File(loc)
+            f.transferTo(des)
+
         }
-        String photo1 = "${params.username}.jpg"
-        user.photo=photo1
-        return 1
+
+            user.photo=image
+            return 1
+
+
     }
 
     def updatepass(params,user){
+
+        String password = params.password
+        String confirmpassword = params.confirmpassword
+        if(confirmpassword.compareTo(password)!=0)
+        {
+            return 0
+
+        }
         user.password=params.password
         return 1
     }

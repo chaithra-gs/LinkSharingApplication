@@ -14,12 +14,10 @@
       var confirmPassword =document.getElementById("confirmpassword").value;
 
       if(password!=confirmPassword){
-        alert("Enter same Password")
+
         document.getElementById("password").value = "";
         document.getElementById("confirmpassword").value = "";
-
-
-        //document.getElementById("matching").innerHTML="Not Match!!!"
+        document.getElementById("matching").innerHTML="Not Match!!!"
 
       }
       else
@@ -63,7 +61,7 @@
       </div>
     </div>
     <div class="col-md-7">
-      <div class="panel panel-default">
+      %{--<div class="panel panel-default">
         <div class="panel-heading">Recent Searches</div>
         <div class="panel-body">
           <table  style="width:100%">
@@ -84,7 +82,7 @@
           <td></td>
           <td></td>
           <td></td>
-            <td><a href="#">View Post</a></td>
+            <td><a href="#"></a></td>
           </table>
         </div>
       </div>
@@ -123,17 +121,18 @@
           <td></td>
             <td><a href="#">View Post</a></td>
           </table></div>
-        </div>
+        </div>--}%
       </div>
       <div class="col-md-5">
         <div class="panel panel-default">
           <div class="panel-heading">Login</div>
           <div class="panel-body">
-            <g:form class="form-horizontal" url="[controller:'login',action:'index']">
+            <g:form class="form-horizontal" controller="login" action="index">
+            %{-- url="[controller:'login',action:'index']--}%
               <div class="form-group">
                 <text class="control-label col-md-4" for="email"  style="text-align: left;">Email/Username *</text>
                 <div class="col-md-8">
-                  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                  <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
                 </div>
               </div>
               <div class="form-group">
@@ -150,9 +149,7 @@
               <div class="form-group">
                 <div class=" col-md-10">
                  <g:link class="control-label col-md-8" controller="forgetPassword" action="forgetPassword" style="text-align: left;">Forget Password</g:link>
-
                 </div>
-
                 <div class=" offset-md-1">
                   <button type="submit" class="btn btn-basic">Login</button>
                 </div>
@@ -224,6 +221,7 @@
 
               <div class="form-group">
                 <div class=" col-md-8">
+                  ${flash.message3}
                 </div>
                 <div class=" col-md-4">
                   <button type="submit" class="btn btn-basic btn-block"  width=100%>Register</button>

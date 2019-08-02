@@ -19,10 +19,13 @@ class UserService {
     def subscriptions(String name) {
         User user =User.findByEmail(name)
 
-        List<Long> subscriptionList = Subscription.createCriteria().list(max:5){
+        List<Long> subscriptionList = Subscription.createCriteria().list(/*max:5*/){
             eq("user.id",user.id)
         }
-
+       /* if(subscriptionList)
+            return  subscriptionList
+        else
+            return null*/
         //print subscriptionList
         subscriptionList.sort{b,a-> a.topic.lastUpdated<=>b.topic.lastUpdated}
         //print subscriptionList
@@ -32,8 +35,6 @@ class UserService {
 
     def subscriptioncount(List topicids) {
         if (topicids) {
-
-
             def topiccounts = Subscription.createCriteria().list()
                     {
                         projections {
@@ -115,7 +116,7 @@ class UserService {
             /*if(it.visibility== Visibility.PUBLIC){
                 return it.id
             }*/
-it.id
+          it.id
         }
  println ">>>>>>>>>>>>>>>>>>>>>>>. TOPICSID"+topicsid
         List abcd=Resource.createCriteria().list(max:5)
@@ -189,6 +190,9 @@ it.id
         }
         return x
     }
+
+
+
 
     def topTopicSubs(List<Topic> trending)
     {

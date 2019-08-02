@@ -145,6 +145,9 @@
                         <td class="table-header">Lastname</td>
                         <td class="table-header">Active</td>
                         <td class="table-header">Manage</td>
+                        <td class="table-header">Manage Admin</td>
+
+
                     </tr>
                     <g:each in="${userList}" var="user">
                         <tr>
@@ -154,7 +157,8 @@
                             <td>${user.firstName}</td>
                             <td>${user.lastName}</td>
                             <g:if test="${user.active}">
-                                <td>Yes</td></g:if>
+                                <td>Yes</td>
+                            </g:if>
                             <g:else>
                                 <td>No</td>
                             </g:else>
@@ -166,6 +170,16 @@
                                 <td><g:link class="anchor-nounderline" controller="user" action="activate"
                                             params="[userId: user.id]">Deactivated</td></g:link>
                             </g:else>
+
+                            <g:if test="${user.admin}">
+                                <td><g:link class="anchor-nounderline" controller="user" action="removeAdmin"
+                                            params="[userId: user.id]">Admin</td></g:link>
+                            </g:if>
+                            <g:else>
+                                <td><g:link class="anchor-nounderline" controller="user" action="makeAdmin"
+                                            params="[userId: user.id]">notAdmin</td></g:link>
+                            </g:else>
+
                         </tr>
                     </g:each>
                 </table>

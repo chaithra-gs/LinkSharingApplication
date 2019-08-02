@@ -315,7 +315,7 @@
                             </div>
                                 <div class="col-md-3">
 
-                                    <a href="${res.Linkurl}">View Full Site</a>
+                                    <a href="${res.Linkurl}" target="_blank">View Full Site</a>
                                 </div>
                             </g:if>
                             <g:else>

@@ -59,6 +59,13 @@ class ResourceController {
             render(view: 'postlist', model: [list: resources, userdata: user, subscriptions: subscriptionLt])
         }
     }
+    def updatedescription(){
+        Resource res=Resource.get(Long.parseLong(params.id))
+        res.description=params.description
+        res.save(flush:true)
+        redirect(action:"index" , params:[id:Long.parseLong(params.id)])
+    }
+
 
 }
 

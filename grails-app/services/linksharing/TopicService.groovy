@@ -52,6 +52,8 @@ class TopicService {
         DocumentResource newRes = new DocumentResource(description: description1, topic: tobj, user: user1, path: str)
         newRes.save(flush: true, failOnError: true)
         //for finding all the persons who subscribed to particular topic (to send notifications)
+
+
         List<User> userids = Subscription.createCriteria().list {
             projections {
                 property("user.id")
@@ -106,7 +108,7 @@ class TopicService {
 
         userids.each {
             User us = User.get(it)
-            println "us:" +us
+            println "user object:" +us
             ReadingItem ri = new ReadingItem(isRead:isRead,resource:newRes,user:us)
             ri.save(failOnError: true, flush: true)
             us.addToReadItem(ri)

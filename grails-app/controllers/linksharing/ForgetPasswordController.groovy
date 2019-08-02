@@ -28,6 +28,8 @@ class ForgetPasswordController {
         session.invalidate()
 
         render(text: "Login with new Password")
+        //redirect(url:"/")
+
        /* render(view:"loginWithNewPassword")*/
     }
     def newpass()

@@ -73,6 +73,7 @@
                                             </div>
                                         </div>
                                     </g:form>
+                                    ${flash.message4}
 
                                 </div>
                             </td>
@@ -161,9 +162,9 @@
 
             %{--subscription Modal--}%
             <div class="panel panel-default" style="height:500px;overflow: auto;">
-                <div class="panel-heading">
-                    <div style="float:left">Subscriptions</div>
-                    <div style="margin-left:350px">View all</div>
+                <div class="panel-heading">Subscriptions
+
+                    %{--<div style="margin-left:350px">View all</div>--}%
                 </div>
                 <div class="panel-body" >
                     <g:each in="${subscriptions}" var="us" status="i">
@@ -197,22 +198,29 @@
                                 <g:if test  = "${us.topic.createdBy.email==session.name}" >
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <ul class="list-inline">
-                                                <li>
+                                            %{--<ul class="list-inline">--}%
+                                                %{--<li>--}%
+                                            <div class="col-md-8">
                                                     <g:form controller="subscription" action="updateSerious">
                                                         <g:field type="hidden" name="id" value="${us.id}"></g:field>
                                                         <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
                                                                   value="${us.seriousness}" />
                                                     </g:form>
-                                                </li>
-                                                <li>
+                                        </div>
+                                        <div class="col-md-3">
+                                        %{--</div>--}%
+                                                %{--</li>--}%
+                                               %{-- <li>--}%
+                                                %{--<div class="col-md-6">--}%
                                                     <g:form controller="topic" action="updateVisibility">
                                                         <g:field type="hidden" name="id" value="${us.topicId}"></g:field>
                                                         <g:select onChange="submit()" name="visibility" from="${['PUBLIC','PRIVATE']}"
                                                                   value="${us.topic.visibility}" />
                                                     </g:form>
-                                                </li>
-                                            </ul>
+                                        </div>
+                                        %{--</div>--}%
+                                               %{-- </li>--}%
+                                            %{--</ul>--}%
                                         </div>
                                     </div>
                                 </g:if>
@@ -234,9 +242,9 @@
 
 
             <div class="panel panel-default" style="height:500px;overflow: auto;">
-                <div class="panel-heading">
-                    <div style="float:left">Trending Topics</div>
-                    <div style="margin-left:350px">View all</div>
+                <div class="panel-heading">Trending Topics
+                    <div style="float:left"></div>
+                    %{--<div style="margin-left:350px"></div>--}%
                 </div>
                 <div class="panel-body">
                     <g:each in="${trending}" var="us" status="i">
@@ -331,11 +339,11 @@
                                         <a >Download</a>
                                         </div>
                                         <div class="col-md-3">
-                                            <a href="${res.Linkurl}">View Full Site</a>
+                                            <a href="${res.Linkurl}" target="_blank">View Full Site</a>
                                         </div>
                                     </g:if>
                                     <g:else>
-                                        <g:link controller="Document" action="download" params="[id:res.id , tid:res.id , flag:1]" >Download</g:link>
+                                        <g:link  controller="Document" action="download" params="[id:res.id , tid:res.id , flag:1]" target="_blank" >Download</g:link>
                                         </div>
                                         <div class="col-md-3">
                                             <a >View Full Site</a>
@@ -385,7 +393,6 @@
                             <br>
                             <br>
                             <input type="submit" value="share"   class="btn btn-success" style="float: right; margin-top: 5px;"/>
-
                         </g:uploadForm>
                     </div>
                     <div class="modal-footer" style=" margin-top: 15px;">
@@ -453,6 +460,7 @@
                     </select>
                     <input type="submit" class="btn btn-success" style="float: right; margin-top: 5px;"/>
                 </g:form>
+
             </div>
             <div class="modal-footer" style=" margin-top: 15px;">
                 <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>

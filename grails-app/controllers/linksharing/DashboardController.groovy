@@ -11,7 +11,7 @@ class DashboardController {
             print session.name
             User user1 = User.findByEmail(session.name)
 
-            println "This is username of the user who is logged in" + user1.username
+           // println "This is username of the user who is logged in" + user1.username
             println "this is photo path" + user1.photo
             //for displaying subscriptions and topic count of particular user
 

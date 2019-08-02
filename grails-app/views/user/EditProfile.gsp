@@ -4,23 +4,43 @@
 <!doctype html>
 <html>
 <head>
-    <script>
-        function display(){
-            document.getElementById("droped").style.display="block";
-        }
-    </script>
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="4nonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script>
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script type = "text/javascript">
+        var Matchpassword=function () {
+                var password = document.getElementById("password").value;
+                var confirmPassword =document.getElementById("confirmpassword").value;
+
+                if(password!=confirmPassword){
+
+                    document.getElementById("password").value = "";
+                    document.getElementById("confirmpassword").value = "";
+
+
+                    document.getElementById("matching").innerHTML="Not Match!!!"
+
+                }
+                else
+                {
+                    document.getElementById("matching").innerHTML="Match!!!"
+                }
+
+            }
         function display(){
             document.getElementById("droped").style.display="block";
         }
+    </script>
+
+
+
+
+    <script>
+
     </script>
     <style>
     body{
@@ -139,7 +159,7 @@
     </div>
 
     <div class="col-md-5">
-        <div class="panel panel-default">
+        %{--<div class="panel panel-default">
             <div class="panel-heading">Recent Searches</div>
             <div class="panel-body">
                 <table  style="width:100%">
@@ -162,7 +182,7 @@
                     <td><a href="#">View Post</a></td>
                 </table>
             </div>
-        </div>
+        </div>--}%
 
         <!-- write here for left column pannels-->
     </div>
@@ -207,6 +227,7 @@
                     </div>
                 </div>
             </g:form>
+            ${flash.message6}
         </div>
     </div>
 
@@ -218,13 +239,21 @@
                 <div class="form-group">
                     <text class="control-label col-md-4" for="pwd" style="text-align: left;">Password *</text>
                     <div class="col-md-8">
-                        <input type="password" class="form-control" id="email" placeholder="Password" name="password">
+                        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <text class="control-label col-md-4" for="pwd" style="text-align: left;">ConfirmPassword*</text>
+                    <text class="control-label col-md-4" for="pwd" style="text-align: left;" >ConfirmPassword*</text>
                     <div class="col-md-8">
-                        <input type="password" class="form-control" id="email" placeholder="Confirm password" name="confirmpass">
+                        <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm password" name="confirmpassword" onfocusout="Matchpassword()">
+                    </div>
+                    <g:if test="${flash.message}">
+                        <div class="message">
+                            ${flash.message}
+                        </div>
+                    </g:if>
+                    <div>
+                        <span id="matching" style="color: #761c19" ></span>
                     </div>
                 </div>
                 <div class="form-group">

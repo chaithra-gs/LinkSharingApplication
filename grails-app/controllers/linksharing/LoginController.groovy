@@ -20,14 +20,25 @@ class LoginController {
 
         if(isLogin) {
             //render view: "/dashboard", model: [:]
-            session.name = params.email
-            flash.message="Register sucess"
-            print session.name
-            redirect(controller: "dashboard", action: "index")
-        }
-        else {
-            flash.message="Fail"
-            redirect(url: '/')
+            if(User.findByEmail(params.email)){
+                session.name = params.email
+                flash.message = "Register sucess"
+                print session.name
+                redirect(controller: "dashboard", action: "index")
+            }
+             else if(User.findByUsername(params.email)) {
+                session.name = User.findByUsername(params.email).email
+                flash.message = "Register sucess"
+                print session.name
+                redirect(controller: "dashboard", action: "index")
+            }
+            else {
+                flash.message="Fail"
+                redirect(url: '/')
+            }
         }
     }
+
+
+
 }

@@ -18,11 +18,18 @@ class TopicController {
     }
 
     def save() {
-        String email = session.name
-        topicService.save(params, email)
+        Boolean topicExist=Topic.findByName(params.topicName)
+        if(topicExist){
+            flash.message4="Topic already exists"
+            redirect(controller: "dashboard", action: "index")
+        }
+        else {
 
-        redirect(controller: "dashboard", action: "index")
+            String email = session.name
+            topicService.save(params, email)
 
+            redirect(controller: "dashboard", action: "index")
+        }
     }
 
     def saveDoc(){
@@ -51,7 +58,7 @@ class TopicController {
             User user = User.findByEmail(session.name)
             User user1 = User.findByEmail(session.name)
             Long tid = 0.0
-            //println "+++++++++++++++++++++++++++++++++++++++params id+++++++++++++++++++++++++++++++++++++=++++++++++++++++"
+
             print params.id
             Long id = Long.parseLong(params.id)
             //Long id=params.id
@@ -78,6 +85,7 @@ class TopicController {
             List<Subscription> subscription = Subscription.createCriteria().list {
                 eq("topic.id", tid)
             }
+            //get entire row of subscription table
             List<User> users = subscription*.user
             //get count of users subscribed to particualr topic
             List<Long> userslist = users.collect { it.id }
@@ -87,9 +95,11 @@ class TopicController {
 
             List postscount = topicService.topiccount(userslist)
 
+
             List<Resource> resource = Resource.createCriteria().list {
                 eq("topic.id", tid)
             }
+
             println "------------------------"
             render(view: "topicShow",
                     model: [user             : user, subs: sub,
