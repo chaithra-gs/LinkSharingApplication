@@ -82,7 +82,7 @@
               </div>
               <div class="form-group">
                 <div class=" col-md-10">
-                 <g:link class="control-label col-md-8" controller="forgetPassword" action="forgetPassword" style="text-align: left;">Forget Password</g:link>
+                 <g:link class="control-label col-md-8" controller="forgetPassword" action="forgetPassword" style="text-align: left;">Forgot Password</g:link>
                 </div>
                 <div class=" offset-md-1">
                   <button type="submit" class="btn btn-basic">Login</button>
@@ -155,7 +155,7 @@
 
               <div class="form-group">
                 <div class=" col-md-8">
-                  ${flash.message3}
+                  ${flash.message3}${flash.message14}
                 </div>
                 <div class=" col-md-4">
                   <button type="submit" class="btn btn-basic btn-block"  width=100%>Register</button>

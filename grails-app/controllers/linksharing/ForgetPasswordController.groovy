@@ -14,7 +14,8 @@ class ForgetPasswordController {
         if(forgetPasswordService.validateEmail(params)==1)
         {
             session.name = params.email
-            render(view: "Resetnewpasword")
+            render(view:"enterotp")
+            //render(view: "Resetnewpasword")
         }
         else {
             flash.message8="Email doesn't Exist"
@@ -23,7 +24,7 @@ class ForgetPasswordController {
     }
 
     def reset(){
-    render(view: "Resetnewpasword")
+    render(view: "/sendLink/Resetnewpasword")
     }
 
     def updatePassword()

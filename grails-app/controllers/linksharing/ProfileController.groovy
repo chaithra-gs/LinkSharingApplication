@@ -15,17 +15,24 @@ class ProfileController {
             String lastname = params.lname
             String username = params.username
             User user = User.findByEmail(session.name)
+           // String sessionuser=user.username
             if(firstname && lastname && username)
             {
-                user = User.findByEmail(session.name)
-                Boolean check = User.findByUsername(params.username)
+                User user1 = User.findByEmail(session.name)
+                String sessionuser=user1.username
+                println "}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]"+sessionuser
+                List<String> userList = User.createCriteria().list(){
+                    projections {
+                        property('username')
+                    }
+                        ne('username', sessionuser)
 
-                List<String> li=User.findAllByUsernameNotEqual(username)
+                }
+                println "list of users here+++++++++++++++++++++++++++"+userList
 
-                Boolean b=li.findAll{it.user}
+                boolean exists= userList.contains('sessionuser')
 
-
-                if(check)
+                if(exists)
                 {
                     flash.message6="\"username already Exists!!\""
                     redirect(controller: "User", action: "myaction")
@@ -34,7 +41,6 @@ class ProfileController {
                     def update = profileService.update(params, request, user)
 
                     redirect(controller: "dashboard", action: "index")
-
                 }
             }
             else {
@@ -51,9 +57,7 @@ class ProfileController {
             render("please login first")
         }
         else {
-
             User user = User.findByEmail(session.name)
-
             def updatepass = profileService.updatepass(params, user)
             if(updatepass)
             {

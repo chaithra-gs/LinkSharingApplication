@@ -168,7 +168,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Profile</div>
         <div class="panel-body">
-            <g:form class="form-horizontal"  controller="Profile" action="profile" enctype="multipart/form-data">
+            <g:form class="form-horizontal"  controller="profile" action="profile" enctype="multipart/form-data">
                 <div class="form-group">
                     <text class="control-label col-md-4" for="email" style="text-align: left;">First Name *</text>
                     <div class="col-md-8">

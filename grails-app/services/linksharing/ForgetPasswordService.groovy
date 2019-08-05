@@ -26,11 +26,11 @@ class ForgetPasswordService {
             return 0
 
         }
-        //user.password=params.password
-        return 1
+
         User u1 = User.findByEmail(email)
         u1.password = password
         u1.save(failOnError: true, flush: true)
+        return 1
 
     }
 }
