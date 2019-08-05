@@ -12,9 +12,6 @@ class DocumentController {
             Long id = Long.parseLong(params.id)
             println "id:" + id
             DocumentResource dr =  Resource.get(id)
-
-
-            //Users user = session.user
             User user = User.findByEmail(session.name)
             def file = new File("/home/chaithra/Downloads/grailsDocs/")
 
@@ -24,7 +21,6 @@ class DocumentController {
             } else {
                 file = null
             }
-            print dr.path
 
             response.setHeader("Content-disposition", "attachment;filename=\"${dr.path}\"")
             response.outputStream << file.bytes
@@ -45,9 +41,6 @@ class DocumentController {
         }
 
     }
-
-
-
 
 }
 

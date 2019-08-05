@@ -74,7 +74,6 @@ class TopicController {
                 tid = id
             }
 
-
             Long subscount = Subscription.createCriteria().count {
                 eq("topic.id", tid)
             }
@@ -114,6 +113,30 @@ class TopicController {
                             subscriptions    : subscriptionLt])
         }
     }
+
+    def sendInvite(){
+        println "In invite block>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +params
+
+        User user = User.findByEmail(params.iemail)
+        if(user)
+        {
+            Topic topic = Topic.findByName(params.topic)
+            Long topicId = topic.id
+            String link = createLink(controller: 'Subscription', action: 'subscribeTopic',params:[id:topicId], absolute: true)
+            sendMail {
+                to "${user.email}"
+                subject "Hello ${user.firstName} You have been invited to join this topic at LinkSharing!!!"
+                text link
+            }
+            redirect controller: 'dashboard',action:'index'
+        }
+        else{
+            flash.message13="Email doesn't Exist!!"
+            redirect controller: 'dashboard',action:'index'
+        }
+
+    }
+
 }
 
 

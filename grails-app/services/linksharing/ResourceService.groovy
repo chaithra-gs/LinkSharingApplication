@@ -15,9 +15,6 @@ class ResourceService {
             eq("user.id", id)
             eq("seriousness", Seriousness.VERY_SERIOUS)
         }.collect{it.id}
-        //print Verys
-        //println "csdc"
-
         List<Long> Ser = Subscription.createCriteria().list {
             projections {
                 property("topic")

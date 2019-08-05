@@ -2,33 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eb5ca93-7788-48f4-b3b9-358b2d940d99" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SendLinkController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/assets/images/chaithra.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/assets/images/chaithra.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/DashboardController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/DashboardController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/DocumentController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/DocumentController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/ForgetPasswordController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/ForgetPasswordController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/LoginController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/LoginController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/ProfileController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/ProfileController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceRatingController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceRatingController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SendInviteController.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SendlinkController.groovy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SignupController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SignupController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SubscriptionController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SubscriptionController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/UserController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/UserController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/domain/linksharing/LinkResource.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/linksharing/LinkResource.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/DocumentService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/DocumentService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/ForgetPasswordService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/ForgetPasswordService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/LoginService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/LoginService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/ProfileService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/ProfileService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/ResourceRatingService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/ResourceRatingService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/ResourceService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/ResourceService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/SendInviteService.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/SignupService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/SignupService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/SubscriptionService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/SubscriptionService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/TopicService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/TopicService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/UserService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/UserService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/forgetPassword/Forgetpassword.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/forgetPassword/Forgetpassword.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/forgetPassword/Resetnewpasword.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/forgetPassword/Resetnewpasword.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/forgetPassword/loginWithNewPassword.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/forgetPassword/loginWithNewPassword.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/index.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/index.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/layouts/test.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/layouts/test.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/resource/postlist.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/resource/postlist.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/resource/rating.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/resource/rating.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/topic/TopicList.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/topic/TopicList.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/user/EditProfile.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/user/EditProfile.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/user/showUserList.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/user/showUserList.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/groovy/linksharing/SendInviteControllerSpec.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/linksharing/SendLinkControllerSpec.groovy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -221,7 +241,7 @@
       <workItem from="1564090688206" duration="12133000" />
       <workItem from="1564122587106" duration="9992000" />
       <workItem from="1564134474562" duration="146638000" />
-      <workItem from="1564506082260" duration="134980000" />
+      <workItem from="1564506082260" duration="185691000" />
     </task>
     <servers />
   </component>
@@ -517,6 +537,41 @@
           <url>file://$PROJECT_DIR$/build.gradle</url>
           <line>1</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
+          <line>424</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
+          <line>54</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
+          <line>159</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/grails-app/views/resource/rating.gsp</url>
+          <line>10</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/grails-app/views/resource/rating.gsp</url>
+          <line>190</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp</url>
+          <line>30</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
+          <line>356</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

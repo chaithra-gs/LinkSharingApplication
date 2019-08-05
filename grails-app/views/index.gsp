@@ -4,8 +4,6 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-%{--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="4nonymous">--}%
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="jquery-3.3.1.js"></script>
   <script type = "text/javascript">
@@ -61,67 +59,7 @@
       </div>
     </div>
     <div class="col-md-7">
-      %{--<div class="panel panel-default">
-        <div class="panel-heading">Recent Searches</div>
-        <div class="panel-body">
-          <table  style="width:100%">
-            <tr>
-            <td rowspan="3" width=25%> <img src="https://i.stack.imgur.com/l60Hf.png" height=120px width=125px></td>
-            <td width=275px class="text">chaithra</td>
-            <td width=150px class="text-muted">@chaithra</td>
-            <td width=150px></td>
-            <td width=150px></td>
-            <td width=150px>
-              <a href="#">
-                Grails</a>
-              </td>
-            </tr>
-            <td colspan="5" ></td>
-          </tr>
-          <td>Links</td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><a href="#"></a></td>
-          </table>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="container">
-            <div class="col-md-5">
-              Top Posts</div>
-              <div class="col-md-2">
-                <div class="dropdown">
-                  <button class="btn btn-basic dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Today  <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="about-us">
-                    <li><a href="#">One Week</a></li>
-                    <li><a href="#">One Month</a></li>
-                    <li><a href="#">One Year</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body"> <table  style="width:100%">
-            <td rowspan="3" width=25%> <img src="https://i.stack.imgur.com/l60Hf.png" height=120px width=125px></td>
-            <td width=275px class="text">chaithra</td>
-            <td width=150px class="text-muted">@chaithra</td>
-            <td width=150px></td>
-            <td width=150px></td>
-            <td width=150px><a href="#">Grails</a></td>
-            </tr>
-            <td colspan="5" height=100px> </td>
-          </tr>
-          <td>Links</td>
-          <td></td>
-          <td></td>
-          <td></td>
-            <td><a href="#">View Post</a></td>
-          </table></div>
-        </div>--}%
+
       </div>
       <div class="col-md-5">
         <div class="panel panel-default">
@@ -139,11 +77,7 @@
                 <text class="control-label col-md-4 " for="pwd" style="text-align: left;">Password *</text>
                 <div class="col-md-8">
                   <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                  <g:if test="${flash.message}">
-                    <div class="message">
-                      ${flash.message}
-                    </div>
-                  </g:if>
+                  ${flash.message1}
                 </div>
               </div>
               <div class="form-group">

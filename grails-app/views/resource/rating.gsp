@@ -102,9 +102,6 @@
                             </i></button>
                             </td>
 
-                            %{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
-                             </td>--}%
-
                             <td width=30px>
 
                                 <div class="dropdown" >
@@ -162,7 +159,34 @@
             </div>
         </div>
     </div>
+%{--THIS IS FOR INVITATION--}%
+    <div class="modal fade"  id="invite" role="dialog">
+        <div class="modal-dialog">
+            <!-- topic Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title" style="alignment: center;">Send Invitation</h3>
+                </div>
+                <div class="modal-body">
+                    <g:uploadForm  controller="topic" action="sendInvite" class="topicForm">
+                        Email *:
+                        <input type="text" class="form-control" id="iemail" placeholder="Link" name="iemail">
+                        <br>
+                        <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
+                        <br>
+                        <br>
+                        <input type="submit" value="share"   class="btn btn-success" style="float: right; margin-top: 5px;"/>
 
+                    </g:uploadForm>
+                </div>
+                <div class="modal-footer" style=" margin-top: 15px;">
+                    <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     %{--THIS IS SHARE DOCUMENT MODEL--}%
     <div class="modal fade"  id="resource" role="dialog">
         <div class="modal-dialog">
@@ -195,7 +219,7 @@
         </div>
     </div>
 
-
+%{--THIS IS FOR EDIT OF DESCRIPTION--}%
 
     <div class="modal fade" id="editdesc">
         <div class="modal-dialog">
@@ -255,8 +279,6 @@
         </div>
     </div>
 
-
-
     <div class="container">
         <div class="row">
             <div class="row">
@@ -283,7 +305,7 @@
                                 <span id="5" onclick="Rating('${session.name}' , '${resource.id}' , '${5}')"class="glyphicon glyphicon-star"></span>
                             </div>
                         %{--</div>--}%<br><br><br>
-                        <p id="test"></p>
+                       %{-- <p id="test"></p>--}%
 
 
                     <div class="row">
@@ -326,49 +348,44 @@
             </div>
         </div>
 %{--    </div>--}%
-%{--one is here--}%
+%{--TRENDING TOPICS--}%
             <div class ="col-md-6">
-                <div class="panel panel-default" style="height:500px;overflow: auto;">
+                <div class="panel panel-default" style="height:280px;overflow: auto;">
                     <div class="panel-heading">Trending Topics
                     </div>
                     <div class="panel-body">
                         <g:each in="${trending}" var="us" status="i">
                             <ul class="list-inline">
-
-                            <li>
+                                <li>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <asset:image src="${us.createdBy.photo}"  style="width:70px;height:70px"/></div>
-                                    <div class="col-sm-8">
-                                        <div style="font-size:23px;"><b>${us.name}</b></div>
-                                        <div>@${us.createdBy.username}</div>
+                                    <div class="col-md-4">
+                                        <div style="font-size:20px;"><b>${us.name}</b></div>
+                                        </div>
+                                        <div class="col-md-4" style="font-size:23px;">@${us.createdBy.username}</div>
 
-                                        <div class="col-sm-6">
+                                        <div class="col-md-4">
                                             Subscriptions:
                                             <div>${countforsubs.getAt(i)}</div>
                                         </div>
-                                        <div class="col-sm-6">
-
+                                        <div class="col-md-4">
                                             Posts:
                                             <div><a>${countforposts.getAt(i)}</a></div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-offset-4">
+                                    <div class="col-md-8">
                                         <g:link controller="subscription" action="subscribe" params="[id:us.id ,page:"rating"]">Subscribe</g:link>
                                     </div>
                                 </div>
-
                             </li>
                             </ul>
                         </g:each>
-
+                        <hr size="80px">
                     </div>
 
                 </div>
             </div>
         </div>
-
-
         <script>
             function Rating(username , resourceId , value)
             {

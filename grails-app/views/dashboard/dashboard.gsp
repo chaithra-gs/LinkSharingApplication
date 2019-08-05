@@ -73,8 +73,7 @@
                                             </div>
                                         </div>
                                     </g:form>
-                                    ${flash.message4}
-
+                                    ${flash.message4}   ${flash.message11} ${flash.message13}
                                 </div>
                             </td>
                             <td width=10px style="text-align:center;"}>
@@ -96,9 +95,6 @@
                             <td width=30px><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#linkresource"><i class="material-icons" style="text-align:center;">description
                             </i></button>
                             </td>
-
-                            %{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
-                             </td>--}%
 
                             <td width=30px>
 
@@ -161,10 +157,8 @@
             </div>
 
             %{--subscription Modal--}%
-            <div class="panel panel-default" style="height:500px;overflow: auto;">
+            <div class="panel panel-default" style="height:300px;overflow: auto;">
                 <div class="panel-heading">Subscriptions
-
-                    %{--<div style="margin-left:350px">View all</div>--}%
                 </div>
                 <div class="panel-body" >
                     <g:each in="${subscriptions}" var="us" status="i">
@@ -172,7 +166,7 @@
                         <li>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <asset:image src="${userdata.photo}" style="width:60px;height:60px"></asset:image></div>
+                                    <asset:image src="${userdata.photo}" style="width:90px;height:90px"></asset:image></div>
                                 <div class="col-sm-8">
                                     <div style="font-size:23px;">
                                         <g:link controller="topic" action="topicshow" params="[id: us.id]"> ${us.topic.name} </g:link>
@@ -198,8 +192,6 @@
                                 <g:if test  = "${us.topic.createdBy.email==session.name}" >
                                     <div class="row">
                                         <div class="col-md-12">
-                                            %{--<ul class="list-inline">--}%
-                                                %{--<li>--}%
                                             <div class="col-md-8">
                                                     <g:form controller="subscription" action="updateSerious">
                                                         <g:field type="hidden" name="id" value="${us.id}"></g:field>
@@ -208,19 +200,13 @@
                                                     </g:form>
                                         </div>
                                         <div class="col-md-3">
-                                        %{--</div>--}%
-                                                %{--</li>--}%
-                                               %{-- <li>--}%
-                                                %{--<div class="col-md-6">--}%
-                                                    <g:form controller="topic" action="updateVisibility">
-                                                        <g:field type="hidden" name="id" value="${us.topicId}"></g:field>
+
+                                                    <g:form controller="topic" action="updateVisibility"><g:field type="hidden" name="id" value="${us.topicId}"></g:field>
                                                         <g:select onChange="submit()" name="visibility" from="${['PUBLIC','PRIVATE']}"
                                                                   value="${us.topic.visibility}" />
                                                     </g:form>
                                         </div>
-                                        %{--</div>--}%
-                                               %{-- </li>--}%
-                                            %{--</ul>--}%
+
                                         </div>
                                     </div>
                                 </g:if>
@@ -240,11 +226,9 @@
 
            %{-- Trending topic --}%
 
-
-            <div class="panel panel-default" style="height:500px;overflow: auto;">
+            <div class="panel panel-default" style="height:300px;overflow: auto;">
                 <div class="panel-heading">Trending Topics
                     <div style="float:left"></div>
-                    %{--<div style="margin-left:350px"></div>--}%
                 </div>
                 <div class="panel-body">
                     <g:each in="${trending}" var="us" status="i">
@@ -252,7 +236,7 @@
                     <li>
                     <div class="row">
                         <div class="col-md-4">
-                            <asset:image src="${us.createdBy.photo}" alt="photo here" style="width:70px;height:70px"/>
+                            <asset:image src="${us.createdBy.photo}" alt="photo here" style="width:90px;height:90px"/>
                         </div>
                         <div class="col-sm-8">
                             <div style="font-size:15px;">
@@ -275,7 +259,8 @@
                     </g:each>
                 </div>
             </div>
- %{--send invitation here--}%
+
+              %{--send invitation here--}%
             <div class="modal fade"  id="invite" role="dialog">
                 <div class="modal-dialog">
                     <!-- topic Modal content-->
@@ -285,9 +270,9 @@
                             <h3 class="modal-title" style="alignment: center;">Send Invitation</h3>
                         </div>
                         <div class="modal-body">
-                            <g:uploadForm  controller="topic" action="invite" class="topicForm">
+                            <g:uploadForm  controller="topic" action="sendInvite" class="topicForm">
                                 Email *:
-                                <input type="text" class="form-control" id="iemail" placeholder="Link" name="iemail">
+                                <input type="email" class="form-control" id="iemail" placeholder="Link" name="iemail">
                                 <br>
                                 <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
                                 <br>
@@ -310,25 +295,24 @@
 
 
         <div class="col-md-7">
-            %{--inbox--}%
-
-            <div class="panel panel-default" style="height:400px;overflow: auto;">
-                <div class="panel-heading"><div style="float:left">Inbox</div>
-                    <div style="margin-left:350px">View all</div>
-                </div>
+        %{--INBOX HERE--}%
+            <div class="panel panel-default" style="height:350px;overflow: auto;">
+                <div class="panel-heading">Inbox</div>
                 <div class="panel-body">
                     <g:each in="${resources}" var="res" status="i">
                         <ul class="list-inline">
                         <li>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <asset:image src="${res.user.photo}"  style="width:70px;height:70px"/></div>
+                                    <asset:image src="${res.user.photo}"  style="width:90px;height:90px"/></div>
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <b>${res.user.firstName}&nbsp${res.user.lastName}</b></div>
                                         <div class="col-sm-5">@${res.user.username}</div>
-                                        <a class=col-sm-3>${res.topic.name}</a></div>
+
+                                        <a class=col-sm-3 style="font-size: medium"><u>${res.topic.name}</u></a></div>
+                                    <br>
                                     <div class="row">
                                         ${res.description}
                                     </div>
@@ -343,7 +327,7 @@
                                         </div>
                                     </g:if>
                                     <g:else>
-                                        <g:link  controller="Document" action="download" params="[id:res.id , tid:res.id , flag:1]" target="_blank" >Download</g:link>
+                                        <g:link  controller="Document" action="download" params="[id:res.id , tid:res.id , flag:1]"  >Download</g:link>
                                         </div>
                                         <div class="col-md-3">
                                             <a >View Full Site</a>
@@ -354,22 +338,19 @@
                                         <g:link controller="resource" action="editread" params="[id:res.id]">Mark as read</g:link>
                                     </div>
                                     <div class="col-md-3">
-                                        %{--<g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>--}%
                                         <g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         </ul>
-                        <br>
+                       <hr style="color: black" size="100" color="black">
                     </g:each>
 
                 </div>
 
             </div>
         </div>
-
-
 
         %{--Share link--}%
 
@@ -384,7 +365,7 @@
                     <div class="modal-body">
                         <g:uploadForm  controller="topic" action="saveLink" class="topicForm">
                             Link *:
-                            <input type="text" class="form-control" id="linkres" placeholder="Link" name="linkres">
+                            <g:field type="url" class="form-control" id="linkres" placeholder="Link" name="linkres"></g:field>
                             <br>
                             Description *:
                             <textarea class="form-control" id="selectlink" name="selectlink"></textarea>
@@ -480,15 +461,6 @@
     function displayinvite(){
         document.getElementById("drop").style.display="block";
     }
-    // var showHideTopicModal = function() {
-    //     var currentDisplay = document.getElementById("topicModal").style.display;
-    //     if(currentDisplay === "none"){
-    //         document.getElementById("topicModal").style.display = "block";
-    //     }
-    //     else {
-    //         document.getElementById("topicModal").style.display = "none";
-    //     }
-    // }
     var resetTopicForm = function () {
         $(".topicForm").trigger("reset");
     }

@@ -22,22 +22,16 @@ class ResourceRatingService {
         }
         else{
             ResourceRating resourceRate = new ResourceRating(score:rating,userRated: user,resource: res)
-            //println "??????????????????? resource rate object :"+resourceRate.score
             resourceRate.save(failOnError: true)
             user.addToResourceRated(resourceRate)
             res.addToResourceRated(resourceRate)
             user.save(failOnError: true)
             res.save(failOnError: true)
-            //resourceRate.save(failOnError: true)
         }
-        // print "very much outside"
-
-
     }
 
     def readMethod(username , Resource res)
     {
-       // println "here i am in read Method:"+username+" " +res
         User user=User.findByEmail(username)
         ResourceRating resRate=ResourceRating.createCriteria().get{
             eq('userRated.id',user.id)

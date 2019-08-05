@@ -4,7 +4,6 @@ class SignupController {
 
     def signupService
     def index(){
-
         Boolean flag1=User.findByEmail(params.signup_email)
         Boolean flag2=User.findByUsername(params.username)
 
@@ -12,8 +11,6 @@ class SignupController {
             flash.message3="\"Email or Username already Exists\""
             redirect(url:"/")
         }
-
-
         else{
             def value = signupService.register(params,request)
             if(value)
@@ -27,10 +24,7 @@ class SignupController {
                 flash.message = "Login Fail"
                 render(text: "register failed")
             }
-
         }
-
-
     }
 }
 

@@ -10,9 +10,9 @@ class UserController {
    def UserService
     def showAllUserListService
 
-
-    /*def forgetPasswordService*/
-
+    def layout(){
+        render(view:"index1")
+    }
     def myaction(){
         if(!session.name)
         {

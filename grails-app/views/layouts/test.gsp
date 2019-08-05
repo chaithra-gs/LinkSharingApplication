@@ -1,17 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chaithra
-  Date: 01/08/19
-  Time: 12:25 AM
---%>
-
+<!DOCTYPE html>
 <html>
 <head>
-    <meta name="layout content="test"/>
-<g:layoutHead/>
-<g:layoutBody/>
-
-    %{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="4nonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -59,7 +49,10 @@
     .dropdown:hover .dropdown-content {display: block;}
     .dropdown:hover .dropbtn {background-color: #3e8e41;}
     </style>
---}%
+    <meta name="layout" content="test"/>
+   %{-- <title>I am a test page</title>--}%
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
+    <g:layoutHead/>
 </head>
 <body>
 <div class="container"><br>
@@ -84,6 +77,81 @@
                                             </div>
                                         </div>
                                     </g:form>
+                                    ${flash.message4}
+
+                                </div>
+                            </td>
+                            <td width=10px style="text-align:center;"}>
+                                <button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"    data-target="#topicModal">
+                                    <i class="material-icons">chat_bubble_outline</i></button>
+
+                            </td>
+
+                            <td width=30px style="text-align:center;"><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal" style="caret-color: #48802c"   data-target="#invite"><i class="material-icons">
+                                mail_outline
+                            </i></button>
+                            </td>
+
+                            <td width=30px> <button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#resource"><i class="material-icons" style="text-align:center;">
+                                attach_file
+                            </i></button>
+                            </td>
+
+                            <td width=30px><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#linkresource"><i class="material-icons" style="text-align:center;">description
+                            </i></button>
+                            </td>
+
+
+
+                            <td width=30px>
+
+                                <div class="dropdown" >
+                                    <button class="btn btn-primary">
+                                    </button>
+                                    <div class="dropdown-content">
+
+                                        <g:if test="${userdata.admin==true}">
+                                            <a href="/User/myaction">Profile</a>
+                                            <a href="/user/showlist" >Users</a>
+                                            <a href="/topic/topiclist">Topics</a>
+                                            <a href="/resource/postlist">Posts</a>
+                                            <a href="/user/logout">Logout</a>
+                                        </g:if>
+                                        <g:else>
+                                            <a href="/User/myaction">Profile</a>
+                                            <a href="/user/logout">Logout</a>
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </td>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><div class="container"><br>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="container col-md-12" style="background: #31b0d5">
+                    <div class="col-md-5">
+                        <h2 style="color: #a60000"><g:link controller="dashboard" action="index"><strong> <u><b>Link Sharing</b></u></strong></g:link></h2>
+                    </div>
+                    <div class="col-md-7">
+                        <table class="table">
+                            <td width=200px>
+                                <div class="input-group">
+                                    <g:form controller="search" action="search">
+                                        <div class="input-group">
+                                            <g:textField id="mytext" class="form-control" name="q" placeholder="Search" value="${q}"/>
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-basic" type="submit">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </g:form>
+                                    ${flash.message4}
 
                                 </div>
                             </td>
@@ -113,21 +181,10 @@
                             <td width=30px>
 
                                 <div class="dropdown" >
-                                    <button class="btn btn-primary" >${userdata.username}
+                                    <button class="btn btn-primary" >%{--${userdata.username}--}%
                                     </button>
                                     <div class="dropdown-content">
 
-                                        <g:if test="${userdata.admin==true}">
-                                            <a href="/User/myaction">profile</a>
-                                            <a href="/user/showlist" >Users</a>
-                                            <a href="/topic/topiclist">Topics</a>
-                                            <a href="/resource/postlist">posts</a>
-                                            <a href="/user/logout">Logout</a>
-                                        </g:if>
-                                        <g:else>
-                                            <a href="/User/myaction">profile</a>
-                                            <a href="/user/logout">Logout</a>
-                                        </g:else>
                                     </div>
                                 </div>
                             </td>
@@ -138,5 +195,8 @@
         </div>
     </div>
 </div>
+<g:layoutBody/>
+
+
 </body>
-</html>/
+</html>

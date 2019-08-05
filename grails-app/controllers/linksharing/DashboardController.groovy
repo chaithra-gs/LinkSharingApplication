@@ -6,8 +6,6 @@ class DashboardController {
     def readingService
 
     def index() {
-        //for getting session object name
-
             print session.name
             User user1 = User.findByEmail(session.name)
 

@@ -101,9 +101,6 @@
                             </i></button>
                             </td>
 
-                            %{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
-                             </td>--}%
-
                             <td width=30px>
 
                                 <div class="dropdown" >

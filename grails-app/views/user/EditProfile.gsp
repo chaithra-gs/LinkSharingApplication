@@ -159,31 +159,6 @@
     </div>
 
     <div class="col-md-5">
-        %{--<div class="panel panel-default">
-            <div class="panel-heading">Recent Searches</div>
-            <div class="panel-body">
-                <table  style="width:100%">
-                    <td rowspan="3" width=15% align="center"> <img src="https://i.stack.imgur.com/l60Hf.png" height=120px width=125px></td>
-                    <td width=275px class="text">chaithra</td>
-                    <td width=150px class="text-muted">@chaithra</td>
-                    <td width=150px></td>
-                    <td width=150px></td>
-                    <td width=150px>
-                        <a href="#"></a>
-                        Grails
-                    </td>
-                </tr>
-                    <td colspan="5" ></td>
-                </tr>
-                    <td>Links</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="#">View Post</a></td>
-                </table>
-            </div>
-        </div>--}%
-
         <!-- write here for left column pannels-->
     </div>
 
@@ -223,8 +198,10 @@
                     <div class=" col-md-8">
                     </div>
                     <div class=" col-md-4">
+
                         <button type="submit" class="btn btn-basic btn-block" width=100%>Update</button>
                     </div>
+                    ${flash.message9}
                 </div>
             </g:form>
             ${flash.message6}
@@ -239,13 +216,13 @@
                 <div class="form-group">
                     <text class="control-label col-md-4" for="pwd" style="text-align: left;">Password *</text>
                     <div class="col-md-8">
-                        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                        <input type="password" class="form-control" id="password" placeholder="Password" value="${userdata.password}" name="password">
                     </div>
                 </div>
                 <div class="form-group">
                     <text class="control-label col-md-4" for="pwd" style="text-align: left;" >ConfirmPassword*</text>
                     <div class="col-md-8">
-                        <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm password" name="confirmpassword" onfocusout="Matchpassword()">
+                        <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm password" value="${userdata.password}" name="confirmpassword" onfocusout="Matchpassword()">
                     </div>
                     <g:if test="${flash.message}">
                         <div class="message">
@@ -390,11 +367,6 @@
 </div>
 
 </div>
-
-
-
-
-
 
 </body>
 </html>

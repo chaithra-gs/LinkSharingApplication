@@ -9,31 +9,45 @@ class ForgetPasswordController {
 
     }
 
-    def validateResetPaswordEmail()
+    def validateEmail()
     {
         if(forgetPasswordService.validateEmail(params)==1)
         {
             session.name = params.email
-            render(view:"Resetnewpasword")
-            //render(text:"jelklhkd")
+            render(view: "Resetnewpasword")
         }
         else {
-            render(text:"Email doesn't Exist")
+            flash.message8="Email doesn't Exist"
+
         }
     }
 
-    def updatePassword(){
+    def reset(){
+    render(view: "Resetnewpasword")
+    }
+
+    def updatePassword()
+    {
         String email = session.name
-        forgetPasswordService.resetPassword(params,email)
-        session.invalidate()
+       boolean updatepass= forgetPasswordService.resetPassword(params,email)
 
-        render(text: "Login with new Password")
-        //redirect(url:"/")
 
-       /* render(view:"loginWithNewPassword")*/
+        if(updatepass)
+        {
+            session.invalidate()
+            flash.message10 = "Login with new password"
+            redirect(url:"/")
+
+        }
+        else {
+            flash.message10 = "password Mismatch"
+            redirect(controller: "ForgetPassword", action: "reset")
+
+        }
+
     }
     def newpass()
     {
         redirect(url:"/")
-}
+    }
 }

@@ -21,7 +21,6 @@ class TopicService {
 
         topic.addToSubscriptionHas(sub)
         sub.save(failOnerror:true,flush:true)
-
         u.save(flush:true , failOnError : true)
 
     }
@@ -42,8 +41,6 @@ class TopicService {
 
         String str = uname + fName
 
-        // '/home/rishabh/project/grails-app/assets/documents/' + username + filename
-
         String fpath = '/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/documents/' + str
         File des = new File(fpath)
         f.transferTo(des)
@@ -51,8 +48,6 @@ class TopicService {
 
         DocumentResource newRes = new DocumentResource(description: description1, topic: tobj, user: user1, path: str)
         newRes.save(flush: true, failOnError: true)
-        //for finding all the persons who subscribed to particular topic (to send notifications)
-
 
         List<User> userids = Subscription.createCriteria().list {
             projections {
@@ -103,7 +98,6 @@ class TopicService {
             eq("topic.id", tID)
         }
 
-
         Boolean isRead = false
 
         userids.each {
@@ -117,9 +111,6 @@ class TopicService {
             newRes.save(flush:true,failOnError:true)
 
         }
-
-
-
     }
 
     def serviceMethod(String name,params) {
@@ -138,7 +129,6 @@ class TopicService {
          t.visibility=params.visibility
          t.save(flush:true,failOnError:true)
      }
-
 
 
     def subscriptioncount(List userslist)
@@ -191,7 +181,6 @@ class TopicService {
         return topiccount
 
     }
-
 
 
 }

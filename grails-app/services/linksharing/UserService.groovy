@@ -22,13 +22,7 @@ class UserService {
         List<Long> subscriptionList = Subscription.createCriteria().list(/*max:5*/){
             eq("user.id",user.id)
         }
-       /* if(subscriptionList)
-            return  subscriptionList
-        else
-            return null*/
-        //print subscriptionList
         subscriptionList.sort{b,a-> a.topic.lastUpdated<=>b.topic.lastUpdated}
-        //print subscriptionList
         return subscriptionList
 
     }
@@ -46,8 +40,6 @@ class UserService {
                             inList('id', topicids)
                         }
                     }
-           // println "Topic counts>>>>>>>>>>>>>>>>>>" + topiccounts
-            //println "topic ids>>>>>>>>>>>>>>>>>>>>>>>>>>" + topicids
             List<Integer> counts = topicids.collect { x ->
                 topiccounts.find {
                     if (it.getAt(1) == x)
@@ -65,7 +57,6 @@ class UserService {
                 }
             }
             return counts
-
 
         }
     }
@@ -113,9 +104,6 @@ class UserService {
     def trendtopics()
     {
         List <Long> topicsid=Topic.list().collect{
-            /*if(it.visibility== Visibility.PUBLIC){
-                return it.id
-            }*/
           it.id
         }
  println ">>>>>>>>>>>>>>>>>>>>>>>. TOPICSID"+topicsid
@@ -124,10 +112,7 @@ class UserService {
                     projections{
                         count('topic.id')
                         groupProperty('topic.id')
-
                     }
-
-
                 }
 
         abcd.sort{b,a-> a.getAt(0)<=>b.getAt(0)}
@@ -144,10 +129,8 @@ class UserService {
             }
 
         }
-        print "xyz::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::"+xyz
         xyz.removeAll{it==0}
         List bbb= xyz+(topicsid-xyz)
-        println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>bbb"+bbb
         List<Topic> topicList1 = []
         def i
         for(i=0;i<5;i++){
@@ -162,19 +145,15 @@ class UserService {
 
     def topTopicsPosts(List<Topic> trending) {
 
-        //print topicsid
         List abcd = Resource.createCriteria().list(max: 5)
                 {
                     projections {
                         count('topic.id')
                         groupProperty('topic.id')
-                        // countDistinct('topic.id')
                     }
-                    //order()
                 }
-        //println abcd
+
         abcd.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
-        print ":::::::?????????????????????????????????????????????????"+abcd
         List<Integer> xyz = trending.collect { x ->
             abcd.find {
                 if (it.getAt(1) == x.id)
@@ -191,9 +170,6 @@ class UserService {
         return x
     }
 
-
-
-
     def topTopicSubs(List<Topic> trending)
     {
 
@@ -202,14 +178,13 @@ class UserService {
                     projections {
                         count('topic.id')
                         groupProperty('topic.id')
-                        // countDistinct('topic.id')
                     }
                     'topic' {
                         inList('id', trending.id)
                     }
                 }
-        println ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"+trending
-        println  "??????????????????????????" +topiccounts
+       /* println ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"+trending
+        println  "??????????????????????????" +topiccounts*/
         List<Integer> counts = trending.collect { x ->
             topiccounts.find {
                 if (it.getAt(1) == x.id)
@@ -223,7 +198,4 @@ class UserService {
             return it.getAt(0)}
         return l
     }
-
-
-
 }

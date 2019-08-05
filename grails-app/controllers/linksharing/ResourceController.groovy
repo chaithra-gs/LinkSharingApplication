@@ -30,8 +30,6 @@ class ResourceController {
             def rating = resourceRatingService.readMethod(session.name,res)
 
             render(view: "rating", model: [userdata:user,subscriptions : subscriptionLt,resource: res, trending: trending, value:rating,countforsubs: subcount, countforposts:postcount])
-
-
         }
     }
 

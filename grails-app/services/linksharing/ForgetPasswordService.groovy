@@ -8,7 +8,7 @@ class ForgetPasswordService {
     def validateEmail(Map params)
     {
         String email = params.email
-        User userExist = User.findByEmail(email)
+        boolean userExist = User.findByEmail(email)
         if(userExist)
         {
             return 1
@@ -19,8 +19,15 @@ class ForgetPasswordService {
     }
 
     def resetPassword(Map params, String email){
-        String password = params.newpassword
+        String password = params.password
+        String confirmpassword=params.confirmpassword
+        if(confirmpassword.compareTo(password)!=0)
+        {
+            return 0
 
+        }
+        //user.password=params.password
+        return 1
         User u1 = User.findByEmail(email)
         u1.password = password
         u1.save(failOnError: true, flush: true)

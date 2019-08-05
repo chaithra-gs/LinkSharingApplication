@@ -1,9 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chaithra
-  Date: 31/07/19
-  Time: 10:00 PM
---%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
@@ -17,56 +11,6 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 
-
-<style>
-   /* .topnav {
-        overflow: hidden;
-        background-color: #333;
-        height: 53px;
-    }
-    .topnav a {
-        float: left;
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-    }
-    .topnav a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-    .topnav a.active {
-        background-color: #4CAF50;
-        color: white;
-    }
-    .topnav .search-container {
-        float: right;
-    }
-    .topnav input[type=text] {
-        padding: 6px;
-        margin-top: 8px;
-        font-size: 17px;
-        border: none;
-    }
-    .topnav .search-container button {
-        float: right;
-        padding: 6px 10px;
-        margin-top: 8px;
-        margin-right: 16px;
-        background: #ddd;
-        font-size: 17px;
-        border: none;
-        cursor: pointer;
-    }
-    .topnav .search-container button:hover {
-        background: #ccc;
-    }
-    .topnav .search-container button {
-        height: 36px;
-    }*/
-    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
     .dropbtn {
@@ -128,6 +72,7 @@
                                                 </div>
                                             </div>
                                         </g:form>
+                                        ${flash.message4}
 
                                     </div>
                                 </td>
@@ -150,9 +95,6 @@
                                 <td width=30px><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#linkresource"><i class="material-icons" style="text-align:center;">description
                                 </i></button>
                                 </td>
-
-                                %{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
-                                 </td>--}%
 
                                 <td width=30px>
 
@@ -181,7 +123,124 @@
                 </div>
             </div>
         </div>
-<h2>Topics List</h2>
+    <div class="modal fade"  id="linkresource" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Share Link</h4>
+                </div>
+                <div class="modal-body">
+                    <g:uploadForm  controller="topic" action="saveLink" class="topicForm">
+                        Link *:
+                        <input type="text" class="form-control" id="linkres" placeholder="Link" name="linkres">
+                        <br>
+                        Description *:
+                        <textarea class="form-control" id="selectlink" name="selectlink"></textarea>
+                        <br>
+                        <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
+                        <br>
+                        <br>
+                        <input type="submit" value="share"   class="btn btn-success" style="float: right; margin-top: 5px;"/>
+
+                    </g:uploadForm>
+                </div>
+                <div class="modal-footer" style=" margin-top: 15px;">
+                    <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade"  id="resource" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Share Document</h4>
+                </div>
+                <div class="modal-body">
+                    <g:uploadForm  controller="topic" action="saveDoc" class="topicForm">
+                        Document *:
+                        <input type="file" class="form-control" id="doc" placeholder="choose" name="document">
+                        <br>
+                        Description *:
+                        <textarea class="form-control" id="select" name="select"></textarea>
+                        <br>
+                        <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
+                        <br>
+                        <br>
+                        <input type="submit" value="share"   class="btn btn-success" style="float: right; margin-top: 5px;"/>
+
+                    </g:uploadForm>
+                </div>
+                <div class="modal-footer" style=" margin-top: 15px;">
+                    <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="topicModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Topic</h4>
+                </div>
+                <div class="modal-body">
+                    <g:form  controller="topic" action="save" class="topicForm">
+                        Name *:
+                        <input class="form-control" type="text" name="topicName" id="topicName"/>
+                        Visibility *:
+                        <select class="form-control" id="select" name="selection">
+                            <option>PUBLIC</option>
+                            <option>PRIVATE</option>
+                        </select>
+                        <input type="submit" class="btn btn-success" style="float: right; margin-top: 5px;"/>
+                    </g:form>
+                </div>
+                <div class="modal-footer" style=" margin-top: 15px;">
+                    <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade"  id="invite" role="dialog">
+        <div class="modal-dialog">
+            <!-- topic Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title" style="alignment: center;">Send Invitation</h3>
+                </div>
+                <div class="modal-body">
+                    <g:uploadForm  controller="topic" action="sendInvite" class="topicForm">
+                        Email *:
+                        <input type="text" class="form-control" id="iemail" placeholder="Link" name="iemail">
+                        <br>
+                        <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
+                        <br>
+                        <br>
+                        <input type="submit" value="share"   class="btn btn-success" style="float: right; margin-top: 5px;"/>
+
+                    </g:uploadForm>
+                </div>
+                <div class="modal-footer" style=" margin-top: 15px;">
+                    <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="panel-default">
+    <div class="panel-body">
+        <h2>Topics List</h2>
         <p>The table represent the all users</p>
         <table id="example" class="table table-striped table-bordered">
             <thead>
@@ -204,10 +263,8 @@
 </tbody>
 </table>
 </div>
+</div>
 <script>
-   /* $(document).ready(function() {
-        $('#example').DataTable({"dom":'<"top"i>rt<"bottom"flp><"clear">'});
-    } );*/
     $(document).ready(function() {
         $('#example').DataTable( {
             "order": [[ 3, "desc" ]]

@@ -231,7 +231,6 @@
     </div>
     <div class="modal fade"  id="resource" role="dialog">
         <div class="modal-dialog">
-            <!-- topic Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -260,8 +259,6 @@
         </div>
 
     </div>
-
-
     <div class="modal fade" id="topicModal" role="dialog">
         <div class="modal-dialog">
             <!-- topic Modal content-->
@@ -289,17 +286,15 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade"  id="invite" role="dialog">
         <div class="modal-dialog">
-            <!-- topic Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h3 class="modal-title" style="alignment: center;">Send Invitation</h3>
                 </div>
                 <div class="modal-body">
-                    <g:uploadForm  controller="topic" action="invite" class="topicForm">
+                    <g:uploadForm controller="topic" action="sendInvite" class="topicForm">
                         Email *:
                         <input type="text" class="form-control" id="iemail" placeholder="Link" name="iemail">
                         <br>

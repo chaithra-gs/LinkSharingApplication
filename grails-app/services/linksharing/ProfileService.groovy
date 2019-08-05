@@ -6,44 +6,26 @@ import grails.transaction.Transactional
 class ProfileService {
 
     def update(params,request,user) {
-        print "......................." + params.inputphoto
-        print ">>>>>>>>>>>>>>>>>>>>."+params.fname
-
             user.firstName=params.fname
             user.lastName=params.lname
             user.username=params.username
 
         String uname=params.username
-
-           /* def des = request.getFile('inputphoto')
-             String fName = des.getOriginalFilename()
-             String photo1= params.username+fName
-
-            if(des){
-                File file=new File( "/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/images/"+ photo1)
-                des.transferTo(file)
-            }*/
-        String image="default.png"
         def f = request.getFile('inputphoto')
         String fName = f.getOriginalFilename()
         if(fName){
-
-            image = uname+fName
-
+            String image = uname+fName
             String loc='/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/images/'+image
             File des=new File(loc)
             f.transferTo(des)
+            user.photo=image
+            user.save(flush:true)
 
         }
-
-            user.photo=image
             return 1
-
-
     }
 
     def updatepass(params,user){
-
         String password = params.password
         String confirmpassword = params.confirmpassword
         if(confirmpassword.compareTo(password)!=0)

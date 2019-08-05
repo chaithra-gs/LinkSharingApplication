@@ -11,23 +11,36 @@ class ProfileController {
             render("please login first")
         }
         else {
-
+            String firstname = params.fname
+            String lastname = params.lname
+            String username = params.username
             User user = User.findByEmail(session.name)
-            Boolean check = User.findByUsername(params.username)
-            if(check)
+            if(firstname && lastname && username)
             {
-                flash.message6="\"username already Exists!!\""
+                user = User.findByEmail(session.name)
+                Boolean check = User.findByUsername(params.username)
+
+                List<String> li=User.findAllByUsernameNotEqual(username)
+
+                Boolean b=li.findAll{it.user}
+
+
+                if(check)
+                {
+                    flash.message6="\"username already Exists!!\""
+                    redirect(controller: "User", action: "myaction")
+                }
+                else{
+                    def update = profileService.update(params, request, user)
+
+                    redirect(controller: "dashboard", action: "index")
+
+                }
+            }
+            else {
+                flash.message9="Please Enter All Fields!!"
                 redirect(controller: "User", action: "myaction")
             }
-            else{
-                print params.fname
-                print params.lname
-                def update = profileService.update(params, request, user)
-
-                redirect(controller: "dashboard", action: "index")
-
-            }
-
 
         }
     }
@@ -44,17 +57,17 @@ class ProfileController {
             def updatepass = profileService.updatepass(params, user)
             if(updatepass)
             {
-                flash.message = "Login with new password"
+                session.invalidate()
                 redirect(url:"/")
-               // session.name = params.
-                //redirect(controller: "dashboard", action: "index")
+                flash.message = "Login with new password"
+
             }
             else {
                 flash.message = "password Mismatch"
                 redirect(controller: "profile", action: "editProfile")
 
             }
-            //redirect(controller:'Profile',action:'editProfile')
+
         }
     }
 }
