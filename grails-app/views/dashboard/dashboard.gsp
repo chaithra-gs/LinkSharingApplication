@@ -68,31 +68,31 @@
                                             <g:textField id="mytext" class="form-control" name="q" placeholder="Search" value="${q}"/>
                                             <div class="input-group-btn">
                                                 <button class="btn btn-basic" type="submit">
-                                                    <span class="glyphicon glyphicon-search"></span>
+                                                    <span class="glyphicon glyphicon-search" style="height: 20%"></span>
                                                 </button>
                                             </div>
                                         </div>
                                     </g:form>
-                                    ${flash.message4}   ${flash.message11} ${flash.message13}
+                                    ${flash.message4}   ${flash.message11} ${flash.message13} ${flash.message23}
                                 </div>
                             </td>
                             <td width=10px style="text-align:center;"}>
-                                <button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"    data-target="#topicModal">
+                                <button type="button" class="btn btn-info btn-group-sm" data-toggle="modal" title="Create topic"   data-target="#topicModal">
                                     <i class="material-icons">chat_bubble_outline</i></button>
 
                             </td>
 
-                            <td width=30px style="text-align:center;"><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal" style="caret-color: #48802c"   data-target="#invite"><i class="material-icons">
+                            <td width=30px style="text-align:center;"><button type="button" class="btn btn-info btn-group-sm" title="Send invitation" data-toggle="modal" style="caret-color: #48802c"   data-target="#invite"><i class="material-icons">
                                 mail_outline
                             </i></button>
                             </td>
 
-                            <td width=30px> <button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#resource"><i class="material-icons" style="text-align:center;">
+                            <td width=30px> <button type="button" class="btn btn-info btn-group-sm" data-toggle="modal" title="Create resource"  data-target="#resource"><i class="material-icons" style="text-align:center;">
                                 attach_file
                             </i></button>
                             </td>
 
-                            <td width=30px><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#linkresource"><i class="material-icons" style="text-align:center;">description
+                            <td width=30px><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal" title="Create link"  data-target="#linkresource"><i class="material-icons" style="text-align:center;">description
                             </i></button>
                             </td>
 
@@ -148,8 +148,8 @@
                                 <td width="150px">Topics</td>
                             </tr>
                             <tr>
-                                <td width=150px>"${count_subscribe}"</td>
-                                <td width=150px>"${count_topic }"</td>
+                                <td width=150px>${count_subscribe}</td>
+                                <td width=150px>${count_topic }</td>
                             </tr>
                         </table>
                     </div>
@@ -179,7 +179,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         Posts:
-                                        <div><a>${resourcecount.get(i)}</a></div>
+                                        <div>${resourcecount.get(i)}</div>
                                     </div >
                                     <div class="col-sm-6">
                                     <g:if test="${us.topic.createdBy.email==session.name}">
@@ -247,9 +247,8 @@
                                 Subscriptions:
                                 <div>${subs1.get(i)}</div></div>
                             <div class="col-sm-6">
-
                                 Posts:
-                                <div><a>${topic1.getAt(i)}</a></div></div>
+                                <div>${topic1.getAt(i)}</div></div>
                         </div>
 
                         <g:link controller="subscription" action="subscribe" params="[id:us.id ,page:"dashboard"]">Subscribe</g:link>

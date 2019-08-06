@@ -18,18 +18,20 @@ class TopicController {
     }
 
     def save() {
-        Boolean topicExist=Topic.findByName(params.topicName)
-        if(topicExist){
-            flash.message4="Topic already exists"
-            redirect(controller: "dashboard", action: "index")
-        }
-        else {
+        Topic uniqueTopic=Topic.findByName(params.topicName)
+        List list = topicService.checkUnique(session.name)
 
-            String email = session.name
-            topicService.save(params, email)
+        boolean var=list.contains(uniqueTopic)
+            if(var){
+                flash.message4="Topic already exists"
+                redirect(controller: "dashboard", action: "index")
+            }else{
+                String email = session.name
+                topicService.save(params, email)
 
-            redirect(controller: "dashboard", action: "index")
-        }
+                redirect(controller: "dashboard", action: "index")
+            }
+
     }
 
     def saveDoc(){

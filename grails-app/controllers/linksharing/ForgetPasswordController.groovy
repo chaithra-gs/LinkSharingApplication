@@ -15,7 +15,6 @@ class ForgetPasswordController {
         {
             session.name = params.email
             render(view:"enterotp")
-            //render(view: "Resetnewpasword")
         }
         else {
             flash.message8="Email doesn't Exist"

@@ -4,6 +4,7 @@ class SignupController {
 
     def signupService
     def index(){
+
         String firstname = params.firstname
         String lastname = params.lastname
         String email = params.signup_email
@@ -31,17 +32,14 @@ class SignupController {
                 else
                 {
                     flash.message = "register Fail"
-                    //render(text: "register failed")
-                    render(view:"index")
+                    render(view:"/signup/index")
                 }
             }
         }
         else{
             flash.message14=" Please Enter all required fields!!"
-            render(view:"index")
+            render(view:"/signup/index")
         }
-
-
 
     }
 }

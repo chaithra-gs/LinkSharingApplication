@@ -19,7 +19,7 @@
         static constraints = {
             email(unique:true,email:true)
             username(unique:true)
-            password(size:4..15, matches:"[a-zA-Z0-9]+")
+            password(size:4..15)
             photo (blank:true,nullable: true)
             admin nullable:true
             password(validator:{val,obj->
@@ -30,4 +30,5 @@
         static mapping={
             table 'Users'
         }
+
     }

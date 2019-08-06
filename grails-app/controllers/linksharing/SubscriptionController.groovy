@@ -43,7 +43,6 @@ class SubscriptionController {
     }
 
     def unsubscribe(params){
-        println params.id
         Long sid = 0.0
         User user=User.findByEmail(session.name)
         Subscription su=Subscription.findById(params.id)
@@ -78,14 +77,19 @@ class SubscriptionController {
             render("please login first")
         } else {
             User user = User.findByEmail(session.name)
-
             Long topid = Long.parseLong(params.id)
             Topic t = Topic.get(topid)
+            Subscription s=Subscription.findByTopicAndUser(t,user)
+            if(s==null){
+                 s = new Subscription(seriousness: Seriousness.'CASUAL', topic: t)
+                user.addToSubscribedTo(s)
+                s.save(flush: true, failOnError: true)
+                user.save(flush: true, failOnError: true)
+            }
+            else{
+                flash.message23="Already subscribed"
+            }
 
-            Subscription s = new Subscription(seriousness: Seriousness.'CASUAL', topic: t)
-            user.addToSubscribedTo(s)
-            s.save(flush: true, failOnError: true)
-            user.save(flush: true, failOnError: true)
             redirect(controller: "dashboard", action: "index")
         }
     }

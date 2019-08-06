@@ -12,13 +12,16 @@ class SendLinkController {
             String link = createLink(controller: 'forgetPassword', action: 'validateEmail', params: [email: user.email], absolute: true)
             sendMail {
                 to "${user.email}"
-                subject "Hello ${user.firstName} Your password reset link is here!!! with otp " + otp1
+                subject "Hello ${user.firstName} Your password reset link is here!!! with otp" + otp1
                 text link
             }
-            render("Check Your Mail")
+            //render("Check Your Mail")
+            flash.message22="Check your mail"
+            redirect(controller:"forgetPassword",action:"ForgetPassword")
         }
         else{
-            render(text:"Email doesn't exist")
+            flash.message23="Email doesn't exist"
+            redirect(controller:"forgetPassword",action:"ForgetPassword")
         }
     }
     def resetpage(){
@@ -28,7 +31,6 @@ class SendLinkController {
         if(otp1==check)
         {
            println "otp in if========================"+params.otp
-            //render(view: "Resetnewpasword")
             redirect(action:"resetPassword")
         }
 

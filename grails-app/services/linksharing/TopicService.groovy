@@ -182,5 +182,13 @@ class TopicService {
 
     }
 
+    def checkUnique(String name){
+        User user=User.findByEmail(name)
+        List<Topic> topic = Topic.createCriteria().list{
+            projections{
+                eq('createdBy',user)
+            }
+        }
+    }
 
 }

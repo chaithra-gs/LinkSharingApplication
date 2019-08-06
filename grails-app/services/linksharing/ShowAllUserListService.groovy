@@ -8,7 +8,9 @@ class ShowAllUserListService {
     def listMethod() {
 
         List showlist = User.list()
-        return showlist;
+       // print("ROP".toLowerCase())
+        List x=showlist.sort{a,b-> a.username.toLowerCase()<=>b.username.toLowerCase()}
+        return x;
 
     }
 }

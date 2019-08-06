@@ -46,6 +46,7 @@
                         <input type="email" class="form-control" id="resetPassword" placeholder="Enter email" name="fetchemail">
                     </div>
                     ${flash.message8}${flash.message15}
+                    ${flash.message22}${flash.message23}
                 </div>
                 <div class=" offset-md-2">
                     <button type="submit" class="btn btn-basic">

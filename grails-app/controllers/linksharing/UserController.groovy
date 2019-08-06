@@ -35,6 +35,8 @@ class UserController {
         User user1 = User.findByEmail(str)
         List subscriptionLt = UserService.subscriptions(session.name)
         List<User> list1 = showAllUserListService.listMethod()
+
+
         render(view: "showUserList", model: [userList: list1,userdata:user1,subscriptions : subscriptionLt])
     }}
 

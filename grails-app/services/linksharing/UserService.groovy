@@ -101,12 +101,11 @@ class UserService {
 
     }
 
-    def trendtopics()
+   /* def trendtopics()
     {
         List <Long> topicsid=Topic.list().collect{
           it.id
         }
- println ">>>>>>>>>>>>>>>>>>>>>>>. TOPICSID"+topicsid
         List abcd=Resource.createCriteria().list(max:5)
                 {
                     projections{
@@ -140,6 +139,20 @@ class UserService {
         return topicList1
 
     }
+*/
+    def trendtopics(){
+        List interTopic = Topic.createCriteria().list{
+            eq('visibility',Visibility.PUBLIC)
+        }.sort{a,b -> b.resourceHas.size()<=>a.resourceHas.size()}
+        List<Topic> tl = []
+        def i = 0
+        while(i < 5 && interTopic.size()>i) {
+            tl.add(interTopic.get(i))
+            i++
+        }
+        return tl
+    }
+
 
     /*for particualr trending topic post and subscriptions*/
 

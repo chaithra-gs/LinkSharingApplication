@@ -191,7 +191,7 @@
                 <div class="form-group">
                     <text class="control-label col-md-4 " for="photo" style="text-align: left;">Photo</text>
                     <div class="col-md-8">
-                        <input type="file" class="form-control" id="inputphoto" value="${userdata.photo}" name="inputphoto">
+                        <input type="file" class="form-control" accept=".jpg,.jpeg,.png" id="inputphoto" value="${userdata.photo}" name="inputphoto">
                     </div>
                 </div>
                 <div class="form-group">

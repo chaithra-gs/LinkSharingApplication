@@ -4,8 +4,14 @@ import grails.converters.JSON
 
 class LoginController {
     def loginService
+    def signupService
 
     def index() {
+        def recent= signupService.recentShare()
+        def postListt=signupService.postList()
+        [posts:postListt,resources:recent]
+    }
+    def auth() {
 
         //get boolean value from service
         //compare value to true and false

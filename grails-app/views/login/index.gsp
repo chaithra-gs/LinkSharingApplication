@@ -1,4 +1,5 @@
 <%@page import="grails.util.Holders"%>
+<%@ page import="linksharing.Resource" %>
 <!doctype html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 
       if(password!=confirmPassword){
 
-        document.getElementById("password").value = "";
+        //document.getElementById("password").value = "";
         document.getElementById("confirmpassword").value = "";
         document.getElementById("matching").innerHTML="Not Match!!!"
 
@@ -48,8 +49,8 @@
             <div class="input-group">
               <g:textField id="mytext" class="form-control" name="q" placeholder="Search" value="${q}"/>
               <div class="input-group-btn">
-                <button class="btn btn-basic" type="submit">
-                  <span class="glyphicon glyphicon-search"></span>
+                <button class="btn btn-basic" type="submit" style="height: 50%;color: ">
+                  <span class="glyphicon glyphicon-search" ></span>
                 </button>
               </div>
             </div>
@@ -58,15 +59,87 @@
         </div>
       </div>
     </div>
-    <div class="col-md-7">
 
-      </div>
-      <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="panel panel-default" style="height:350px;overflow: auto;">
+            <div class="panel-heading">Recent shares</div>
+            <div class="panel-body">
+              <g:each in="${resources}" var="res" status="i">
+                <ul class="list-inline">
+                  <li>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <asset:image src="${res.user.photo}"  style="width:90px;height:90px"/></div>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <b>${res.user.firstName}&nbsp${res.user.lastName}</b></div>
+                          <div class="col-sm-5">@${res.user.username}</div>
+
+                          <a class=col-sm-3 style="font-size: medium"><u>${res.topic.name}</u></a></div>
+                        <br>
+                        <div class="row">
+                          ${res.description}
+                        </div>
+                        <br>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </li>
+                </ul>
+                <hr style="color: black" size="100" color="black">
+              </g:each>
+            </div>
+          </div>
+
+
+
+          <div class="panel panel-default" style="height:350px;overflow: auto;">
+            <div class="panel-heading">Top posts</div>
+            <div class="panel-body">
+              <g:each in="${posts}" var="res" status="i">
+                <ul class="list-inline">
+                  <li>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <asset:image src="${Resource.get(res).user.photo}"  style="width:90px;height:90px"/></div>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <b>${Resource.get(res).user.firstName}&nbsp${Resource.get(res).user.lastName}</b></div>
+                          <div class="col-sm-5">@${Resource.get(res).user.username}</div>
+
+                          <a class=col-sm-3 style="font-size: medium"><u>${Resource.get(res).topic.name}</u></a></div>
+                        <br>
+                        <div class="row">
+                          ${Resource.get(res).description}
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-md-3">
+                            <g:link controller="resource" action="index" params="[id: res]">View post</g:link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <hr style="color: black" size="100" color="black">
+              </g:each>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-5">
         <div class="panel panel-default">
           <div class="panel-heading">Login</div>
           <div class="panel-body">
-            <g:form class="form-horizontal" controller="login" action="index">
-            %{-- url="[controller:'login',action:'index']--}%
+            <g:form class="form-horizontal" controller="login" action="auth">
               <div class="form-group">
                 <text class="control-label col-md-4" for="email"  style="text-align: left;">Email/Username *</text>
                 <div class="col-md-8">
@@ -82,7 +155,7 @@
               </div>
               <div class="form-group">
                 <div class=" col-md-10">
-                 <g:link class="control-label col-md-8" controller="forgetPassword" action="forgetPassword" style="text-align: left;">Forgot Password</g:link>
+                  <g:link class="control-label col-md-8" controller="forgetPassword" action="forgetPassword" style="text-align: left;">Forgot Password</g:link>
                 </div>
                 <div class=" offset-md-1">
                   <button type="submit" class="btn btn-basic">Login</button>
@@ -91,10 +164,7 @@
             </g:form>
           </div>
         </div>
-
-
-
-
+      %{--<div class="col-md-6">--}%
         <div class="panel panel-default">
           <div class="panel-heading">Register</div>
           <div class="panel-body">
@@ -102,14 +172,14 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="firstName" style="text-align: left;">First Name *</text>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" id="firstname" placeholder="Enter firstname" name="firstname">
+                  <input type="text" class="form-control" id="firstname" pattern="[A-Za-z]+" title="Only characters allowed" maxlength="10" placeholder="Enter firstname" name="firstname">
                 </div>
               </div>
 
               <div class="form-group">
                 <text class="control-label col-md-4" for="lastName" style="text-align: left;">Last Name *</text>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="lastname">
+                  <input type="text" class="form-control" id="lastname"  title="Only characters allowed" placeholder="Enter lastname" name="lastname" maxlength="10" pattern="[A-Za-z]+">
                 </div>
               </div>
               <div class="form-group">
@@ -121,27 +191,25 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="username" style="text-align: left;">Username *</text>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" id="username" placeholder="username" name="username">
+                  <input type="text" class="form-control" id="username"  placeholder="Enter username" name="username" maxlength="20">
                 </div>
               </div>
               <div class="form-group">
                 <text class="control-label col-md-4" for="password" style="text-align: left;">Password *</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" >
+                  <input type="password" class="form-control" id="password" placeholder="Enter password" minlength="4" name="password" >
                 </div>
               </div>
               <div class="form-group">
                 <text class="control-label col-md-4" for="password" style="text-align: left;">ConfirmPassword*</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="confirmpassword" placeholder="Enter password again" name="confirmpassword" onfocusout="Matchpassword()">
+                  <input type="password" class="form-control" id="confirmpassword" placeholder="Re-enter password" minlength="4" name="confirmpassword" onfocusout="Matchpassword()">
                   <g:if test="${flash.message}">
                     <div class="message">
                       ${flash.message}
                     </div>
                   </g:if>
                 </div>
-
-
               <div>
                 <span id="matching" style="color: #761c19" ></span>
               </div>
@@ -149,7 +217,7 @@
               <div class="form-group">
                 <text class="control-label col-md-4 " for="photo" style="text-align: left;">Photo</text>
                 <div class="col-md-8">
-                  <input type="file" class="form-control" id="photo" placeholder="choose" name="inputphoto">
+                  <input type="file" accept=".jpg,.jpeg,.png" class="form-control" id="photo" placeholder="choose" name="inputphoto">
                 </div>
               </div>
 
@@ -166,5 +234,6 @@
         </div>
       </div>
     </div>
+  </div>
   </body>
   </html>

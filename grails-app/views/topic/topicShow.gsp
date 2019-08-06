@@ -274,8 +274,16 @@
                                     <div>${subscriptioncount.getAt(i)}</div></div>
                                 <div class="col-sm-6">
                                     Topics:
-                                    <div><a>${postscount.getAt(i)}</a></div></div>
-                                <a>Unsubscribe</a></div>
+                                    <div><a>${postscount.getAt(i)}</a></div>
+                                </div>
+                            <div class="col-sm-6">
+                                <g:if test="${us.topic.createdBy.email==session.name}">
+                                    <a>unsubscribe</a>
+                                </g:if>
+                                <g:else>
+                                    <g:link controller="subscription" action="changesub" params="[id:us.id ,  flag:0]">Unsubscribe</g:link></div>
+                                </g:else>
+                            </div>
                         </div>
 
                     </g:each>
@@ -306,30 +314,22 @@
                         </div>
 
                         <div class="col-md-8">${res.description}
+                        </div>
                         <div class="row">
                             <div class="col-md-3">
                             <g:if test="${res instanceof linksharing.LinkResource}">
-                                    <a>Download</a>
-                            </div>
-                                <div class="col-md-3">
-
                                     <a href="${res.Linkurl}" target="_blank">View Full Site</a>
-                                </div>
                             </g:if>
-                            <g:else>
+                            </div>
+                            <div class="col-md-3">
+                            <g:if test="${res instanceof linksharing.DocumentResource}">
                                 <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link></div>
-                            <div class="col-md-3">
-                                <a >View Full Site</a>
-                                </div>
-                            </g:else>
-
-                            <div class="col-md-3">
-                                %{--<a>Mark as read</a>--}%
+                            </g:if>
+                            </div>
+                            <div class="col-md-6">
                                 <g:link controller="Resource" action="index" params="[id:res.id]" >View post</g:link>
                             </div>
                         </div>
-                        </div>
-
                     </div>
                     </br>
                 </g:each>

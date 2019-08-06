@@ -371,7 +371,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             Posts:
-                                            <div><a>${countforposts.getAt(i)}</a></div>
+                                            <div>${countforposts.getAt(i)}</div>
                                         </div>
                                     <div class="col-md-8">
                                         <g:link controller="subscription" action="subscribe" params="[id:us.id ,page:"rating"]">Subscribe</g:link>

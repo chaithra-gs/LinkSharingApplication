@@ -135,6 +135,7 @@
             <div class="col-md-8 centered">
                 <table border="1px" class="table table-striped table-bordered table-hover" style="padding: 10px;">
                     <tr>
+                        <td class="table-header">SI.No </td>
                         <td class="table-header">Id</td>
                         <td class="table-header">Username</td>
                         <td class="table-header">Email</td>
@@ -146,8 +147,9 @@
 
 
                     </tr>
-                    <g:each in="${userList}" var="user">
+                    <g:each in="${userList}" var="user" status="i">
                         <tr>
+                            <td>${i+1}</td>
                             <td>${user.id}</td>
                             <td>${user.username}</td>
                             <td>${user.email}</td>
