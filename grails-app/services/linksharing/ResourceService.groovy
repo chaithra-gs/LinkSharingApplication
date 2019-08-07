@@ -43,7 +43,7 @@ class ResourceService {
                     inList("topic.id" , Verys)
                 }
                 eq("user.id", id)
-                eq("isRead",false)
+
             }}
         if(Ser){
             Serr= ReadingItem.createCriteria().list{
@@ -55,7 +55,7 @@ class ResourceService {
                     inList("topic.id" , Ser)
                 }
 
-                eq("isRead",false)
+
             }}
         if(Cas){
             Casr=ReadingItem.createCriteria().list {
@@ -66,7 +66,7 @@ class ResourceService {
                     inList("topic.id", Cas)
                 }
                 eq("user.id", id)
-                eq("isRead", false)
+
             }}
 
 
@@ -85,23 +85,37 @@ class ResourceService {
 
     }
 
-    def editreadMethod(params,String username)
+    def editreadMethod(params)
     {
-        User user=User.findByEmail(username)
-        Long id=Long.parseLong(params.id)
+        User user=User.findByUsername(params.username)
+        Long id=Long.parseLong(params.resourceId)
         ReadingItem ri=ReadingItem.createCriteria().get{
             eq('resource.id',id)
             eq('user.id',user.id)
         }
-        ri.isRead=true
-        ri.save(flush:true,failOnError:true)
+        if(ri)
+        {
+            if(ri.isRead){
+                ri.isRead=false
+                ri.save(flush:true,failOnError:true)
+                String str="mark as unread"
+                return str
+            }else{
+                ri.isRead=true
+                ri.save(flush:true,failOnError:true)
+                String str= "mark as read"
+                return str
+            }
+        }
 
     }
+
+
     def deleteMethod(params)
     {
         Resource res= Resource.get(Long.parseLong(params.id))
         res.delete()
-        res.save()
+        res.save(flush:true,failOnerror:true)
     }
 
 }

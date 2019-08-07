@@ -1,5 +1,7 @@
 package linksharing
 
+import Enums.Visibility
+
 class TopicController {
     def userService
     def topicService
@@ -18,6 +20,9 @@ class TopicController {
     }
 
     def save() {
+        String p1=params.topicName
+        Visibility visible=params.selection
+        if(p1 && p2){
         Topic uniqueTopic=Topic.findByName(params.topicName)
         List list = topicService.checkUnique(session.name)
 
@@ -31,23 +36,49 @@ class TopicController {
 
                 redirect(controller: "dashboard", action: "index")
             }
+        }else{
+        flash.message="please enter all fields"
+            redirect(controller: "dashboard", action: "index")
+        }
 
     }
 
     def saveDoc(){
-        topicService.saveDoc(params,request,session.name)
-        redirect(controller: "dashboard", action: "index")
+        String p1 = params.select
+        String p2 = params.topic
+        def f = request.getFile('document')
+        String p3 = f.getOriginalFilename()
+        if(p1 && p2 && p3)
+        {
+            topicService.saveDoc(params,request,session.name)
+            redirect(controller: "dashboard", action: "index")
+        }
+        else{
+            flash.message=" please enter all fields!"
+            redirect(controller: "dashboard", action: "index")
+        }
     }
     def saveLink(){
-        topicService.saveLink(params,request,session.name)
-        redirect(controller: "dashboard", action: "index")
+
+        String description1=params.selectlink
+        String link = params.linkres
+        if(description1 && link){
+            topicService.saveLink(params,request,session.name)
+            redirect(controller: "dashboard", action: "index")
+        }
+        else{
+            flash.message="please enter all fields!"
+            redirect(controller: "dashboard", action: "index")
+        }
+
+
     }
 
     def updateVisibility(params)
     {
         Topic t=Topic.get(params.id)
         t.visibility=params.visibility
-        t.save(flush:true,failOnerror:true)
+        t.save(flush:true,failOnError:true)
         redirect(controller: "dashboard", action: "index")
 
     }
@@ -61,7 +92,7 @@ class TopicController {
             User user1 = User.findByEmail(session.name)
             Long tid = 0.0
 
-            print params.id
+            print params
             Long id = Long.parseLong(params.id)
             //Long id=params.id
             Subscription sub = Subscription.get(id)
@@ -103,7 +134,8 @@ class TopicController {
 
             println "------------------------"
             render(view: "topicShow",
-                    model: [user             : user, subs: sub,
+                    model: [user             : user,
+                            subs: sub,
                             subscount        : subscount,
                             postcount        : postcount,
                             subscription     : subscription,
@@ -117,8 +149,6 @@ class TopicController {
     }
 
     def sendInvite(){
-        println "In invite block>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" +params
-
         User user = User.findByEmail(params.iemail)
         if(user)
         {

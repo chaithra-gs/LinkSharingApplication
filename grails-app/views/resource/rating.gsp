@@ -16,7 +16,6 @@
     var url="${createLink(controller:'ResourceRating',action:'save')}"
 </g:javascript>
     <style>
-
     body{
         background: #555555;
     }
@@ -268,7 +267,7 @@
                             <option>PUBLIC</option>
                             <option>PRIVATE</option>
                         </select>
-                        <input type="submit" class="btn btn-success" style="float: right; margin-top: 5px;"/>
+                        <input type="submit" value="save" class="btn btn-success" style="float: right; margin-top: 5px;"/>
                     </g:form>
                 </div>
                 <div class="modal-footer" style=" margin-top: 15px;">
@@ -314,22 +313,21 @@
                         <g:if test="${resource.user.email==session.name}">
                             <g:link controller="resource" action="delete" params="[id:resource.id]">Delete</g:link>
                             </div>
+                        </g:if>
+                        <g:if test="${resource.user.email==session.name}">
                             <div class="col-md-2">
                                 <a data-toggle="modal" data-target="#editdesc">Edit</a>
                             </div></g:if>
                         <g:else>
-                            <a>Delete</a>
                             </div>
                             <div class="col-md-2">
-                                <a data-toggle="modal" data-target="#editdesc">Edit</a>
+                                <a data-toggle="modal" data-target="#editdesc"></a>
                             </div>
                         </g:else>
-
 
                         <div class="col-md-2">
 
                     <g:if test="${resource.hasProperty("Linkurl")}">
-                        <a >Download</a>
                         </div>
                         <div class="col-md-2">
                             <a href="${resource.Linkurl}" target="_blank">View Full Site</a>
@@ -339,7 +337,6 @@
                         <g:link controller="Document" action="download" params="[id:resource.id]" >Download</g:link>
                         </div>
                         <div class="col-md-2">
-                            <a >View Full Site</a>
                         </div>
                     </g:else>
                 </div>

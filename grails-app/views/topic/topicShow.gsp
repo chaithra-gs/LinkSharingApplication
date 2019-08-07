@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-%{--THIS IS TO SEND INVITATION--}%
+    %{--THIS IS TO SEND INVITATION--}%
     <div class="modal fade"  id="invite" role="dialog">
         <div class="modal-dialog">
             <!-- topic Modal content-->
@@ -162,7 +162,7 @@
         </div>
     </div>
 
-%{--THIS IS SHARE DOCUMENT MODEL--}%
+    %{--THIS IS SHARE DOCUMENT MODEL--}%
     <div class="modal fade"  id="resource" role="dialog">
         <div class="modal-dialog">
             <!-- topic Modal content-->
@@ -212,7 +212,7 @@
                             <option>PUBLIC</option>
                             <option>PRIVATE</option>
                         </select>
-                        <input type="submit" class="btn btn-success" style="float: right; margin-top: 5px;"/>
+                        <input type="submit" value="save" class="btn btn-success" style="float: right; margin-top: 5px;"/>
                     </g:form>
                 </div>
                 <div class="modal-footer" style=" margin-top: 15px;">
@@ -221,81 +221,124 @@
                 </div>
             </div>
         </div>
-</div>
-
-    <div class="col-md-5">
-
-            <div class="panel panel-default" style="overflow: auto;height: 200px">
-                <div class="panel-heading">${subs.topic.name}</div>
-                <div class="panel-body">
-                    <div class="col-md-3">
-                        <g:img src="${userdata.photo}"  style="width:60px;height:60px"/>
-                    </div>
-                    <div class="col-md-9">
-                        <div><b>${subs.topic.name}</b>(${subs.topic.visibility})</div>
-                        <div>@${subs.topic.createdBy.username}</div>
-                        <div class="col-md-6">
-                            Subscriptions:
-                            <div>${subscount}</div></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-default" style="overflow: auto;height: 200px">
+                    <div class="panel-heading">Topic:${subs.topic.name}</div>
+                    <div class="panel-body">
                         <div class="col-md-3">
-                            Posts:
-                            <div><a>${postcount}</a></div></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5">
-                            <a>Unsubscribe</a></div>
-
-                        <div class="col-md-7">
-                            <g:form controller="subscription" action="updateSeriouss">
-                                <g:field type="hidden" name="id" value="${subs.id}"></g:field>
-                                <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
-                                          value="${subs.seriousness}" />
-                            </g:form>
-
+                            <g:img src="${userdata.photo}"  style="width:60px;height:60px"/>
                         </div>
-                    </div>
+                        <div class="col-md-9">
+                            <div><b>${subs.topic.name}</b>(${subs.topic.visibility})</div>
+                            <div>@${subs.topic.createdBy.username}</div>
+                            <div class="col-md-6">
+                                Subscriptions:
+                                <div>${subscount}</div></div>
+                            <div class="col-md-3">
+                                Posts:
+                                <div><a>${postcount}</a></div></div>
+                        </div>
 
-                </div>
-                </div>
-            <div class="panel panel-default" style="overflow: auto;height: 280px">
-                <div class="panel-heading">Users : ${subs.topic.name}
-                </div>
-                <div class="panel-body">
-                    <g:each in="${subscription}" var="us" status="i">
                         <div class="row">
-                            <div class="col-md-4">
-                                <asset:image src="${userdata.photo}" style="width:90px;height:90px"/></div>
-                            <div class="col-sm-8">
-                                <div style="font-size:23px;"><b>${us.user.firstName}&nbsp${us.user.lastName}</b></div>
-                                <div>@${us.user.username}</div>
-                                <div class="col-sm-6">
-                                    Subscriptions:
-                                    <div>${subscriptioncount.getAt(i)}</div></div>
-                                <div class="col-sm-6">
-                                    Topics:
-                                    <div><a>${postscount.getAt(i)}</a></div>
-                                </div>
-                            <div class="col-sm-6">
-                                <g:if test="${us.topic.createdBy.email==session.name}">
-                                    <a>unsubscribe</a>
+                            <div class="col-md-5">
+                                <g:if test="${subs.topic.createdBy.email==session.name}">
+                                    <a>Unsubscribe</a></div>
                                 </g:if>
-                                <g:else>
-                                    <g:link controller="subscription" action="changesub" params="[id:us.id ,  flag:0]">Unsubscribe</g:link></div>
-                                </g:else>
+                            <g:else>
+                                <g:link controller="subscription" action="changesub" params="[id:subs.id ,  flag:0]">Unsubscribe</g:link></div>
+                            </g:else>
+
+
+                            <div class="col-md-7">
+                                <g:form controller="subscription" action="updateSeriouss">
+                                    <g:field type="hidden" name="id" value="${subs.id}"></g:field>
+                                    <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                              value="${subs.seriousness}" />
+                                </g:form>
                             </div>
                         </div>
-
-                    </g:each>
+                    </div>
+                </div>
+%{--One is here--}%
+                <div class="panel panel-default" style="overflow: auto;height: 280px">
+                    <div class="panel-heading">Users : ${subs.topic.name}</div>
+                    <div class="panel-body">
+                        <g:each in="${subscription}" var="us" status="i">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <asset:image src="${userdata.photo}" style="width:90px;height:90px"/>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div style="font-size:23px;"><b>${us.user.firstName}&nbsp${us.user.lastName}</b>
+                                    </div>
+                                    <div>@${us.user.username}</div>
+                                    <div class="col-sm-6">
+                                        Subscriptions:
+                                        <div>${subscriptioncount.getAt(i)}</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        Topics:
+                                        <div><a>${postscount.getAt(i)}</a></div>
+                                    </div>
+                                <div class="col-sm-6">
+                                    %{--<g:if test="${us.topic.createdBy.email==session.name}">
+                                        <a>unsubscribe</a>
+                                    </g:if>
+                                    <g:else>
+                                        <g:link controller="subscription" action="changesub" params="[id:us.id ,  flag:0]">Unsubscribe</g:link>
+                                        </div>
+                                    </g:else>--}%
+                                </div>
+                            </div>
+                        </g:each>
+                    </div>
+                </div>
                 </div>
             </div>
-    </div>
-
-    <div class="col-md-7">
+    <div class="col-md-6" style="float: left">
         <div class="panel panel-default" style="overflow: auto;height: 280px">
-            <div class="panel-heading"><div style="float:left">Posts : ${subs.topic.name}</div>
+            <div class="panel-heading">Posts : ${subs.topic.name}
+                    <div class="input-group" style="margin-left:350px">
+                        <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-basic" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                <g:each in="${resources}" var="res" status="i">
+                    <div class="row">
+                        <div class="col-md-4">
+                    <asset:image src="${userdata.photo}" style="width:90px;height:90px"/>
+                    </div>
 
-                <div class="input-group" style="margin-left:350px">
+                    <div class="col-md-8">${res.description}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <g:if test="${res instanceof linksharing.LinkResource}">
+                                <a href="${res.Linkurl}" target="_blank" class="col-md-3">View Full Site</a>
+                            </g:if>
+                        </div>
+                        <div class="col-md-3">
+                            <g:if test="${res instanceof linksharing.DocumentResource}">
+                                <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link>%{--</div>--}%
+                            </g:if>
+                        </div>
+                        <div class="col-md-6">
+                            <g:link controller="Resource" action="index" params="[id:res.id]" >View post</g:link>
+                        </div>
+                    </div>
+                    </br>
+                </g:each>
+            </div>
+
+                %{--<div class="input-group" style="margin-left:350px">
                     <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
 
                     <div class="input-group-btn">
@@ -303,39 +346,14 @@
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
-                </div>
+                </div>--}%
             </div>
 
-            <div class="panel-body">
-                <g:each in="${resources}" var="res" status="i">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <asset:image src="${userdata.photo}" style="width:90px;height:90px"/>
-                        </div>
-
-                        <div class="col-md-8">${res.description}
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                            <g:if test="${res instanceof linksharing.LinkResource}">
-                                    <a href="${res.Linkurl}" target="_blank">View Full Site</a>
-                            </g:if>
-                            </div>
-                            <div class="col-md-3">
-                            <g:if test="${res instanceof linksharing.DocumentResource}">
-                                <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link></div>
-                            </g:if>
-                            </div>
-                            <div class="col-md-6">
-                                <g:link controller="Resource" action="index" params="[id:res.id]" >View post</g:link>
-                            </div>
-                        </div>
-                    </div>
-                    </br>
-                </g:each>
-            </div>
         </div>
-</div>
-</div>
+
+    </div>
+        </div>
+
+
 </body>
 </html>

@@ -74,17 +74,19 @@
                       <div class="col-sm-9">
                         <div class="row">
                           <div class="col-sm-4">
-                            <b>${res.user.firstName}&nbsp${res.user.lastName}</b></div>
-                          <div class="col-sm-5">@${res.user.username}</div>
+                            <b>${res.user.firstName}&nbsp${res.user.lastName}</b>
+                          </div>
+                          <div class="col-sm-5">@${res.user.username}
+                          </div>
 
-                          <a class=col-sm-3 style="font-size: medium"><u>${res.topic.name}</u></a></div>
+                          <a class=col-sm-3 style="font-size: medium">${res.topic.name}</a></div>
                         <br>
                         <div class="row">
                           ${res.description}
                         </div>
                         <br>
                       <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-offset-8">
                           <g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>
                         </div>
                       </div>
@@ -121,7 +123,7 @@
                         </div>
                         <br>
                         <div class="row">
-                          <div class="col-md-3">
+                          <div class="col-md-offset-8">
                             <g:link controller="resource" action="index" params="[id: res]">View post</g:link>
                           </div>
                         </div>

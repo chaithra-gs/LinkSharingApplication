@@ -1,5 +1,7 @@
 package linksharing
 
+import grails.converters.JSON
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -38,9 +40,12 @@ class ResourceController {
         if (!session.name) {
             render("Login required")
         } else {
-            resourceService.editreadMethod(params, session.name)
+            def value1 = resourceService.editreadMethod(params)
             redirect(controller: "dashboard", action: "index")
+println "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+value1
+            render([value:true] as JSON)
         }
+
     }
 
     def delete() {
@@ -60,7 +65,7 @@ class ResourceController {
     def updatedescription(){
         Resource res=Resource.get(Long.parseLong(params.id))
         res.description=params.description
-        res.save(flush:true)
+        res.save(flush:true,failOnError:true)
         redirect(action:"index" , params:[id:Long.parseLong(params.id)])
     }
 

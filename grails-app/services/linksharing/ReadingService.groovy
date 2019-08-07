@@ -48,7 +48,6 @@ class ReadingService {
                     inList("topic.id" , Verys)
                 }
                 eq("user.id", id)
-                eq("isRead",false)
             }}
         if(Ser){
             Serr= ReadingItem.createCriteria().list{
@@ -59,8 +58,6 @@ class ReadingService {
                 'resource' {
                     inList("topic.id" , Ser)
                 }
-
-                eq("isRead",false)
             }}
         if(Cas){
             Casr= ReadingItem.createCriteria().list {
@@ -71,7 +68,6 @@ class ReadingService {
                     inList("topic.id", Cas)
                 }
                 eq("user.id", id)
-                eq("isRead", false)
             }}
 
 

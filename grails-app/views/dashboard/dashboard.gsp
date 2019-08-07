@@ -1,3 +1,4 @@
+<%@ page import="linksharing.Resource" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -11,6 +12,24 @@
             document.getElementById("droped").style.display="block";
         }
     </script>
+        <g:javascript>
+console.log("inside javascript")
+           var url="${createLink(controller:"resource" ,action:"editread")}"
+        function updateread(username , resourceId ){
+            console.log(" IN ajax")
+            $.ajax({
+                "url":     url,
+                "type":    "get",
+                "data":    {username : username , resourceId : resourceId },
+                success: function(resp){
+                    console.log(resp)
+
+
+                }
+            });
+        }
+        </g:javascript>
+
     <style>
     body{
         background: #555555;
@@ -73,7 +92,7 @@
                                             </div>
                                         </div>
                                     </g:form>
-                                    ${flash.message4}   ${flash.message11} ${flash.message13} ${flash.message23}
+                                    ${flash.message4}   ${flash.message11} ${flash.message13} ${flash.message23} ${flash.message}
                                 </div>
                             </td>
                             <td width=10px style="text-align:center;"}>
@@ -128,8 +147,6 @@
 
     <div class="row">
         <div class="col-md-5">
-
-            %{--user details panel--}%
             <div class="panel panel-default">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -240,7 +257,8 @@
                         </div>
                         <div class="col-sm-8">
                             <div style="font-size:15px;">
-                                <g:link controller="topic" action="index" params="[id: us]"><b>${us.name}</g:link></b></div>
+                                <g:link ><b>${us.name}</g:link></b></div>
+                            %{--controller="topic" action="topicshow" params="[id: us.id]"--}%
                             <div>@${us.createdBy.username}</div>
 
                             <div class="col-sm-6">
@@ -303,8 +321,9 @@
                         <li>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <asset:image src="${res.user.photo}"  style="width:90px;height:90px"/></div>
-                                <div class="col-sm-9">
+                                    <asset:image src="${res.user.photo}"  style="width:90px;height:90px"/>
+                                </div>
+                                <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <b>${res.user.firstName}&nbsp${res.user.lastName}</b></div>
@@ -319,7 +338,7 @@
                                 <div class="row">
                                 <div class="col-md-3">
                                     <g:if test="${res.hasProperty("Linkurl")}">
-                                        <a >Download</a>
+
                                         </div>
                                         <div class="col-md-3">
                                             <a href="${res.Linkurl}" target="_blank">View Full Site</a>
@@ -329,13 +348,14 @@
                                         <g:link  controller="Document" action="download" params="[id:res.id , tid:res.id , flag:1]"  >Download</g:link>
                                         </div>
                                         <div class="col-md-3">
-                                            <a >View Full Site</a>
+
                                         </div>
                                     </g:else>
 
                                     <div class="col-md-3">
-                                        <g:link controller="resource" action="editread" params="[id:res.id]">Mark as read</g:link>
+                                        <g:link  id="changeread" onclick="updateread('${userdata.username}','${res.id}')" >Mark as read</g:link>
                                     </div>
+                                    %{--params="[id:res.id]"--}%
                                     <div class="col-md-3">
                                         <g:link controller="resource" action="index" params="[id: res.id]">View post</g:link>
                                     </div>
@@ -438,7 +458,7 @@
                         <option>PUBLIC</option>
                         <option>PRIVATE</option>
                     </select>
-                    <input type="submit" class="btn btn-success" style="float: right; margin-top: 5px;"/>
+                    <input type="submit" value="save" class="btn btn-success" style="float: right; margin-top: 5px;"/>
                 </g:form>
 
             </div>

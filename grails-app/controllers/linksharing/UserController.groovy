@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class UserController {
 
-   def UserService
+   def userService
     def showAllUserListService
 
     def layout(){
@@ -19,10 +19,14 @@ class UserController {
             render("please login first")
         }
         else {
-            List subscriptionLt = UserService.subscriptions(session.name)
+            List subscriptionLt = userService.subscriptions(session.name)
             User user1 = User.findByEmail(session.name)
+            Integer count_topic = userService.topicCount(session.name)
+            Integer count_subscribe = userService.subCount(session.name)
 
-            render(view: "EditProfile", model: [userdata: user1, subscriptions: subscriptionLt])
+
+            render(view: "EditProfile", model: [userdata: user1, subscriptions: subscriptionLt, count_topic    : count_topic,
+                                                                                                count_subscribe: count_subscribe,])
         }
     }
     def showlist() {
@@ -33,7 +37,7 @@ class UserController {
         else{
         String str = session.name
         User user1 = User.findByEmail(str)
-        List subscriptionLt = UserService.subscriptions(session.name)
+        List subscriptionLt = userService.subscriptions(session.name)
         List<User> list1 = showAllUserListService.listMethod()
 
 
@@ -59,7 +63,7 @@ class UserController {
     @Transactional
     def deactivate() {
         User user = User.findById(params.userId)
-        if(user.id!=5)
+        if(user.id!=1)
         {
             user.active = false
         }
@@ -69,7 +73,7 @@ class UserController {
     }
     def removeAdmin() {
         User user = User.findById(params.userId)
-        if(user.id != 5) {
+        if(user.id != 1) {
             user.admin = false
         }
         user.save(failOnError: true, flush: true)

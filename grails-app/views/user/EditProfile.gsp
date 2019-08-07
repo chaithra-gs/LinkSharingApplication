@@ -160,6 +160,31 @@
 
     <div class="col-md-5">
         <!-- write here for left column pannels-->
+            <div class="panel panel-default">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table   style="width:100%">
+                            <tr>
+                                <td rowspan="4" colspan="3" width="10%">
+                                    <asset:image src="${userdata.photo}"  height="100px" width="90px" style="margin-right: 10px;"></asset:image>
+                                </td>
+                                <td width=200px class="text" colspan="3">${userdata.firstName} ${userdata.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td width=150px class="text-muted" colspan="3">@${userdata.username}</td>
+                            </tr>
+                            <tr>
+                                <td width=150px>Subscriptions</td>
+                                <td width="150px">Topics</td>
+                            </tr>
+                            <tr>
+                                <td width=150px>${count_subscribe}</td>
+                                <td width=150px>${count_topic }</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
     </div>
 
     <!-- right side pannel elements starts here-->

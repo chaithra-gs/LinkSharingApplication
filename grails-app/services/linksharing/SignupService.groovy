@@ -49,7 +49,7 @@ class SignupService {
                 eq('visibility', Visibility.PUBLIC)
             }
         }
-        recentShare.sort { Resource r1, Resource r2 -> r1.lastUpdated <=> r2.lastUpdated }
+        recentShare.sort { Resource r2, Resource r1 -> r1.dateCreated <=> r2.dateCreated }
     }
 
     List<Resource> postList(){
