@@ -6,7 +6,6 @@ import grails.transaction.Transactional
 
 @Transactional
 class TopicService {
-
     def save(params,uemail) {
 
         String topicName = params.topicName
@@ -45,7 +44,6 @@ class TopicService {
         File des = new File(fpath)
         f.transferTo(des)
 
-
         DocumentResource newRes = new DocumentResource(description: description1, topic: tobj, user: user1, path: str)
         newRes.save(flush: true, failOnError: true)
 
@@ -56,9 +54,7 @@ class TopicService {
             eq("topic.id", tID)
         }
 
-
         Boolean isRead = false
-
         userids.each {
             User us = User.get(it)
             println "us:" +us
@@ -132,13 +128,12 @@ class TopicService {
 
 
     def subscriptioncount(List userslist)
-    {  //list of users who subscribed to a particlar topic[noOFSUBSCRIPTIONS ,USER ID]
+    {
         def usercounts=Subscription.createCriteria().list()
                 {
                     projections{
                         count('user.id')
                         groupProperty('user.id')
-                        // countDistinct('topic.id')
                     }
 
                 }
@@ -159,7 +154,6 @@ class TopicService {
                     projections{
                         count('createdBy.id')
                         groupProperty('createdBy.id')
-                        // countDistinct('topic.id')
                     }
                     'createdBy'{
                         inList('id',userslist)

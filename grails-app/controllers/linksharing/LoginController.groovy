@@ -12,12 +12,6 @@ class LoginController {
         [posts:postListt,resources:recent]
     }
     def auth() {
-
-        //get boolean value from service
-        //compare value to true and false
-        //if true -- render dashboard
-        //if flase -- render error/login again
-
         String email = params.email
         String enteredPassword = params.pwd
         Boolean isLogin =  loginService.loginMethod(email, enteredPassword)

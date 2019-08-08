@@ -28,7 +28,6 @@ class DocumentController {
         }
     }
 
-
     def save()
     {
         if(!session.name)

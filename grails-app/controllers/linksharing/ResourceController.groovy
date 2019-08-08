@@ -25,7 +25,6 @@ class ResourceController {
             List trending = userService.trendtopics()
 
             List trending1=trending.collect{it.id}
-            println "trending1>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+trending1
             List subcount = userService.subscriptioncount(trending1)
             List postcount = userService.postscount(trending1)
 
@@ -42,7 +41,6 @@ class ResourceController {
         } else {
             def value1 = resourceService.editreadMethod(params)
             redirect(controller: "dashboard", action: "index")
-println "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+value1
             render([value:true] as JSON)
         }
 
@@ -68,7 +66,6 @@ println "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         res.save(flush:true,failOnError:true)
         redirect(action:"index" , params:[id:Long.parseLong(params.id)])
     }
-
 
 }
 

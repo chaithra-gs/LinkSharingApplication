@@ -5,10 +5,11 @@ import grails.transaction.Transactional
 @Transactional
 class ProfileService {
 
-    def update(params,request,user) {
-            user.firstName=params.fname
-            user.lastName=params.lname
-            user.username=params.username
+    def update(params,request,user)
+    {
+        user.firstName=params.fname
+        user.lastName=params.lname
+        user.username=params.username
 
         String uname=params.username
         def f = request.getFile('inputphoto')
@@ -22,10 +23,11 @@ class ProfileService {
             user.save(flush:true)
 
         }
-            return 1
+        return 1
     }
 
-    def updatepass(params,user){
+    def updatepass(params,user)
+    {
         String password = params.password
         String confirmpassword = params.confirmpassword
         if(confirmpassword.compareTo(password)!=0)

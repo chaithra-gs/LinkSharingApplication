@@ -23,13 +23,13 @@ class ForgetPasswordController {
     }
 
     def reset(){
-    render(view: "/sendLink/Resetnewpasword")
+        render(view: "/sendLink/Resetnewpasword")
     }
 
     def updatePassword()
     {
         String email = session.name
-       boolean updatepass= forgetPasswordService.resetPassword(params,email)
+        boolean updatepass= forgetPasswordService.resetPassword(params,email)
 
 
         if(updatepass)

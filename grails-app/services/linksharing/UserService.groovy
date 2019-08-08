@@ -34,7 +34,7 @@ class UserService {
                         projections {
                             count('topic.id')
                             groupProperty('topic.id')
-                            // countDistinct('topic.id')
+
                         }
                         'topic' {
                             inList('id', topicids)
@@ -101,56 +101,18 @@ class UserService {
 
     }
 
-   /* def trendtopics()
-    {
-        List <Long> topicsid=Topic.list().collect{
-          it.id
-        }
-        List abcd=Resource.createCriteria().list(max:5)
-                {
-                    projections{
-                        count('topic.id')
-                        groupProperty('topic.id')
-                    }
-                }
 
-        abcd.sort{b,a-> a.getAt(0)<=>b.getAt(0)}
-        println "abcd>"+abcd
-
-        List <Integer> xyz=abcd.collect{ x ->
-           topicsid.find{
-
-                if (x.getAt(1)==it)
-                    return x.getAt(1)
-                else
-                    return 0
-
-            }
-
-        }
-        xyz.removeAll{it==0}
-        List bbb= xyz+(topicsid-xyz)
-        List<Topic> topicList1 = []
-        def i
-        for(i=0;i<5;i++){
-            topicList1.add(Topic.get(bbb[i]))
-        }
-        println "topic List:"+topicList1
-        return topicList1
-
-    }
-*/
     def trendtopics(){
         List interTopic = Topic.createCriteria().list{
             eq('visibility',Visibility.PUBLIC)
         }.sort{a,b -> b.resourceHas.size()<=>a.resourceHas.size()}
-        List<Topic> tl = []
+        List<Topic> trendingTopics = []
         def i = 0
         while(i < 5 && interTopic.size()>i) {
-            tl.add(interTopic.get(i))
+            trendingTopics.add(interTopic.get(i))
             i++
         }
-        return tl
+        return trendingTopics
     }
 
 
@@ -196,15 +158,12 @@ class UserService {
                         inList('id', trending.id)
                     }
                 }
-       /* println ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"+trending
-        println  "??????????????????????????" +topiccounts*/
         List<Integer> counts = trending.collect { x ->
             topiccounts.find {
                 if (it.getAt(1) == x.id)
                     return it.getAt(0)
             }
         }
-        println "::::"+counts
         List l = counts.collect{if(!it)
             return 0
         else

@@ -23,10 +23,10 @@ class TopicController {
         String p1=params.topicName
         Visibility visible=params.selection
         if(p1 && p2){
-        Topic uniqueTopic=Topic.findByName(params.topicName)
-        List list = topicService.checkUnique(session.name)
+            Topic uniqueTopic=Topic.findByName(params.topicName)
+            List list = topicService.checkUnique(session.name)
 
-        boolean var=list.contains(uniqueTopic)
+            boolean var=list.contains(uniqueTopic)
             if(var){
                 flash.message4="Topic already exists"
                 redirect(controller: "dashboard", action: "index")
@@ -37,7 +37,7 @@ class TopicController {
                 redirect(controller: "dashboard", action: "index")
             }
         }else{
-        flash.message="please enter all fields"
+            flash.message="please enter all fields"
             redirect(controller: "dashboard", action: "index")
         }
 

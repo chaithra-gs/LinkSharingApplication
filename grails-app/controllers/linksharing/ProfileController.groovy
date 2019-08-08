@@ -15,21 +15,17 @@ class ProfileController {
             String lastname = params.lname
             String username = params.username
             User user = User.findByEmail(session.name)
-           // String sessionuser=user.username
             if(firstname && lastname && username)
             {
                 User user1 = User.findByEmail(session.name)
                 String sessionuser=user1.username
-                println "}}}}}}}}}}}}}}}}}}}}}}}}}}}}}]"+sessionuser
                 List<String> userList = User.createCriteria().list(){
                     projections {
                         property('username')
                     }
-                        ne('username', sessionuser)
+                    ne('username', sessionuser)
 
                 }
-                println "list of users here+++++++++++++++++++++++++++"+userList
-
                 boolean exists= userList.contains('sessionuser')
 
                 if(exists)

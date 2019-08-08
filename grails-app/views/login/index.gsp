@@ -145,19 +145,19 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="email"  style="text-align: left;">Email/Username *</text>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                  <input type="text" class="form-control" id="email" required placeholder="Enter email" name="email">
                 </div>
               </div>
               <div class="form-group">
                 <text class="control-label col-md-4 " for="pwd" style="text-align: left;">Password *</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" required name="pwd">
                   ${flash.message1}
                 </div>
               </div>
               <div class="form-group">
                 <div class=" col-md-10">
-                  <g:link class="control-label col-md-8" controller="forgetPassword" action="forgetPassword" style="text-align: left;">Forgot Password</g:link>
+                  <g:link class="control-label col-md-8" controller="forgetPassword"  action="forgetPassword" style="text-align: left;">Forgot Password</g:link>
                 </div>
                 <div class=" offset-md-1">
                   <button type="submit" class="btn btn-basic">Login</button>
@@ -174,20 +174,20 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="firstName" style="text-align: left;">First Name *</text>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" id="firstname" pattern="[A-Za-z]+" title="Only characters allowed" maxlength="10" placeholder="Enter firstname" name="firstname">
+                  <input type="text" class="form-control" id="firstname" required pattern="[A-Za-z]+" title="Only characters allowed" maxlength="10" placeholder="Enter firstname" name="firstname">
                 </div>
               </div>
 
               <div class="form-group">
                 <text class="control-label col-md-4" for="lastName" style="text-align: left;">Last Name *</text>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" id="lastname"  title="Only characters allowed" placeholder="Enter lastname" name="lastname" maxlength="10" pattern="[A-Za-z]+">
+                  <input type="text" class="form-control" id="lastname" required title="Only characters allowed" placeholder="Enter lastname" name="lastname" maxlength="10" pattern="[A-Za-z]+">
                 </div>
               </div>
               <div class="form-group">
                 <text class="control-label col-md-4" for="email" style="text-align: left;">Email *</text>
                 <div class="col-md-8">
-                  <input type="email" class="form-control" id="sign_email" placeholder="Enter email" name="signup_email">
+                  <input type="email" class="form-control" id="sign_email" required placeholder="Enter email" name="signup_email">
                 </div>
               </div>
               <div class="form-group">
@@ -199,13 +199,13 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="password" style="text-align: left;">Password *</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="password" placeholder="Enter password" minlength="4" name="password" >
+                  <input type="password" class="form-control" id="password" required placeholder="Enter password" minlength="4" name="password" >
                 </div>
               </div>
               <div class="form-group">
                 <text class="control-label col-md-4" for="password" style="text-align: left;">ConfirmPassword*</text>
                 <div class="col-md-8">
-                  <input type="password" class="form-control" id="confirmpassword" placeholder="Re-enter password" minlength="4" name="confirmpassword" onfocusout="Matchpassword()">
+                  <input type="password" class="form-control" id="confirmpassword" required placeholder="Re-enter password" minlength="4" name="confirmpassword" onfocusout="Matchpassword()">
                   <g:if test="${flash.message}">
                     <div class="message">
                       ${flash.message}

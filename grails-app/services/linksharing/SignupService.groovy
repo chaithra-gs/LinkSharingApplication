@@ -5,16 +5,13 @@ import grails.transaction.Transactional
 
 @Transactional
 class SignupService {
-
     def register(params, request) {
-
         String password = params.password
         String confirmpassword = params.confirmpassword
         if (confirmpassword.compareTo(password) != 0) {
             return 0
 
         } else {
-            println "}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} params" + params
             String firstname = params.firstname
             String lastname = params.lastname
             String email = params.signup_email
@@ -40,9 +37,6 @@ class SignupService {
 
 
     List<Resource> recentShare() {
-
-        //Topic.findAllByVisibility(Visibility.PUBLIC)*.resourceHas.flatten()
-        //todo: You can check this
 
         List<Resource> recentShare = Resource.createCriteria().list(max: 5) {
             'topic' {

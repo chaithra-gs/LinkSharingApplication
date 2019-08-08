@@ -6,7 +6,7 @@ class SendLinkController {
 
     def link() {
 
-            User user = User.findByEmail(params.fetchemail)
+        User user = User.findByEmail(params.fetchemail)
         if(user){
             otp1=Math.random()*1000000
             String link = createLink(controller: 'forgetPassword', action: 'validateEmail', params: [email: user.email], absolute: true)
@@ -15,7 +15,6 @@ class SendLinkController {
                 subject "Hello ${user.firstName} Your password reset link is here!!! with otp" + otp1
                 text link
             }
-            //render("Check Your Mail")
             flash.message22="Check your mail"
             redirect(controller:"forgetPassword",action:"ForgetPassword")
         }
@@ -30,7 +29,6 @@ class SendLinkController {
         Integer check=Integer.parseInt(str)
         if(otp1==check)
         {
-           println "otp in if========================"+params.otp
             redirect(action:"resetPassword")
         }
 

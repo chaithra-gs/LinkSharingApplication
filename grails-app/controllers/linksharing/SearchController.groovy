@@ -1,18 +1,15 @@
 package linksharing
 
 class SearchController {
-   def userService
+    def userService
     def searchService
     def search() {
         if (!session.name) {
             render("please login first")
         } else {
-            //println params.q
-
             User user=User.findByEmail(session.name)
             List subscriptionLt = userService.subscriptions(session.name)
             List<String> resultSet = searchService.showSearch(params.q)
-            println ">>>>>>>>>>>>>>>>>>>>>>>>"
             println resultSet
             if (resultSet)
                 render view: 'search', model: [result: resultSet,userdata:user,subscriptions  : subscriptionLt]

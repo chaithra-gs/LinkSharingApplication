@@ -4,7 +4,6 @@ import grails.transaction.Transactional
 
 @Transactional
 class LoginService {
-    //for login with both email and password
     Boolean loginMethod(String userEmail, String enteredPassword) {
         Boolean flag = false
         if(userEmail && enteredPassword){

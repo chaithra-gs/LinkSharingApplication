@@ -81,7 +81,7 @@ class SubscriptionController {
             Topic t = Topic.get(topid)
             Subscription s=Subscription.findByTopicAndUser(t,user)
             if(s==null){
-                 s = new Subscription(seriousness: Seriousness.'CASUAL', topic: t)
+                s = new Subscription(seriousness: Seriousness.'CASUAL', topic: t)
                 user.addToSubscribedTo(s)
                 s.save(flush: true, failOnError: true)
                 user.save(flush: true, failOnError: true)
