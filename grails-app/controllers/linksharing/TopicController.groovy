@@ -22,7 +22,7 @@ class TopicController {
     def save() {
         String p1=params.topicName
         Visibility visible=params.selection
-        if(p1 && p2){
+        if(p1 && visible){
             Topic uniqueTopic=Topic.findByName(params.topicName)
             List list = topicService.checkUnique(session.name)
 
@@ -42,6 +42,19 @@ class TopicController {
         }
 
     }
+
+    def editDocument(){
+        println params.tname
+        println  params.desc
+
+        Resource res=Resource.get(Long.parseLong(params.id))
+
+        topicService.saveDocument(params,request,session.name)
+        redirect(controller: "resource", action: "index",params: [id: res.id])
+
+    }
+
+
 
     def saveDoc(){
         String p1 = params.select
@@ -168,7 +181,17 @@ class TopicController {
         }
 
     }
-
+    def delete() {
+        if (!session.name) {
+            flash.message = "Login First"
+            redirect(url: "/")
+        } else {
+            Long t_id = Long.parseLong(params.id)
+            Topic t1 = Topic.findById(t_id)
+            t1.delete(flush: true)
+            redirect(action: "topiclist")
+        }
+    }
 }
 
 

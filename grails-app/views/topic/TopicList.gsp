@@ -10,6 +10,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 
     <style>
     .topnav {
@@ -174,8 +178,8 @@
         </div>
     </div>
 
-    <h2>Users List</h2>
-    <p>The table represent the all users</p>
+    <h2>Topic List</h2>
+    <p>The table represent list of all Topics</p>
     <table id="example" class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -183,6 +187,7 @@
             <th>Topicname</th>
             <th>Username</th>
             <th>Visibility</th>
+            <th>Mangae</th>
 
         </tr>
         </thead>
@@ -193,6 +198,12 @@
                 <td>${topic.name}</td>
                 <td>${topic.createdBy.username}</td>
                 <td>${topic.visibility}</td>
+                <td>
+                    <button class="btn btn-success">
+                        <g:link controller="topic" action="delete" params="[id:topic.id]">Delete</g:link>
+                    </button>
+                </td>
+
 
             </tr>
         </g:each>

@@ -23,7 +23,6 @@ class ResourceController {
 
             Resource res = Resource.get(params.id)
             List trending = userService.trendtopics()
-
             List trending1=trending.collect{it.id}
             List subcount = userService.subscriptioncount(trending1)
             List postcount = userService.postscount(trending1)

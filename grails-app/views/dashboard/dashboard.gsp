@@ -223,7 +223,6 @@ console.log("inside javascript")
                                                                   value="${us.topic.visibility}" />
                                                     </g:form>
                                         </div>
-
                                         </div>
                                     </div>
                                 </g:if>
@@ -289,8 +288,9 @@ console.log("inside javascript")
                         <div class="modal-body">
                             <g:uploadForm  controller="topic" action="sendInvite" class="topicForm">
                                 Email *:
-                                <input type="email" class="form-control" id="iemail" placeholder="Link" name="iemail">
+                                <input type="email" class="form-control" id="iemail" placeholder="Link" name="iemail" required>
                                 <br>
+                                Topic:
                                 <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
                                 <br>
                                 <br>
@@ -375,7 +375,6 @@ console.log("inside javascript")
 
         <div class="modal fade"  id="linkresource" role="dialog">
             <div class="modal-dialog">
-                <!-- topic Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -384,11 +383,12 @@ console.log("inside javascript")
                     <div class="modal-body">
                         <g:uploadForm  controller="topic" action="saveLink" class="topicForm">
                             Link *:
-                            <g:field type="url" class="form-control" id="linkres" placeholder="Link" name="linkres"></g:field>
+                            <g:field type="url" class="form-control" id="linkres"  placeholder="Link" name="linkres"></g:field>
                             <br>
                             Description *:
-                            <textarea class="form-control" id="selectlink" name="selectlink"></textarea>
+                            <textarea class="form-control" id="selectlink" name="selectlink" required></textarea>
                             <br>
+                            Topic:
                             <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
                             <br>
                             <br>
@@ -409,7 +409,6 @@ console.log("inside javascript")
 
 <div class="modal fade"  id="resource" role="dialog">
     <div class="modal-dialog">
-        <!-- topic Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -418,11 +417,12 @@ console.log("inside javascript")
             <div class="modal-body">
                 <g:uploadForm  controller="topic" action="saveDoc" class="topicForm">
                     Document *:
-                    <input type="file" class="form-control" id="doc" placeholder="choose" name="document">
+                    <input type="file" class="form-control" id="doc" placeholder="choose" name="document" required>
                     <br>
                     Description *:
-                    <textarea class="form-control" id="select" name="select"></textarea>
+                    <textarea class="form-control" id="select" name="select" required></textarea>
                     <br>
+                    Topic:
                     <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
                     <br>
                     <br>
@@ -452,7 +452,7 @@ console.log("inside javascript")
             <div class="modal-body">
                 <g:form  controller="topic" action="save" class="topicForm">
                     Name *:
-                    <input class="form-control" type="text" name="topicName" id="topicName"/>
+                    <input class="form-control" type="text" name="topicName" required id="topicName"/>
                     Visibility *:
                     <select class="form-control" id="select" name="selection">
                         <option>PUBLIC</option>

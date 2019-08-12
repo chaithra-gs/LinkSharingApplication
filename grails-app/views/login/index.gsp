@@ -193,7 +193,7 @@
               <div class="form-group">
                 <text class="control-label col-md-4" for="username" style="text-align: left;">Username *</text>
                 <div class="col-md-8">
-                  <input type="text" class="form-control" id="username"  placeholder="Enter username" name="username" maxlength="20">
+                  <input type="text" class="form-control" id="username" pattern="[A-Za-z0-9]+"  title="Only characters  and numericals allowed" placeholder="Enter username" name="username" maxlength="20">
                 </div>
               </div>
               <div class="form-group">

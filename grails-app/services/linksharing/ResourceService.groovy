@@ -114,8 +114,14 @@ class ResourceService {
     def deleteMethod(params)
     {
         Resource res= Resource.get(Long.parseLong(params.id))
+        ReadingItem resRate=ReadingItem.createCriteria().get{
+            projections{
+                eq('resource.id',res.id)
+            }
+        }
+        resRate.delete()
+        resRate.save()
         res.delete()
-        res.save(flush:true,failOnerror:true)
     }
 
 }

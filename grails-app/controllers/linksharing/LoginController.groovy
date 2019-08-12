@@ -16,7 +16,7 @@ class LoginController {
         String enteredPassword = params.pwd
         Boolean isLogin =  loginService.loginMethod(email, enteredPassword)
         if(!isLogin) {
-            flash.message1 = "Fail"
+            flash.message1 = "Email or password incorrect"
             redirect(url: '/')
         }
         else{

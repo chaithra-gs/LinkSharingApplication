@@ -25,6 +25,41 @@ class TopicService {
     }
 
 
+    def saveDocument(params,request,email) {
+        String fName
+        User user1 = User.findByEmail(email)
+        Long uid = user1.id
+        String uname = user1.username
+        Resource res=Resource.get(Long.parseLong(params.id))
+        def f = request.getFile('document')
+        if(f){
+             fName = f.getOriginalFilename()
+        }
+
+
+        String link=params.link
+        if(link){
+            res.Linkurl=link
+            res.save(flush:true,failOnError:true)
+        }
+
+
+        if(fName){
+            String str = uname + fName
+            String fpath = '/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/documents/' + str
+            File des = new File(fpath)
+            f.transferTo(des)
+            res.path=str
+            res.save(flush:true,failOnError:true)
+
+        }
+
+        res.description=params.desc
+        res.save(flush:true,failOnError:true)
+
+    }
+
+
     def saveDoc(params,request,email) {
         User user1 = User.findByEmail(email)
         Long uid = user1.id
