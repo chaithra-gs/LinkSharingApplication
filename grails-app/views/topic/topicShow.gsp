@@ -71,6 +71,10 @@
                             <td width=30px><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#linkresource"><i class="material-icons" style="text-align:center;">description
                             </i></button>
                             </td>
+
+                            <td width=30px> <asset:image src="${userdata.photo}"  height="38px" width="40px" style="margin-right: 10px;"></asset:image>
+                            </td>
+
                             <td width=30px>
 
                                 <div class="dropdown" >
@@ -223,11 +227,12 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
+       %{-- <div class="row">--}%
             <div class="col-md-5">
                 <div class="panel panel-default" style="overflow: auto;height: 200px">
-                    <div class="panel-heading">Topic:${subs.topic.name}</div>
-                    <div class="panel-body">
+                    <div class="panel-heading">Topic:${subs.topic.name}
+                    </div>
+                    <div class="panel-body" >
                         <div class="col-md-3">
                             <g:img src="${userdata.photo}"  style="width:60px;height:60px"/>
                         </div>
@@ -261,11 +266,12 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 %{--One is here--}%
-                <div class="panel panel-default" style="overflow: auto;height: 280px">
+                <div class="panel panel-default" >
                     <div class="panel-heading">Users : ${subs.topic.name}</div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="overflow: auto;height: 280px">
                         <g:each in="${subscription}" var="us" status="i">
                             <div class="row">
                                 <div class="col-md-4">
@@ -284,31 +290,17 @@
                                         <div><a>${postscount.getAt(i)}</a></div>
                                     </div>
                                 <div class="col-sm-6">
-                                    %{--<g:if test="${us.topic.createdBy.email==session.name}">
-                                        <a>unsubscribe</a>
-                                    </g:if>
-                                    <g:else>
-                                        <g:link controller="subscription" action="changesub" params="[id:us.id ,  flag:0]">Unsubscribe</g:link>
-                                        </div>
-                                    </g:else>--}%
                                 </div>
                             </div>
+                            </div>
                         </g:each>
-                    </div>
                 </div>
                 </div>
             </div>
+          %{--  </div>--}%
     <div class="col-md-6" style="float: left">
         <div class="panel panel-default" style="overflow: auto;height: 280px">
             <div class="panel-heading">Posts : ${subs.topic.name}
-                    <div class="input-group" style="margin-left:350px">
-                        <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
-                        <div class="input-group-btn">
-                            <button class="btn btn-basic" type="submit">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </div>
-                    </div>
                 </div>
                 <div class="panel-body">
                 <g:each in="${resources}" var="res" status="i">
@@ -335,25 +327,11 @@
                         </div>
                     </div>
                     </br>
+                     </div>
                 </g:each>
-            </div>
-
-                %{--<div class="input-group" style="margin-left:350px">
-                    <input type="text" class="form-control" placeholder="Search" id="txtSearch"/>
-
-                    <div class="input-group-btn">
-                        <button class="btn btn-basic" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
-                </div>--}%
-            </div>
-
+                </div>
         </div>
-
-    </div>
-        </div>
-
-
+</div>
+</div>
 </body>
 </html>

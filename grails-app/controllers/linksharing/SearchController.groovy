@@ -9,6 +9,7 @@ class SearchController {
         } else {
             User user=User.findByEmail(session.name)
             List subscriptionLt = userService.subscriptions(session.name)
+            println "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+params.q
             List<String> resultSet = searchService.showSearch(params.q)
             println resultSet
             if (resultSet)

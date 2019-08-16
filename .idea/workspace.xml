@@ -7,20 +7,20 @@
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/conf/application.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/conf/application.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/LoginController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/LoginController.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceController.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SubscriptionController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SubscriptionController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/DashboardController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/DashboardController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SearchController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SearchController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SignupController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SignupController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/ResourceService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/ResourceService.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/TopicService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/TopicService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/UserService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/UserService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/views/login/index.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/login/index.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/resource/postlist.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/resource/postlist.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/resource/rating.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/resource/rating.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/search/search.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/search/search.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/topic/TopicList.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/topic/TopicList.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/user/EditProfile.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/user/EditProfile.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/user/showUserList.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/user/showUserList.gsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -89,11 +89,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/grails-app/views/profileShow" />
       <recent name="$PROJECT_DIR$/grails-app/views/login" />
       <recent name="$PROJECT_DIR$/grails-app/views/sendLink" />
       <recent name="$PROJECT_DIR$/grails-app/views/signup" />
       <recent name="$PROJECT_DIR$/grails-app/views/resource" />
-      <recent name="$PROJECT_DIR$/grails-app/views/user" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -217,7 +217,10 @@
       <workItem from="1564506082260" duration="250229000" />
       <workItem from="1565110637649" duration="44618000" />
       <workItem from="1565267873499" duration="17445000" />
-      <workItem from="1565358117130" duration="24477000" />
+      <workItem from="1565358117130" duration="56738000" />
+      <workItem from="1565778272725" duration="3000" />
+      <workItem from="1565785501188" duration="19000" />
+      <workItem from="1565785603659" duration="22638000" />
     </task>
     <servers />
   </component>
@@ -516,7 +519,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
-          <line>443</line>
+          <line>488</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -526,7 +529,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
-          <line>176</line>
+          <line>181</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -536,7 +539,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/resource/rating.gsp</url>
-          <line>191</line>
+          <line>194</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -545,14 +548,14 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
-          <line>375</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp</url>
+          <line>230</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp</url>
-          <line>226</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
+          <line>256</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

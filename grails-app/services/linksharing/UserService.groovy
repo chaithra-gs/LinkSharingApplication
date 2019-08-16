@@ -145,29 +145,32 @@ class UserService {
         return x
     }
 
-    def topTopicSubs(List<Topic> trending)
-    {
+    def topTopicSubs(List<Topic> trending) {
+        if (trending) {
+            def topiccounts = Subscription.createCriteria().list()
+                    {
+                        projections {
+                            count('topic.id')
+                            groupProperty('topic.id')
+                        }
+                        'topic' {
+                            inList('id', trending.id)
+                        }
+                    }
 
-        def topiccounts = Subscription.createCriteria().list()
-                {
-                    projections {
-                        count('topic.id')
-                        groupProperty('topic.id')
-                    }
-                    'topic' {
-                        inList('id', trending.id)
-                    }
+            List<Integer> counts = trending.collect { x ->
+                topiccounts.find {
+                    if (it.getAt(1) == x.id)
+                        return it.getAt(0)
                 }
-        List<Integer> counts = trending.collect { x ->
-            topiccounts.find {
-                if (it.getAt(1) == x.id)
+            }
+            List l = counts.collect {
+                if (!it)
+                    return 0
+                else
                     return it.getAt(0)
             }
+            return l
         }
-        List l = counts.collect{if(!it)
-            return 0
-        else
-            return it.getAt(0)}
-        return l
     }
 }

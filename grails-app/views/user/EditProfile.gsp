@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@page import="grails.util.Holders"%>
 <!doctype html>
@@ -127,8 +126,8 @@
                             </i></button>
                             </td>
 
-                            %{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
-                             </td>--}%
+                            <td width=30px> <asset:image src="${userdata.photo}"  height="38px" width="40px" style="margin-right: 10px;"></asset:image>
+                            </td>
 
                             <td width=30px>
 

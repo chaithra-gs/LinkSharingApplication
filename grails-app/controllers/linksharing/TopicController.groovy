@@ -42,13 +42,37 @@ class TopicController {
         }
 
     }
+    /*def updateTopic(){
+       *//* println "params:============================================="+params
+        println "id HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+params.id
+        println "name HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+params.topicName
+        println "visibility HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+params.selection
+        println "---------------------------------------------"+params.id.getClass()*//*
+        String chai=params.id
+        String result = chai.replaceAll("\\[", "").replaceAll("\\]", "")
+      *//*chai.replace("]","")
+        chai.replace("[","")*//*
+        println"checking gsp"+chai
+       // println "id HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+tid
+       // Topic topic=Topic.get(Long.parseLong(params.id))
+        String p1=params.topicName
+        Visibility visible=params.selection
+        topic.name=p1
+        topic.save(flush:true,failOnError:true)
+        topic.visibility=visible
+        topic.save(flush:true,failOnError:true)
+        redirect(controller: "dashboard", action: "index")
+
+    }*/
+    def send(){
+        println "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"  +params
+        redirect(controller: "dashboard", action: "index")
+    }
 
     def editDocument(){
         println params.tname
         println  params.desc
-
         Resource res=Resource.get(Long.parseLong(params.id))
-
         topicService.saveDocument(params,request,session.name)
         redirect(controller: "resource", action: "index",params: [id: res.id])
 
@@ -190,6 +214,17 @@ class TopicController {
             Topic t1 = Topic.findById(t_id)
             t1.delete(flush: true)
             redirect(action: "topiclist")
+        }
+    }
+    def deleted() {
+        if (!session.name) {
+            flash.message = "Login First"
+            redirect(url: "/")
+        } else {
+            Long t_id = Long.parseLong(params.id)
+            Topic t1 = Topic.findById(t_id)
+            t1.delete(flush: true)
+            redirect(controller:"dashboard",action: "index")
         }
     }
 }

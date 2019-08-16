@@ -9,14 +9,11 @@ class DashboardController {
                 if (!session.name) {
                         render("please login first")
                 } else {
-                        print session.name
                         User user1 = User.findByEmail(session.name)
 
                         Integer count_topic = userService.topicCount(session.name)
                         Integer count_subscribe = userService.subCount(session.name)
                         List subscriptionLt = userService.subscriptions(session.name)
-                        print subscriptionLt
-
                         List topicList = subscriptionLt*.topic
 
                         List<Long> topicids = topicList.collect { it.id }

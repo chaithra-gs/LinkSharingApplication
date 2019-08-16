@@ -25,7 +25,7 @@ class SignupController {
                 def value = signupService.register(params,request)
                 if(value)
                 {
-                    flash.message = "Register sucess"
+                    flash.message = "Register success"
                     session.name = params.signup_email
                     redirect(controller: "dashboard", action: "index")
                 }

@@ -103,6 +103,9 @@
                             </i></button>
                             </td>
 
+                            <td width=30px> <asset:image src="${userdata.photo}"  height="38px" width="40px" style="margin-right: 10px;"></asset:image>
+                            </td>
+
                             <td width=30px>
 
                                 <div class="dropdown" >
@@ -219,34 +222,8 @@
         </div>
     </div>
 
-%{--THIS IS FOR EDIT OF DESCRIPTION--}%
+%{--THIS IS FOR EDIT OF POST--}%
 
-   %{-- <div class="modal fade" id="editdesc">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" >Topic names subscribed</h4>
-                </div>
-                <div class="modal-body">
-                    <g:form class="form-horizontal"  controller="resource" action="updatedescription">
-                        <div class="form-group">
-                            <label for="description" class="col-sm-2 control-label">Description</label>
-                            <div class="col-sm-7">
-                                <g:textArea name="description" class="col-sm-8 form-control" value="${resource.description}"/>
-                            </div>
-                        </div>
-                        <g:field type="hidden" name="id" value="${resource.id}"></g:field>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Save</button>
-                            </div>
-                        </div>
-                    </g:form>
-                </div>
-            </div>
-        </div>
-    </div>--}%
     <div class="modal fade"  id="editdesc" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -283,7 +260,7 @@
             </div>
         </div>
     </div>
-
+    %{--EDIT TOPIC MODEL--}%
 
     %{--CREATE TOPIC MODEL--}%
     <div class="modal fade" id="topicModal" role="dialog">
@@ -314,9 +291,9 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="row">
-                <div class="panel panel-default col-md-6">
+        <div class="row" class="rate">
+            <div class="col-md-6">
+                <div class="panel panel-default >
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-2">
@@ -327,7 +304,8 @@
                             <div class="col-md-4">
                                 <g:link controller="topic" action="index" params="[id: resource.topic.id]">${resource.topic.name}</g:link><br>
                                 ${resource.dateCreated}
-                            </div></div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-9">
                                 ${resource.description}
@@ -339,15 +317,16 @@
                                 <span id="4" onclick="Rating('${session.name}' , '${resource.id}' , '${4}')"class="glyphicon glyphicon-star"></span>
                                 <span id="5" onclick="Rating('${session.name}' , '${resource.id}' , '${5}')"class="glyphicon glyphicon-star"></span>
                             </div>
+                        </div>
                        <br><br><br>
 
-                    <div class="row">
-                        <div class="col-md-6"></div>
-                    <div class="col-md-2">
+                        <div class="row">
+                        %{--<div class="col-md-6"></div>--}%
+                        <div class="col-md-2">
                         <g:if test="${resource.user.email==session.name}">
                             <g:link controller="resource" action="delete" params="[id:resource.id]">Delete</g:link>
-                            </div>
                         </g:if>
+                        </div>
                         <g:if test="${resource.user.email==session.name}">
                             <g:if test="${resource.hasProperty("path")}">
                                 <div class="col-md-1">
@@ -359,22 +338,22 @@
                                     <a data-toggle="modal" data-target="#editdesc">Edit</a>
                                 </div>
                             </g:else>
-
                         </g:if>
-
                             <g:if test="${resource.hasProperty("Linkurl")}">
-                        <div class="col-md-2">
+                            <div class="col-md-2">
                             <a href="${resource.Linkurl}" target="_blank">View Full Site</a>
-                        </div>
-                    </g:if>
-                    <g:else>
-                        <g:link controller="Document" action="download" params="[id:resource.id]" >Download</g:link>
-                    </g:else>
-                </div>
-                        </div>
+                            </div>
+                            </g:if>
+                            <g:else>
+                            <div class="col-md-2">
+                            <g:link controller="Document" action="download" params="[id:resource.id]" >Download</g:link>
+                            </div>
+                            </g:else>
+                            <br>
                     </div>
-                </div>
+            </div>
         </div>
+
 %{--TRENDING TOPICS--}%
             <div class ="col-md-6">
                 <div class="panel panel-default" style="height:280px;overflow: auto;">

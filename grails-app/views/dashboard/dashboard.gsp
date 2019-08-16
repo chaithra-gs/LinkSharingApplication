@@ -92,7 +92,9 @@ console.log("inside javascript")
                                             </div>
                                         </div>
                                     </g:form>
-                                    ${flash.message4}   ${flash.message11} ${flash.message13} ${flash.message23} ${flash.message}
+                                    <div style="font-size: medium" >
+                                        ${flash.message4}   ${flash.message11} ${flash.message13} ${flash.message23} ${flash.message}
+                                    </div>
                                 </div>
                             </td>
                             <td width=10px style="text-align:center;"}>
@@ -113,6 +115,9 @@ console.log("inside javascript")
 
                             <td width=30px><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal" title="Create link"  data-target="#linkresource"><i class="material-icons" style="text-align:center;">description
                             </i></button>
+                            </td>
+
+                            <td width=30px>%{--<a href="/User/myaction" >--}%<asset:image src="${userdata.photo}"  height="38px" width="40px" style="margin-right: 10px;"></asset:image>%{--</a>--}%
                             </td>
 
                             <td width=30px>
@@ -153,7 +158,7 @@ console.log("inside javascript")
                         <table   style="width:100%">
                             <tr>
                                 <td rowspan="4" colspan="3" width="10%">
-                                    <asset:image src="${userdata.photo}"  height="100px" width="90px" style="margin-right: 10px;"></asset:image>
+                                    <g:link controller="profileShow" action="showData"> <asset:image src="${userdata.photo}" style="width:90px;height:90px;margin-right:10px"></asset:image></g:link>
                                 </td>
                                 <td width=200px class="text" colspan="3">${userdata.firstName} ${userdata.lastName}</td>
                             </tr>
@@ -183,7 +188,7 @@ console.log("inside javascript")
                         <li>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <asset:image src="${userdata.photo}" style="width:90px;height:90px"></asset:image></div>
+                                   <g:link controller="profileShow" action="showData"> <asset:image src="${userdata.photo}" style="width:90px;height:90px"></asset:image></g:link></div>
                                 <div class="col-sm-8">
                                     <div style="font-size:23px;">
                                         <g:link controller="topic" action="topicshow" params="[id: us.id]"> ${us.topic.name} </g:link>
@@ -209,7 +214,14 @@ console.log("inside javascript")
                                 <g:if test  = "${us.topic.createdBy.email==session.name}" >
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="col-md-8">
+                                            <div class="col-md-1">
+                                                <g:link controller="topic" action="deleted" params="[id:us.topic.id]"><span class="glyphicon glyphicon-trash"></span></g:link>
+                                            </div>
+                                           %{-- <div class="col-md-1">
+                                                <a href="${createLink(controller: 'topic', action: 'send', params: "[id:us.topic.id]")}" data-toggle="modal" data-target="#editTopicModal" ><span class="glyphicon glyphicon-edit"></span></a>
+                                                --}%%{--<g:actionSubmit value="S" controller="topic" action="save" params="[id:us.topic.id]" data-toggle="modal" data-target="#editTopicModal"><span class="glyphicon glyphicon-edit"></span></g:actionSubmit>--}%%{--
+                                            </div>--}%
+                                            <div class="col-md-7">
                                                     <g:form controller="subscription" action="updateSerious">
                                                         <g:field type="hidden" name="id" value="${us.id}"></g:field>
                                                         <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
@@ -252,12 +264,12 @@ console.log("inside javascript")
                     <li>
                     <div class="row">
                         <div class="col-md-4">
-                            <asset:image src="${us.createdBy.photo}" alt="photo here" style="width:90px;height:90px"/>
+                           %{-- <asset:image src="${us.createdBy.photo}" alt="photo here" style="width:90px;height:90px"/>--}%
+                            <g:link controller="profileShow" action="showData"> <asset:image src="${userdata.photo}" style="width:90px;height:90px;"></asset:image></g:link>
                         </div>
                         <div class="col-sm-8">
                             <div style="font-size:15px;">
-                                <g:link ><b>${us.name}</g:link></b></div>
-                            %{--controller="topic" action="topicshow" params="[id: us.id]"--}%
+                                <g:link><b>${us.name}</g:link></b></div>
                             <div>@${us.createdBy.username}</div>
 
                             <div class="col-sm-6">
@@ -269,6 +281,7 @@ console.log("inside javascript")
                         </div>
 
                         <g:link controller="subscription" action="subscribe" params="[id:us.id ,page:"dashboard"]">Subscribe</g:link>
+                    </div>
 
                     </li>
                         </ul>
@@ -321,7 +334,8 @@ console.log("inside javascript")
                         <li>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <asset:image src="${res.user.photo}"  style="width:90px;height:90px"/>
+                                   %{-- <asset:image src="${res.user.photo}"  style="width:90px;height:90px"/>--}%
+                                    <g:link controller="profileShow" action="showData"> <asset:image src="${userdata.photo}" style="width:90px;height:90px;margin-right: 2%"></asset:image></g:link>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row">
@@ -386,7 +400,7 @@ console.log("inside javascript")
                             <g:field type="url" class="form-control" id="linkres"  placeholder="Link" name="linkres"></g:field>
                             <br>
                             Description *:
-                            <textarea class="form-control" id="selectlink" name="selectlink" required></textarea>
+                            <textarea class="form-control" maxlength="60" id="selectlink" name="selectlink" required></textarea>
                             <br>
                             Topic:
                             <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
@@ -400,6 +414,33 @@ console.log("inside javascript")
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editTopicModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Topic</h4>
+            </div>
+            <div class="modal-body">
+                <g:uploadForm  class="topicForm" controller="topic" action="updateTopic" params="[id:user.topics.id]">
+                    Name *:
+                    <input type="text" class="form-control"  name="topicName" value="${user.topics.name}" id="tname"/>
+                    Visibility *:
+                    <select class="form-control" id="select" name="selection" value="${user.topics.visibility}">
+                        <option>PUBLIC</option>
+                        <option>PRIVATE</option>
+                    </select>
+                    <input type="submit" value="save" class="btn btn-success" style="float: right; margin-top: 5px;"/>
+                </g:uploadForm>
+            </div>
+            <div class="modal-footer" style=" margin-top: 15px;">
+                <button type="button" class="btn btn-warning" onclick="resetTopicForm()">Reset</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -420,7 +461,7 @@ console.log("inside javascript")
                     <input type="file" class="form-control" id="doc" placeholder="choose" name="document" required>
                     <br>
                     Description *:
-                    <textarea class="form-control" id="select" name="select" required></textarea>
+                    <textarea class="form-control" id="select" maxlength="60" name="select" required></textarea>
                     <br>
                     Topic:
                     <g:select class="btn dropdown-toggle col-sm-8 form-control" name="topic" from="${subscriptions.topic.name}"  optionValue="value" />
@@ -440,10 +481,13 @@ console.log("inside javascript")
 </div>
 </div>
 
+%{--EDIT TOPIC MODEL--}%
+
+
+
 <!-- create topic -->
 <div class="modal fade" id="topicModal" role="dialog">
     <div class="modal-dialog">
-        <!-- topic Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -452,7 +496,7 @@ console.log("inside javascript")
             <div class="modal-body">
                 <g:form  controller="topic" action="save" class="topicForm">
                     Name *:
-                    <input class="form-control" type="text" name="topicName" required id="topicName"/>
+                    <input class="form-control" type="text" name="topicName" pattern="[A-Za-z0-9]+"   title="Only characters  and numericals allowed" required id="topicName"/>
                     Visibility *:
                     <select class="form-control" id="select" name="selection">
                         <option>PUBLIC</option>
@@ -469,6 +513,9 @@ console.log("inside javascript")
         </div>
     </div>
 </div>
+
+
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>

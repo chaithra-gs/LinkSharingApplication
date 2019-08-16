@@ -147,6 +147,9 @@
                             </i></button>
                             </td>
 
+                            <td width=30px> <asset:image src="${userdata.photo}"  height="38px" width="40px" style="margin-right: 10px;"></asset:image>
+                            </td>
+
                             %{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
                              </td>--}%
 
@@ -187,7 +190,7 @@
             <th>Topicname</th>
             <th>Username</th>
             <th>Visibility</th>
-            <th>Mangae</th>
+            <th>Manage</th>
 
         </tr>
         </thead>

@@ -100,6 +100,9 @@
                                 <td width=30px><button type="button" class="btn btn-info btn-group-sm" data-toggle="modal"   data-target="#linkresource"><i class="material-icons" style="text-align:center;">description
                                 </i></button>
                                 </td>
+                            </td>
+                                <td width=30px> <asset:image src="${userdata.photo}"  height="38px" width="40px" style="margin-right: 10px;"></asset:image>
+                                </td>
 
                                 <td width=30px>
 
