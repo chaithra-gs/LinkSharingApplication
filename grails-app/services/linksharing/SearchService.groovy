@@ -7,7 +7,6 @@ class SearchService {
 
     def showSearch(String searchKey)
     {
-        println "inside service with ${searchKey}"
         String entry = searchKey
         if (entry==null)
             return null
@@ -19,7 +18,18 @@ class SearchService {
         List<String> resourceResults = Resource.createCriteria().list{
             ilike("description","%${entry}%")
         }.collect{it.description}
+
         List<String> resultSet = topicResults+resourceResults
         return resultSet
+    }
+    def showResult(String searchKey){
+        String entry = searchKey
+        if (entry==null)
+            return null
+
+        List<String> results = Resource.createCriteria().list{
+            ilike("description","%${entry}%")
+        }.collect{it.description}
+        return results
     }
 }

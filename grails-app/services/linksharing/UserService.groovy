@@ -120,7 +120,7 @@ class UserService {
 
     def topTopicsPosts(List<Topic> trending) {
 
-        List abcd = Resource.createCriteria().list(max: 5)
+        List abcd = Resource.createCriteria().list()
                 {
                     projections {
                         count('topic.id')

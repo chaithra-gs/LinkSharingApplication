@@ -293,7 +293,7 @@
     <div class="container">
         <div class="row" class="rate">
             <div class="col-md-6">
-                <div class="panel panel-default >
+                <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-2">
@@ -350,8 +350,9 @@
                             </div>
                             </g:else>
                             <br>
-                    </div>
+                        </div>
             </div>
+                </div>
         </div>
 
 %{--TRENDING TOPICS--}%

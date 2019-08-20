@@ -158,20 +158,21 @@
                     <ul class="list-inline">
                         <li>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div style="font-size:15px;">
                                         <g:link><b>${us.name}</g:link></b>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                        Subscriptions:
-                                        <div>${subs1.get(i)}</div>&nbsp
+                                    Posts:
+                                    <div>${topic1.getAt(i)}</div>
                                 </div>
-                                <div class="col-md-offset-1" style="float: right">
-                                        Posts:
-                                        <div>${topic1.getAt(i)}</div>
+                                <div class="col-md-3" style="float: right">
+
+                                    Subscriptions:
+                                    <div>${subs1.get(i)}</div>&nbsp
                                 </div>
-                                <g:link controller="subscription" action="subscribe" params="[id:us.id ,page:"dashboard"]">Subscribe</g:link>
+                            </div>
                         </li>
                     </ul>
                 </g:each>

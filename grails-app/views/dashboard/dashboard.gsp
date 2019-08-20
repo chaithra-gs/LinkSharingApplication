@@ -13,6 +13,7 @@
         }
     </script>
         <g:javascript>
+    var urll="${createLink(controller:"subscription" ,action:"updateSerious")}"
 console.log("inside javascript")
            var url="${createLink(controller:"resource" ,action:"editread")}"
         function updateread(username , resourceId ){
@@ -158,7 +159,7 @@ console.log("inside javascript")
                         <table   style="width:100%">
                             <tr>
                                 <td rowspan="4" colspan="3" width="10%">
-                                    <g:link controller="profileShow" action="showData"> <asset:image src="${userdata.photo}" style="width:90px;height:90px;margin-right:10px"></asset:image></g:link>
+                                    <g:link controller="profileShow" action="showData"> <asset:image src="${userdata.photo}" style="width:90px;height:90px;margin-right:"></asset:image></g:link>
                                 </td>
                                 <td width=200px class="text" colspan="3">${userdata.firstName} ${userdata.lastName}</td>
                             </tr>
@@ -217,14 +218,10 @@ console.log("inside javascript")
                                             <div class="col-md-1">
                                                 <g:link controller="topic" action="deleted" params="[id:us.topic.id]"><span class="glyphicon glyphicon-trash"></span></g:link>
                                             </div>
-                                           %{-- <div class="col-md-1">
-                                                <a href="${createLink(controller: 'topic', action: 'send', params: "[id:us.topic.id]")}" data-toggle="modal" data-target="#editTopicModal" ><span class="glyphicon glyphicon-edit"></span></a>
-                                                --}%%{--<g:actionSubmit value="S" controller="topic" action="save" params="[id:us.topic.id]" data-toggle="modal" data-target="#editTopicModal"><span class="glyphicon glyphicon-edit"></span></g:actionSubmit>--}%%{--
-                                            </div>--}%
-                                            <div class="col-md-7">
+                                            <div class="col-md-7">%{--controller="subscription" action="updateSerious"--}% %{--onChange="submit()"--}%
                                                     <g:form controller="subscription" action="updateSerious">
                                                         <g:field type="hidden" name="id" value="${us.id}"></g:field>
-                                                        <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                                        <g:select onChange="submit()" id="modify" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
                                                                   value="${us.seriousness}" />
                                                     </g:form>
                                         </div>
@@ -529,6 +526,15 @@ console.log("inside javascript")
     }
     var resetTopicForm = function () {
         $(".topicForm").trigger("reset");
+    }
+    function modifyThis(){
+        alert("hi");
+        var seriousness =${'#modify'}.val();
+        $.ajax({
+            "url": urll,
+            "type": "get",
+            "data": {seriousness: seriousness}
+        });
     }
 </script>
 </body>

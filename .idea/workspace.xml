@@ -8,20 +8,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/conf/application.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/conf/application.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/DashboardController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/DashboardController.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SearchController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SearchController.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SignupController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SignupController.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/controllers/linksharing/SubscriptionController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/controllers/linksharing/SubscriptionController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/ResourceService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/ResourceService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/SearchService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/SearchService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/linksharing/UserService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/linksharing/UserService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/views/resource/postlist.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/resource/postlist.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/login/index.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/login/index.gsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/views/profileShow/profileShow.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/profileShow/profileShow.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/resource/rating.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/resource/rating.gsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/views/search/search.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/search/search.gsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/views/topic/TopicList.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/topic/TopicList.gsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/views/user/EditProfile.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/user/EditProfile.gsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/views/user/showUserList.gsp" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/views/user/showUserList.gsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -220,7 +216,7 @@
       <workItem from="1565358117130" duration="56738000" />
       <workItem from="1565778272725" duration="3000" />
       <workItem from="1565785501188" duration="19000" />
-      <workItem from="1565785603659" duration="22638000" />
+      <workItem from="1565785603659" duration="42546000" />
     </task>
     <servers />
   </component>
@@ -519,17 +515,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
-          <line>488</line>
+          <line>485</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
-          <line>73</line>
+          <line>74</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
-          <line>181</line>
+          <line>182</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -544,17 +540,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp</url>
-          <line>30</line>
+          <line>33</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/topic/topicShow.gsp</url>
-          <line>230</line>
+          <line>233</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/grails-app/views/dashboard/dashboard.gsp</url>
-          <line>256</line>
+          <line>253</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>

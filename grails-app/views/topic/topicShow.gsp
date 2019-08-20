@@ -11,6 +11,9 @@
             document.getElementById("droped").style.display="block";
         }
     </script>
+    <g:javascript>
+    var url="${createLink(controller:'search',action:'display')}"
+</g:javascript>
     <style>
     body{
         background: #555555;
@@ -301,20 +304,28 @@
     <div class="col-md-6" style="float: left">
         <div class="panel panel-default" style="overflow: auto;height: 280px">
             <div class="panel-heading">Posts : ${subs.topic.name}
-                </div>
+                %{--<div class="input-group" style="float: right;width: 40%;height:5px">
+                    <g:textField id="q" class="form-control" name="q" placeholder="Search" value="${q}"/>
+                    <div class="input-group-btn">
+                        <button class="btn btn-basic" type="submit" onclick="search()">
+                            <span class="glyphicon glyphicon-search" style="height: 20%"></span>
+                        </button>
+                    </div>
+                </div>--}%
+            </div>
                 <div class="panel-body">
                 <g:each in="${resources}" var="res" status="i">
                     <div class="row">
                         <div class="col-md-4">
                     <asset:image src="${userdata.photo}" style="width:90px;height:90px"/>
-                    </div>
+                        </div>
 
-                    <div class="col-md-8">${res.description}
+                    <div class="col-md-8">${res.description}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <g:if test="${res instanceof linksharing.LinkResource}">
-                                <a href="${res.Linkurl}" target="_blank" class="col-md-3">View Full Site</a>
+                                <a href="${res.Linkurl}" target="_blank" style="margin-left: 40%">View Full Site</a>
                             </g:if>
                         </div>
                         <div class="col-md-3">
@@ -322,16 +333,27 @@
                                 <g:link controller="Document" action="download" params="[id:res.id , tid:subs.id]" >Download</g:link>%{--</div>--}%
                             </g:if>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <g:link controller="Resource" action="index" params="[id:res.id]" >View post</g:link>
                         </div>
                     </div>
                     </br>
-                     </div>
                 </g:each>
+                     </div>
+
                 </div>
         </div>
 </div>
 </div>
+<script>
+    function search(){
+        var q=$('#q').val();
+        $.ajax({
+            "url":url,
+            "type":"get",
+            "data":{q:q}
+        });
+    }
+</script>
 </body>
 </html>

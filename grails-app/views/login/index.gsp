@@ -70,7 +70,7 @@
                   <li>
                     <div class="row">
                       <div class="col-md-3">
-                        <asset:image src="${res.user.photo}"  style="width:90px;height:90px"/></div>
+                        <asset:image src="${res.user.photo}"  style="width:90px;height:90px;margin-right: 60px"/></div>
                       <div class="col-sm-9">
                         <div class="row">
                           <div class="col-sm-4">
@@ -109,7 +109,7 @@
                   <li>
                     <div class="row">
                       <div class="col-md-3">
-                        <asset:image src="${Resource.get(res).user.photo}"  style="width:90px;height:90px"/></div>
+                        <asset:image src="${Resource.get(res).user.photo}"  style="width:90px;height:90px;margin-right: 20px"/></div>
                       <div class="col-sm-9">
                         <div class="row">
                           <div class="col-sm-4">
