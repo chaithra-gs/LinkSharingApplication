@@ -6,11 +6,6 @@ class ProfileController {
     def profileService
 
     def profile(params,request){
-        if(!session.name)
-        {
-            render("please login first")
-        }
-        else {
             String firstname = params.fname
             String lastname = params.lname
             String username = params.username
@@ -44,15 +39,10 @@ class ProfileController {
                 redirect(controller: "User", action: "myaction")
             }
 
-        }
+
     }
 
     def password(){
-        if(!session.name)
-        {
-            render("please login first")
-        }
-        else {
             User user = User.findByEmail(session.name)
             def updatepass = profileService.updatepass(params, user)
             if(updatepass)
@@ -68,6 +58,5 @@ class ProfileController {
 
             }
 
-        }
     }
 }

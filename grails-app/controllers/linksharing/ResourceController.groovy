@@ -13,10 +13,6 @@ class ResourceController {
     def resourceRatingService
 
     def index() {
-        if (!session.name) {
-            render("Login reqired")
-        }
-        else {
 
             User user=User.findByEmail(session.name)
             List subscriptionLt=userService.subscriptions(session.name)
@@ -30,19 +26,14 @@ class ResourceController {
             def rating = resourceRatingService.readMethod(session.name,res)
 
             render(view: "rating", model: [userdata:user,subscriptions : subscriptionLt,resource: res, trending: trending, value:rating,countforsubs: subcount, countforposts:postcount])
-        }
+
     }
 
 
     def editread() {
-        if (!session.name) {
-            render("Login required")
-        } else {
-            def value1 = resourceService.editreadMethod(params)
+            def value = resourceService.editreadMethod(params)
             redirect(controller: "dashboard", action: "index")
             render([value:true] as JSON)
-        }
-
     }
 
     def delete() {
@@ -50,14 +41,11 @@ class ResourceController {
         redirect(controller: "dashboard", action: "index")
     }
     def postlist() {
-        if (!session.name) {
-            render("please login first")
-        } else {
             User user = User.findByEmail(session.name)
             List subscriptionLt = userService.subscriptions(session.name)
             List resources = Resource.list()
             render(view: 'postlist', model: [list: resources, userdata: user, subscriptions: subscriptionLt])
-        }
+
     }
     def updatedescription(){
         Resource res=Resource.get(Long.parseLong(params.id))

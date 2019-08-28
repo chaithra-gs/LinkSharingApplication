@@ -19,12 +19,11 @@ class SendLinkController {
             redirect(controller:"forgetPassword",action:"ForgetPassword")
         }
         else{
-            flash.message23="Email doesn't exist"
+            flash.message="Email doesn't exist"
             redirect(controller:"forgetPassword",action:"ForgetPassword")
         }
     }
     def resetpage(){
-        println "params from enterotp view"+params.otp
         String str=params.otp
         Integer check=Integer.parseInt(str)
         if(otp1==check)

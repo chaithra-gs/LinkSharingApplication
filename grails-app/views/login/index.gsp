@@ -30,11 +30,11 @@
 
     }
 </script>
-  <style>
+  %{--<style>
   body{
     background: #555555;
   }
-  </style>
+  </style>--}%
 </head>
 <body>
   <div class="container"><br>
@@ -59,8 +59,7 @@
         </div>
       </div>
     </div>
-
-      <div class="row">
+    <div class="row">
         <div class="col-md-7">
           <div class="panel panel-default" style="height:350px;overflow: auto;">
             <div class="panel-heading">Recent shares</div>
@@ -157,7 +156,7 @@
               </div>
               <div class="form-group">
                 <div class=" col-md-10">
-                  <g:link class="control-label col-md-8" controller="forgetPassword"  action="forgetPassword" style="text-align: left;">Forgot Password</g:link>
+                  <g:link class="control-label col-md-8" controller="forgetPassword"  action="forgetPassword" style="text-align: left;">Forgot Password</g:link>${flash.message}
                 </div>
                 <div class=" offset-md-1">
                   <button type="submit" class="btn btn-basic">Login</button>

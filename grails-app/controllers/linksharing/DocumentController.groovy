@@ -5,9 +5,6 @@ class DocumentController {
     def documentService
 
     def download() {
-        if (!session.name) {
-            render("please login first")
-        } else {
 
             Long id = Long.parseLong(params.id)
             println "id:" + id
@@ -25,19 +22,13 @@ class DocumentController {
             response.setHeader("Content-disposition", "attachment;filename=\"${dr.path}\"")
             response.outputStream << file.bytes
 
-        }
+
     }
 
     def save()
     {
-        if(!session.name)
-        {
-            render("please login first")
-        }
-        else {
             documentService.saveMethod(params, session.name, request)
             redirect(controller: "Dashboard", action: "index")
-        }
 
     }
 

@@ -1,9 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chaithra
-  Date: 05/08/19
-  Time: 11:23 AM
---%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
@@ -17,8 +11,6 @@
 
         <div class="panel-body">
             <g:form url="[controller:'sendLink' , action : 'resetpage']" class="form-horizontal">
-
-
                 Enter OTP:<br>
                 <input type="password" name="otp"  placeholder="Enter Otp">
                 <br>

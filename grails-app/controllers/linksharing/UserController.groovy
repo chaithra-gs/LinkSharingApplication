@@ -15,38 +15,40 @@ class UserController {
     }
 
     def myaction() {
-        if (!session.name) {
-            render("please login first")
-        } else {
             List subscriptionLt = userService.subscriptions(session.name)
             User user1 = User.findByEmail(session.name)
             Integer count_topic = userService.topicCount(session.name)
             Integer count_subscribe = userService.subCount(session.name)
-
-
-            render(view: "EditProfile", model: [userdata       : user1, subscriptions: subscriptionLt, count_topic: count_topic,
+            render(view: "EditProfile", model: [userdata  : user1, subscriptions: subscriptionLt, count_topic: count_topic,
                                                 count_subscribe: count_subscribe,])
-        }
+
     }
 
     def showlist() {
-        if (!session.name) {
-            render("please login first")
-        } else {
             String str = session.name
             User user1 = User.findByEmail(str)
+        if(user1.admin)
+        {
             List subscriptionLt = userService.subscriptions(session.name)
             List<User> list1 = showAllUserListService.listMethod()
             render(view: "showUserList", model: [userList: list1, userdata: user1, subscriptions: subscriptionLt])
         }
+        else{
+            flash.message="Access denied"
+            redirect(controller: "dashboard", action: "index")
+        }
+
+
+
+
+
+
     }
 
     def logout() {
         session.invalidate()
         redirect(url: '/')
     }
-
-    // To display the number of subscription and trending topics  done by particular user
     def userTable() {
         render(view: 'showUserList', model: [userList: User.list()])
     }
@@ -84,6 +86,12 @@ class UserController {
         user.admin = true
         user.save(failOnError: true, flush: true)
         redirect(controller: "user", action: 'showlist')
+    }
+    def test(){
+        User user = User.findByEmail(session.name)
+        List subscriptionLt = userService.subscriptions(session.name)
+        render(view: "/layout/_dashboard", model: [userdata: user, subscriptions:subscriptionLt])
+
     }
 
 }

@@ -10,62 +10,50 @@ class TopicController {
     def newTopic(){
         render(view:"topicShow")
     }
-
     def topiclist() {
         User u = User.findByEmail(session.name)
-        List subscriptionLt = userService.subscriptions(session.name)
-        List topiclist = topiclistService.serviceMethod()
-
-        render(view:'TopicList', model: [topiclists: topiclist,userdata: u,subscriptions:subscriptionLt])
+        if(u.admin)
+        {
+            List subscriptionLt = userService.subscriptions(session.name)
+            List topiclist = topiclistService.serviceMethod()
+            render(view: 'TopicList', model: [topiclists: topiclist, userdata: u, subscriptions: subscriptionLt])
+        }
+        else{
+            flash.message="Access denied"
+            redirect(controller: "dashboard", action: "index")
+        }
     }
+
 
     def save() {
         String p1=params.topicName
         Visibility visible=params.selection
-        if(p1 && visible){
+        if(p1 && visible)
+        {
             Topic uniqueTopic=Topic.findByName(params.topicName)
-            List list = topicService.checkUnique(session.name)
+            User user=User.findByEmail(session.name)
+            /*List list = topicService.checkUnique(session.name)
+            boolean var=list.contains(uniqueTopic)*/
 
-            boolean var=list.contains(uniqueTopic)
+            List<Topic> var=topicService.checkUnique(session.name,params.topicName)
             if(var){
-                flash.message4="Topic already exists"
+
                 redirect(controller: "dashboard", action: "index")
+                flash.message="Topic already exists"
             }else{
                 String email = session.name
                 topicService.save(params, email)
-
                 redirect(controller: "dashboard", action: "index")
             }
-        }else{
+        }
+        else{
             flash.message="please enter all fields"
             redirect(controller: "dashboard", action: "index")
         }
 
     }
-    /*def updateTopic(){
-       *//* println "params:============================================="+params
-        println "id HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+params.id
-        println "name HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+params.topicName
-        println "visibility HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+params.selection
-        println "---------------------------------------------"+params.id.getClass()*//*
-        String chai=params.id
-        String result = chai.replaceAll("\\[", "").replaceAll("\\]", "")
-      *//*chai.replace("]","")
-        chai.replace("[","")*//*
-        println"checking gsp"+chai
-       // println "id HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"+tid
-       // Topic topic=Topic.get(Long.parseLong(params.id))
-        String p1=params.topicName
-        Visibility visible=params.selection
-        topic.name=p1
-        topic.save(flush:true,failOnError:true)
-        topic.visibility=visible
-        topic.save(flush:true,failOnError:true)
-        redirect(controller: "dashboard", action: "index")
 
-    }*/
     def send(){
-        println "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"  +params
         redirect(controller: "dashboard", action: "index")
     }
 
@@ -122,14 +110,11 @@ class TopicController {
 
 
     def topicshow() {
-        if (!session.name) {
-            render("please login first")
-        } else {
+
             User user = User.findByEmail(session.name)
             User user1 = User.findByEmail(session.name)
             Long tid = 0.0
 
-            print params
             Long id = Long.parseLong(params.id)
             //Long id=params.id
             Subscription sub = Subscription.get(id)
@@ -182,7 +167,7 @@ class TopicController {
                             resources        : resource,
                             userdata         : user1,
                             subscriptions    : subscriptionLt])
-        }
+
     }
 
     def sendInvite(){
@@ -200,32 +185,26 @@ class TopicController {
             redirect controller: 'dashboard',action:'index'
         }
         else{
-            flash.message13="Email doesn't Exist!!"
+            flash.message="Email doesn't Exist!!"
             redirect controller: 'dashboard',action:'index'
         }
 
     }
     def delete() {
-        if (!session.name) {
-            flash.message = "Login First"
-            redirect(url: "/")
-        } else {
+
             Long t_id = Long.parseLong(params.id)
             Topic t1 = Topic.findById(t_id)
             t1.delete(flush: true)
             redirect(action: "topiclist")
-        }
+
     }
     def deleted() {
-        if (!session.name) {
-            flash.message = "Login First"
-            redirect(url: "/")
-        } else {
+
             Long t_id = Long.parseLong(params.id)
             Topic t1 = Topic.findById(t_id)
             t1.delete(flush: true)
             redirect(controller:"dashboard",action: "index")
-        }
+
     }
 }
 

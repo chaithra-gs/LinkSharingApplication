@@ -211,13 +211,28 @@ class TopicService {
 
     }
 
-    def checkUnique(String name){
+    def checkUnique(String name,String tName){
         User user=User.findByEmail(name)
-        List<Topic> topic = Topic.createCriteria().list{
+        List<Topic> topics = Topic.createCriteria().list(){
+            and{
+                eq('createdBy',user)
+                    eq('name',tName)
+
+
+            }
+        }
+        return topics
+    }
+
+
+    /*def checkUnique(String name){
+        User user=User.findByEmail(name)
+        List<Topic> topics = Topic.createCriteria().list{
             projections{
                 eq('createdBy',user)
             }
         }
-    }
+        return topics
+    }*/
 
 }

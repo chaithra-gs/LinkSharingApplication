@@ -4,9 +4,6 @@ class profileShowController {
     def userService
     def profileShowService
     def showData() {
-        if (!session.name) {
-            render("please login first")
-        } else {
             List subscriptionLt = userService.subscriptions(session.name)
             User user1 = User.findByEmail(session.name)
             Integer count_topic = userService.topicCount(session.name)
@@ -26,10 +23,6 @@ class profileShowController {
             List allTopics=profileShowService.allTopics(session.name)
             List allsubs1 = userService.topTopicSubs(allTopics)
             List alltopics1 = userService.topTopicsPosts(allTopics)
-
-
-
-
             render(view: "profileShow", model: [userdata: user1,
                                                 subscriptions: subscriptionLt,
                                                 count_topic: count_topic,
@@ -42,6 +35,6 @@ class profileShowController {
                     allSubs1:allsubs1,
                     allTopics1:alltopics1
             ])
-        }
+
     }
 }

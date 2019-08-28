@@ -113,15 +113,6 @@ class ResourceService {
 
     def deleteMethod(params)
     {
-       /* Resource res= Resource.get(Long.parseLong(params.id))
-        ReadingItem resRate=ReadingItem.createCriteria().get{
-            projections{
-                eq('resource.id',res.id)
-            }
-        }
-        resRate.delete()
-        //resRate.save()
-        res.delete()*/
         Resource resource = Resource.get(params.id)
         if (resource.hasProperty("path")) {
             String location = '/home/chaithra/grailsproject/git/LinkSharingApplication/grails-app/assets/documents/' + resource.path
@@ -129,8 +120,6 @@ class ResourceService {
             file.delete()
         }
         resource.delete(flush: true, failOnError: true)
-        //redirect controller: 'dashboard', action: 'index'
-
     }
 
 }

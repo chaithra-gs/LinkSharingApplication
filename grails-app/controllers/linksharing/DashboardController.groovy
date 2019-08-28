@@ -6,9 +6,6 @@ class DashboardController {
         def readingService
 
         def index() {
-                if (!session.name) {
-                        render("please login first")
-                } else {
                         User user1 = User.findByEmail(session.name)
 
                         Integer count_topic = userService.topicCount(session.name)
@@ -45,7 +42,7 @@ class DashboardController {
 
 
 
-                }
+
 
         }
 }

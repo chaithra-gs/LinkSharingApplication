@@ -11,36 +11,22 @@ class SubscriptionController {
     def subscriptionService
 
     def updateSerious() {
-        if(!session.name)
-        {
-            render("please login first")
-        }
-        else{
             subscriptionService.updateSerious(params)
             redirect(controller: "dashboard", action: "index")
-        }
+
     }
     def updateSeriouss() {
-        if(!session.name)
-        {
-            render("please login first")
-        }
-        else{
-            println "?????????????????????????????????????????????????????????????????????????"
+
             subscriptionService.updateSeriouss(params)
             redirect(controller:"topic",action: "topicshow",params:[id: params.id])
-        }
+
     }
     def changesub()
     {
-        if(!session.name)
-        {
-            render("please login first")
-        }
-        else{
+
             subscriptionService.updateSubscription(params)
             redirect(controller: "dashboard", action: "index")
-        }
+
     }
 
     def unsubscribe(params){
@@ -53,7 +39,6 @@ class SubscriptionController {
         else
         {
             Long topid = Long.parseLong(params.id)
-            println "----------------------"
             println topid
             Subscription sub = Subscription.createCriteria().get {
                 eq('topic.id', topid)
@@ -74,9 +59,6 @@ class SubscriptionController {
 
 
     def subscribe(params) {
-        if (!session.name) {
-            render("please login first")
-        } else {
             User user = User.findByEmail(session.name)
             Long topid = Long.parseLong(params.id)
             Topic t = Topic.get(topid)
@@ -88,11 +70,11 @@ class SubscriptionController {
                 user.save(flush: true, failOnError: true)
             }
             else{
-                flash.message23="Already subscribed"
+                flash.message="Already subscribed"
             }
 
             redirect(controller: "dashboard", action: "index")
-        }
+
     }
     def subscribeTopic(params){
         User user=User.findByEmail(session.name)
@@ -107,7 +89,7 @@ class SubscriptionController {
                 user.save(flush:true,failOnError:true)
             }
             else{
-                flash.message11="Already subscribed"
+                flash.message="Already subscribed"
             }
 
             redirect(controller:"dashboard" ,action:"index")

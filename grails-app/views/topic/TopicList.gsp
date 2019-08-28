@@ -64,7 +64,7 @@
         height: 36px;
     }
     </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    %{--<meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
     .dropbtn {
         background-color: #d58512;
@@ -94,16 +94,18 @@
     .dropdown-content a:hover {background-color: #ddd;}
     .dropdown:hover .dropdown-content {display: block;}
     .dropdown:hover .dropbtn {background-color: #3e8e41;}
-    </style>
-    <script>
+    </style>--}%
+   %{-- <script>
         function display(){
             document.getElementById("droped").style.display="block";
         }
-    </script>
+    </script>--}%
+    <title>Topic List</title>
+    <g:render template="/layout/dashboard"/>
 </head>
 <body>
 <div class="container">
-    <div class="row">
+    %{--<div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="container col-md-12" style="background: #31b0d5">
@@ -150,8 +152,8 @@
                             <td width=30px> <asset:image src="${userdata.photo}"  height="38px" width="40px" style="margin-right: 10px;"></asset:image>
                             </td>
 
-                            %{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
-                             </td>--}%
+                            --}%%{-- <td width=40px style="text-align:right;"><i class="material-icons">face</i>
+                             </td>--}%%{--
 
                             <td width=30px>
 
@@ -179,7 +181,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}%
 
     <h2>Topic List</h2>
     <p>The table represent list of all Topics</p>
@@ -213,7 +215,7 @@
         </tbody>
     </table>
 
-    <div class="modal fade"  id="linkresource" role="dialog">
+    %{--<div class="modal fade"  id="linkresource" role="dialog">
         <div class="modal-dialog">
             <!-- topic Modal content-->
             <div class="modal-content">
@@ -325,7 +327,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}%
 
 </div>
 

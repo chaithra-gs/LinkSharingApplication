@@ -27,11 +27,13 @@
             $(".topicForm").trigger("reset");
         }
     </script>
+    <title>Topic Show</title>
+    <g:render template="/layout/dashboard"/>
 
 </head>
 <body>
 <div class="container"><br>
-    <div class="row">
+    %{--<div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="container col-md-12" style="background: #31b0d5">
@@ -107,9 +109,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}%
     %{--THIS IS TO SEND INVITATION--}%
-    <div class="modal fade"  id="invite" role="dialog">
+   %{-- <div class="modal fade"  id="invite" role="dialog">
         <div class="modal-dialog">
             <!-- topic Modal content-->
             <div class="modal-content">
@@ -136,7 +138,7 @@
             </div>
         </div>
     </div>
-    %{--THIS IS SHARE LINK OF TOPIC MODEL--}%
+    --}%%{--THIS IS SHARE LINK OF TOPIC MODEL--}%%{--
 
     <div class="modal fade"  id="linkresource" role="dialog">
         <div class="modal-dialog">
@@ -169,7 +171,7 @@
         </div>
     </div>
 
-    %{--THIS IS SHARE DOCUMENT MODEL--}%
+    --}%%{--THIS IS SHARE DOCUMENT MODEL--}%%{--
     <div class="modal fade"  id="resource" role="dialog">
         <div class="modal-dialog">
             <!-- topic Modal content-->
@@ -201,7 +203,7 @@
         </div>
     </div>
 
-    %{--CREATE TOPIC MODEL--}%
+    --}%%{--CREATE TOPIC MODEL--}%%{--
     <div class="modal fade" id="topicModal" role="dialog">
         <div class="modal-dialog">
             <!-- topic Modal content-->
@@ -227,7 +229,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-        </div>
+        </div>--}%
     </div>
     <div class="container">
        %{-- <div class="row">--}%
@@ -304,14 +306,6 @@
     <div class="col-md-6" style="float: left">
         <div class="panel panel-default" style="overflow: auto;height: 280px">
             <div class="panel-heading">Posts : ${subs.topic.name}
-                %{--<div class="input-group" style="float: right;width: 40%;height:5px">
-                    <g:textField id="q" class="form-control" name="q" placeholder="Search" value="${q}"/>
-                    <div class="input-group-btn">
-                        <button class="btn btn-basic" type="submit" onclick="search()">
-                            <span class="glyphicon glyphicon-search" style="height: 20%"></span>
-                        </button>
-                    </div>
-                </div>--}%
             </div>
                 <div class="panel-body">
                 <g:each in="${resources}" var="res" status="i">

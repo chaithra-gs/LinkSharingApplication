@@ -105,13 +105,9 @@ class UserService {
     def trendtopics(){
         List interTopic = Topic.createCriteria().list{
             eq('visibility',Visibility.PUBLIC)
-        }.sort{a,b -> b.resourceHas.size()<=>a.resourceHas.size()}
-        List<Topic> trendingTopics = []
-        def i = 0
-        while(i < 5 && interTopic.size()>i) {
-            trendingTopics.add(interTopic.get(i))
-            i++
-        }
+        }.sort{it.resourceHas.size()}.reverse()
+        List<Topic> trendingTopics =interTopic.take(5)
+
         return trendingTopics
     }
 

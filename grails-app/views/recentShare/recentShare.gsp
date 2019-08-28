@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chaithra
-  Date: 06/08/19
-  Time: 2:23 PM
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -19,9 +12,7 @@
 
 <body>
 <div class="container">
-
-
-<div class="row">
+    <div class="row">
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">Recent shares</div>
